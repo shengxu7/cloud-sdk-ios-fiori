@@ -1,0 +1,39 @@
+{% macro _StyleType unwrappedTypeName %}
+{% if unwrappedTypeName == "String" or unwrappedTypeName == "[String]" %}
+TextStyle
+{% elif unwrappedTypeName == "Data" %}
+ImageStyle
+{% else %}
+NothingStyle
+{% endif %}
+{% endmacro %}
+
+{% macro StyleType unwrappedTypeName %}{% set tmp %}{% call _StyleType unwrappedTypeName %}{% endset %}{{tmp|removeNewlines}}{% endmacro %}
+{% for GENERATED_TYPE in types.protocols|annotated:"generated_component" %}
+{% set FioriTypeName %}{{ GENERATED_TYPE.name|replace:"Model","" }}{% endset %}
+// sourcery:file:ModelViews/{{FioriTypeName}}+Model.generated.swift
+import SwiftUI
+
+public struct {{ FioriTypeName }} {
+    public let model: {{GENERATED_TYPE.name }}
+
+    {% for x in GENERATED_TYPE.inheritedTypes %}
+        {% for y in type[x].allVariables %}
+    @Environment(\.{{y.name}}Style) internal var {{y.name}}Style: {% call StyleType y.unwrappedTypeName %}
+        {% endfor %}
+    {% endfor %}
+}
+
+// TODO: Extend {{ FioriTypeName }} to implement View in separate file
+// place at FioriSwiftUICore/Views/{{ FioriTypeName }}+View.swift
+/*
+import SwiftUI
+
+extension {{ FioriTypeName }}: View {
+    public var body: some View { 
+        <# View body #> 
+    }
+}
+*/
+// sourcery:end
+{% endfor %}

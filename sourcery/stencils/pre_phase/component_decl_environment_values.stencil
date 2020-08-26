@@ -1,0 +1,28 @@
+{# Utility function which returns the correct Style struct, for the unwrapped (non-optional) var type #}
+{% macro _StyleType unwrappedTypeName %}
+{% if unwrappedTypeName == "String" or unwrappedTypeName == "[String]" %}
+TextStyle
+{% elif unwrappedTypeName == "Data" %}
+ImageStyle
+{% else %}
+NothingStyle
+{% endif %}
+{% endmacro %}
+
+{% macro StyleType unwrappedTypeName %}{% set tmp %}{% call _StyleType unwrappedTypeName %}{% endset %}{{tmp|removeNewlines}}{% endmacro %}
+// sourcery:file:EnvironmentValues+Styles.generated.swift
+import SwiftUI
+{% for type in types.implementing._ComponentGenerating %}
+
+extension EnvironmentValues {
+{% for variable in type.variables %}
+{% set keyname %}{{variable.name | upperFirstLetter }}StyleKey{% endset %}
+{% set AStyle %}{% call StyleType variable.typeName.unwrappedTypeName %}{% endset %}
+    public var {{variable.name}}Style: {{AStyle}} {
+        get { return self[{{keyname}}.self] }
+        set { self[{{keyname}}.self] = newValue }
+    }
+{% endfor %}
+}
+{% endfor %}
+// sourcery:end

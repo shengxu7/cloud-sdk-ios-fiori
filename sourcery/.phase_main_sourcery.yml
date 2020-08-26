@@ -1,0 +1,10 @@
+sources:
+  - ./../Sources/FioriSwiftUICore/Concrete Styles/
+  - ./../Sources/FioriSwiftUICore/Models/
+  - ./../Sources/FioriSwiftUICore/_generated/Components/
+templates:
+  - ./../sourcery/stencils/main_phase/
+output:
+  ./../Sources/FioriSwiftUICore/_generated/
+force-parse:
+  - generated
