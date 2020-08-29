@@ -24,5 +24,14 @@ extension EnvironmentValues {
     }
 {% endfor %}
 }
+
+public extension View {
+{% for variable in type.variables %}
+{% set AStyle %}{% call StyleType variable.typeName.unwrappedTypeName %}{% endset %}
+    func {{variable.name}}Style(_ style: {{AStyle}}) -> some View {
+        return self.environment(\.{{variable.name}}Style, style)
+    }
+{% endfor %}
+}
 {% endfor %}
 // sourcery:end

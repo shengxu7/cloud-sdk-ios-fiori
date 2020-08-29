@@ -4,7 +4,11 @@
 import SwiftUI
 
 public struct ChartFloorplan {
-    public let model: ChartFloorplanModel
+    let model: ChartFloorplanModel
+
+    public init(model: ChartFloorplanModel) {
+        self.model = model
+    }
 
     @Environment(\.titleStyle) internal var titleStyle: TextStyle
     @Environment(\.subtitleStyle) internal var subtitleStyle: TextStyle

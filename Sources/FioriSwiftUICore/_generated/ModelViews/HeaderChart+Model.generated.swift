@@ -4,7 +4,11 @@
 import SwiftUI
 
 public struct HeaderChart {
-    public let model: HeaderChartModel
+    let model: HeaderChartModel
+
+    public init(model: HeaderChartModel) {
+        self.model = model
+    }
 
     @Environment(\.titleStyle) internal var titleStyle: TextStyle
     @Environment(\.subtitleStyle) internal var subtitleStyle: TextStyle

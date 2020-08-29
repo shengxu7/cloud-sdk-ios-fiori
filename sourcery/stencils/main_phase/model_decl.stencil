@@ -15,7 +15,11 @@ NothingStyle
 import SwiftUI
 
 public struct {{ FioriTypeName }} {
-    public let model: {{GENERATED_TYPE.name }}
+    let model: {{GENERATED_TYPE.name }}
+
+    public init(model: {{ GENERATED_TYPE.name }}) {
+        self.model = model
+    }
 
     {% for x in GENERATED_TYPE.inheritedTypes %}
         {% for y in type[x].allVariables %}

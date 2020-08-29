@@ -4,7 +4,11 @@
 import SwiftUI
 
 public struct ContactItem {
-    public let model: ContactItemModel
+    let model: ContactItemModel
+
+    public init(model: ContactItemModel) {
+        self.model = model
+    }
 
     @Environment(\.titleStyle) internal var titleStyle: TextStyle
     @Environment(\.subtitleStyle) internal var subtitleStyle: TextStyle

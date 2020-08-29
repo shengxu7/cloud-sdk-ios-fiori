@@ -4,7 +4,11 @@
 import SwiftUI
 
 public struct ObjectItem {
-    public let model: ObjectItemModel
+    let model: ObjectItemModel
+
+    public init(model: ObjectItemModel) {
+        self.model = model
+    }
 
     @Environment(\.titleStyle) internal var titleStyle: TextStyle
     @Environment(\.subtitleStyle) internal var subtitleStyle: TextStyle

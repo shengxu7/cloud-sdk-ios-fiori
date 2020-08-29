@@ -13,7 +13,7 @@ import Combine
 
 struct SegmentedControl_Chart: View {
     
-    let segmentTitltes = ["intraday: 1min", "one day: 1min", "1year:1day", "3years:1week"]
+    let segmentTitles = ["intraday: 1min", "one day: 1min", "1year:1day", "3years:1week"]
     
     @ObservedObject var stockModel = Tests.stockModels[0]
     
@@ -22,7 +22,7 @@ struct SegmentedControl_Chart: View {
     var segmentedControl: SegmentedControl!
     
     init() {
-        segmentedControl = SegmentedControl(segmentTitles: segmentTitltes, selectedIndex: stockModel.indexOfStockSeries)
+        segmentedControl = SegmentedControl(segmentTitles: segmentTitles, selectedIndex: stockModel.indexOfStockSeries)
         let stockModel = self.stockModel
         segmentedControl.selectionDidChangePublisher
             .sink(receiveValue: { (index) in

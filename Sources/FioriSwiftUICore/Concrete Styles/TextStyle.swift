@@ -13,6 +13,9 @@ protocol _StyleGenerating {
 
 
 public struct TextStyle: _StyleGenerating {
+    public init(font: Font? = nil) {
+        self._font = font
+    }
     typealias Concrete = Text
     // sourcery: return_some_view
     var _font: Font? = nil

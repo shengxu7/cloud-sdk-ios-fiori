@@ -28,6 +28,10 @@ struct ContentView: View {
                 destination: CoreContentView()) {
                     Text("Core Elements")
                 }
+                NavigationLink(
+                destination: ObjectItemViewTests()) {
+                    Text("Generated Views")
+                }
             }
             .navigationBarTitle("Examples")
         }

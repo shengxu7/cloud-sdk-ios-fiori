@@ -4,7 +4,11 @@
 import SwiftUI
 
 public struct ObjectHeader {
-    public let model: ObjectHeaderModel
+    let model: ObjectHeaderModel
+
+    public init(model: ObjectHeaderModel) {
+        self.model = model
+    }
 
     @Environment(\.titleStyle) internal var titleStyle: TextStyle
     @Environment(\.subtitleStyle) internal var subtitleStyle: TextStyle

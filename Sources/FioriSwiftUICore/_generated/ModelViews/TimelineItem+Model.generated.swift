@@ -4,7 +4,11 @@
 import SwiftUI
 
 public struct TimelineItem {
-    public let model: TimelineItemModel
+    let model: TimelineItemModel
+
+    public init(model: TimelineItemModel) {
+        self.model = model
+    }
 
     @Environment(\.titleStyle) internal var titleStyle: TextStyle
     @Environment(\.timestampStyle) internal var timestampStyle: TextStyle

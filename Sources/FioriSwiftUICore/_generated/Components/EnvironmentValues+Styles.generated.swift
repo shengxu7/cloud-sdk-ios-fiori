@@ -113,3 +113,87 @@ extension EnvironmentValues {
         set { self[UpperBoundTitleStyleKey.self] = newValue }
     }
 }
+
+public extension View {
+    func titleStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.titleStyle, style)
+    }
+    func subtitleStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.subtitleStyle, style)
+    }
+    func footnoteStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.footnoteStyle, style)
+    }
+    func descriptionTextStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.descriptionTextStyle, style)
+    }
+    func detailImageStyle(_ style: ImageStyle) -> some View {
+        return self.environment(\.detailImageStyle, style)
+    }
+    func attributeStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.attributeStyle, style)
+    }
+    func secondaryAttributeStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.secondaryAttributeStyle, style)
+    }
+    func timestampStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.timestampStyle, style)
+    }
+    func secondaryTimestampStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.secondaryTimestampStyle, style)
+    }
+    func trendStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.trendStyle, style)
+    }
+    func statusStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.statusStyle, style)
+    }
+    func substatusStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.substatusStyle, style)
+    }
+    func bodyStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.bodyStyle, style)
+    }
+    func iconsStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.iconsStyle, style)
+    }
+    func actionTitleStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.actionTitleStyle, style)
+    }
+    func seriesTitlesStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.seriesTitlesStyle, style)
+    }
+    func valueStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.valueStyle, style)
+    }
+    func valuesStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.valuesStyle, style)
+    }
+    func valueAxisTitleStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.valueAxisTitleStyle, style)
+    }
+    func secondaryValuesAxisTitleStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.secondaryValuesAxisTitleStyle, style)
+    }
+    func categoryAxisTitleStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.categoryAxisTitleStyle, style)
+    }
+    func emptyTextStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.emptyTextStyle, style)
+    }
+    func kpiStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.kpiStyle, style)
+    }
+    func placeholderStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.placeholderStyle, style)
+    }
+    func tagsStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.tagsStyle, style)
+    }
+    func lowerBoundTitleStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.lowerBoundTitleStyle, style)
+    }
+    func upperBoundTitleStyle(_ style: TextStyle) -> some View {
+        return self.environment(\.upperBoundTitleStyle, style)
+    }
+}

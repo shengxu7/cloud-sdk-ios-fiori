@@ -4,7 +4,11 @@
 import SwiftUI
 
 public struct ProfileHeader {
-    public let model: ProfileHeaderModel
+    let model: ProfileHeaderModel
+
+    public init(model: ProfileHeaderModel) {
+        self.model = model
+    }
 
     @Environment(\.titleStyle) internal var titleStyle: TextStyle
     @Environment(\.subtitleStyle) internal var subtitleStyle: TextStyle
