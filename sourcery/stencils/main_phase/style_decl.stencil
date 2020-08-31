@@ -10,6 +10,16 @@
 {% else %}
 {% endif %}{% endfilter %}{% endmacro %}
 
+{% macro ModifyingParameterBody variable %}{% filter removeNewlines %}
+    {% if variable|annotated:"param_anon_bool_color" %}
+        value!
+    {% elif variable|annotated:"param_anon_bool" %}
+
+    {% elif variable.typeName.unwrappedTypeName != "Bool" %}
+        value!
+    {% else %}
+    {% endif %}{% endfilter %}{% endmacro %}
+
 {% macro ApplyingStyleBody variable %}
 {% set name %}{{variable.name|replace:"_", ""}}{% endset %}
 {% if variable|annotated:"return_concrete" %}
@@ -117,6 +127,21 @@ fileprivate extension View {
         {% call ApplyingStyleBody variable %}
     }
     {% endfor %}
+}
+
+{#/*
+    Generates the `apply` method, which invokes each of the private `_apply(...)` methods
+*/#}
+public extension {{type.name}} {
+    func merging(_ style: {{type.name|upperFirstLetter}}) -> {{type.name}} {
+        var new = self
+    {% for variable in type.variables %}
+        if let value = style.{{variable.name}} { 
+            new.{{variable.name}} = value 
+        }
+    {% endfor %}
+        return new
+    }
 }
 // sourcery:end
 {% endfor %}

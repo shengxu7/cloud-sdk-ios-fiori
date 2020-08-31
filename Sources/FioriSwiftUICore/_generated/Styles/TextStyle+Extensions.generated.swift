@@ -267,3 +267,64 @@ fileprivate extension View {
         }
     }
 }
+
+public extension TextStyle {
+    func merging(_ style: TextStyle) -> TextStyle {
+        var new = self
+        if let value = style._font { 
+            new._font = value 
+        }
+        if let value = style._fontWeight { 
+            new._fontWeight = value 
+        }
+        if let value = style._foregroundColor { 
+            new._foregroundColor = value 
+        }
+        if let value = style._bold { 
+            new._bold = value 
+        }
+        if let value = style._italic { 
+            new._italic = value 
+        }
+        if let value = style._strikethrough { 
+            new._strikethrough = value 
+        }
+        if let value = style._underline { 
+            new._underline = value 
+        }
+        if let value = style._kerning { 
+            new._kerning = value 
+        }
+        if let value = style._tracking { 
+            new._tracking = value 
+        }
+        if let value = style._baselineOffset { 
+            new._baselineOffset = value 
+        }
+        if let value = style._textCase { 
+            new._textCase = value 
+        }
+        if let value = style._allowsTightening { 
+            new._allowsTightening = value 
+        }
+        if let value = style._minimumScaleFactor { 
+            new._minimumScaleFactor = value 
+        }
+        if let value = style._truncationMode { 
+            new._truncationMode = value 
+        }
+        if let value = style._lineLimit { 
+            new._lineLimit = value 
+        }
+        if let value = style._lineSpacing { 
+            new._lineSpacing = value 
+        }
+        if let value = style._multilineTextAlignment { 
+            new._multilineTextAlignment = value 
+        }
+        if let value = style._flipsForRightToLeftLayoutDirection { 
+            new._flipsForRightToLeftLayoutDirection = value 
+        }
+        return new
+    }
+}

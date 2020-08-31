@@ -116,84 +116,84 @@ extension EnvironmentValues {
 
 public extension View {
     func titleStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.titleStyle, style)
+        return transformEnvironment(\.titleStyle) { $0 = $0.merging(style) }
     }
     func subtitleStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.subtitleStyle, style)
+        return transformEnvironment(\.subtitleStyle) { $0 = $0.merging(style) }
     }
     func footnoteStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.footnoteStyle, style)
+        return transformEnvironment(\.footnoteStyle) { $0 = $0.merging(style) }
     }
     func descriptionTextStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.descriptionTextStyle, style)
+        return transformEnvironment(\.descriptionTextStyle) { $0 = $0.merging(style) }
     }
     func detailImageStyle(_ style: ImageStyle) -> some View {
-        return self.environment(\.detailImageStyle, style)
+        return transformEnvironment(\.detailImageStyle) { $0 = $0.merging(style) }
     }
     func attributeStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.attributeStyle, style)
+        return transformEnvironment(\.attributeStyle) { $0 = $0.merging(style) }
     }
     func secondaryAttributeStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.secondaryAttributeStyle, style)
+        return transformEnvironment(\.secondaryAttributeStyle) { $0 = $0.merging(style) }
     }
     func timestampStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.timestampStyle, style)
+        return transformEnvironment(\.timestampStyle) { $0 = $0.merging(style) }
     }
     func secondaryTimestampStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.secondaryTimestampStyle, style)
+        return transformEnvironment(\.secondaryTimestampStyle) { $0 = $0.merging(style) }
     }
     func trendStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.trendStyle, style)
+        return transformEnvironment(\.trendStyle) { $0 = $0.merging(style) }
     }
     func statusStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.statusStyle, style)
+        return transformEnvironment(\.statusStyle) { $0 = $0.merging(style) }
     }
     func substatusStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.substatusStyle, style)
+        return transformEnvironment(\.substatusStyle) { $0 = $0.merging(style) }
     }
     func bodyStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.bodyStyle, style)
+        return transformEnvironment(\.bodyStyle) { $0 = $0.merging(style) }
     }
     func iconsStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.iconsStyle, style)
+        return transformEnvironment(\.iconsStyle) { $0 = $0.merging(style) }
     }
     func actionTitleStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.actionTitleStyle, style)
+        return transformEnvironment(\.actionTitleStyle) { $0 = $0.merging(style) }
     }
     func seriesTitlesStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.seriesTitlesStyle, style)
+        return transformEnvironment(\.seriesTitlesStyle) { $0 = $0.merging(style) }
     }
     func valueStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.valueStyle, style)
+        return transformEnvironment(\.valueStyle) { $0 = $0.merging(style) }
     }
     func valuesStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.valuesStyle, style)
+        return transformEnvironment(\.valuesStyle) { $0 = $0.merging(style) }
     }
     func valueAxisTitleStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.valueAxisTitleStyle, style)
+        return transformEnvironment(\.valueAxisTitleStyle) { $0 = $0.merging(style) }
     }
     func secondaryValuesAxisTitleStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.secondaryValuesAxisTitleStyle, style)
+        return transformEnvironment(\.secondaryValuesAxisTitleStyle) { $0 = $0.merging(style) }
     }
     func categoryAxisTitleStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.categoryAxisTitleStyle, style)
+        return transformEnvironment(\.categoryAxisTitleStyle) { $0 = $0.merging(style) }
     }
     func emptyTextStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.emptyTextStyle, style)
+        return transformEnvironment(\.emptyTextStyle) { $0 = $0.merging(style) }
     }
     func kpiStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.kpiStyle, style)
+        return transformEnvironment(\.kpiStyle) { $0 = $0.merging(style) }
     }
     func placeholderStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.placeholderStyle, style)
+        return transformEnvironment(\.placeholderStyle) { $0 = $0.merging(style) }
     }
     func tagsStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.tagsStyle, style)
+        return transformEnvironment(\.tagsStyle) { $0 = $0.merging(style) }
     }
     func lowerBoundTitleStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.lowerBoundTitleStyle, style)
+        return transformEnvironment(\.lowerBoundTitleStyle) { $0 = $0.merging(style) }
     }
     func upperBoundTitleStyle(_ style: TextStyle) -> some View {
-        return self.environment(\.upperBoundTitleStyle, style)
+        return transformEnvironment(\.upperBoundTitleStyle) { $0 = $0.merging(style) }
     }
 }

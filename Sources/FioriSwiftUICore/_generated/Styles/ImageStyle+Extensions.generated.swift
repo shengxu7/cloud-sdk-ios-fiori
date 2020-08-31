@@ -52,3 +52,19 @@ fileprivate extension Image {
 
 fileprivate extension View {
 }
+
+public extension ImageStyle {
+    func merging(_ style: ImageStyle) -> ImageStyle {
+        var new = self
+        if let value = style._renderingMode { 
+            new._renderingMode = value 
+        }
+        if let value = style._interpolation { 
+            new._interpolation = value 
+        }
+        if let value = style._antialiased { 
+            new._antialiased = value 
+        }
+        return new
+    }
+}

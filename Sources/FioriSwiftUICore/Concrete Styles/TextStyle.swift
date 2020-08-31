@@ -13,9 +13,13 @@ protocol _StyleGenerating {
 
 
 public struct TextStyle: _StyleGenerating {
-    public init(font: Font? = nil) {
-        self._font = font
-    }
+//    public init(font: Font? = nil) {
+//        if font != nil {
+//            _font = font
+//        }
+//    }
+    
+    public init() {}
     typealias Concrete = Text
     // sourcery: return_some_view
     var _font: Font? = nil
