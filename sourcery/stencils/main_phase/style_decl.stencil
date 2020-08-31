@@ -130,7 +130,7 @@ fileprivate extension View {
 }
 
 {#/*
-    Generates the `apply` method, which invokes each of the private `_apply(...)` methods
+    Generates public `merge()` function for upserting changes from v2 instance to v1.
 */#}
 public extension {{type.name}} {
     func merging(_ style: {{type.name|upperFirstLetter}}) -> {{type.name}} {
