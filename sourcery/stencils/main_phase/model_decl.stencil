@@ -1,7 +1,7 @@
 {% macro _StyleType unwrappedTypeName %}
 {% if unwrappedTypeName == "String" or unwrappedTypeName == "[String]" %}
 TextStyle
-{% elif unwrappedTypeName == "Data" %}
+{% elif unwrappedTypeName == "Image" %}
 ImageStyle
 {% else %}
 NothingStyle
@@ -9,31 +9,42 @@ NothingStyle
 {% endmacro %}
 
 {% macro StyleType unwrappedTypeName %}{% set tmp %}{% call _StyleType unwrappedTypeName %}{% endset %}{{tmp|removeNewlines}}{% endmacro %}
-{% for GENERATED_TYPE in types.protocols|annotated:"generated_component" %}
-{% set FioriTypeName %}{{ GENERATED_TYPE.name|replace:"Model","" }}{% endset %}
-// sourcery:file:ModelViews/{{FioriTypeName}}+Model.generated.swift
+{% for MODEL_TYPE in types.protocols|annotated:"generated_component" %}
+{% set VIEW_TYPE_NAME %}{{ MODEL_TYPE.name|replace:"Model","" }}{% endset %}
+{% set HAS_GENERICS %}{{MODEL_TYPE.annotations.add_generics}}{% endset %}
+// sourcery:file:ViewModels/{{VIEW_TYPE_NAME}}+Model.generated.swift
 import SwiftUI
 
-public struct {{ FioriTypeName }} {
-    let model: {{GENERATED_TYPE.name }}
+public struct {{ VIEW_TYPE_NAME }}{% if MODEL_TYPE|annotated:"add_generics" %}<{{MODEL_TYPE.annotations.add_generics}}>{% endif %} {
+    let model: {{MODEL_TYPE.name }}
+    {% for property in MODEL_TYPE.annotations.add_init_params|split:", " %}
+        let {{property|replace:"@ViewBuilder ",""|replace:"@escaping ","" }}
+    {% endfor %}
 
-    public init(model: {{ GENERATED_TYPE.name }}) {
+    public init(model: {{ MODEL_TYPE.name }}{% for p in MODEL_TYPE.annotations.add_init_params|split:", " %}, {{p}}{% endfor %}) {
         self.model = model
+        {% for p in MODEL_TYPE.annotations.add_init_params|split:", " %}
+        {% for prop in p|replace:"@ViewBuilder ",""|replace:"@escaping ",""|split:": "%}
+            {% if forloop.first %}
+        self.{{prop}} = {{prop}}
+            {% endif %}
+        {% endfor %}
+        {% endfor %}
     }
 
-    {% for x in GENERATED_TYPE.inheritedTypes %}
+    {% for x in MODEL_TYPE.inheritedTypes %}
         {% for y in type[x].allVariables %}
     @Environment(\.{{y.name}}Style) internal var {{y.name}}Style: {% call StyleType y.unwrappedTypeName %}
         {% endfor %}
     {% endfor %}
 }
 
-// TODO: Extend {{ FioriTypeName }} to implement View in separate file
-// place at FioriSwiftUICore/Views/{{ FioriTypeName }}+View.swift
+// TODO: Extend {{ VIEW_TYPE_NAME }} to implement View in separate file
+// place at FioriSwiftUICore/Views/{{ VIEW_TYPE_NAME }}+View.swift
 /*
 import SwiftUI
 
-extension {{ FioriTypeName }}: View {
+extension {{ VIEW_TYPE_NAME }}: View {
     public var body: some View { 
         <# View body #> 
     }

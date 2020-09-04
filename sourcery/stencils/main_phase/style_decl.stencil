@@ -1,41 +1,35 @@
-{% macro ParameterBody unwrappedTypeName %}{% if unwrappedTypeName != "Bool" %}_ value: {{ unwrappedTypeName }}{% endif %}{% endmacro %}
+{% macro ParameterListFromExplicitAnnotation variable tuple_prefix %}{#
+#}{% set isTuple variable.annotations.swiftui_view_mod_param|default:""|contains:"," %}{#
+#}{% for p in variable.annotations.swiftui_view_mod_param|split:", " %}{#
+    #}{% for n in p|split:":" %}{#
+        #}{% if forloop.first %}{#
+        #}{% set stripped_var_name %}{{n|replace:"_ ",""}}{% endset %}{#
+        #}{%if not n|hasPrefix:"_ " %}{{stripped_var_name}}: {% endif %}{#
+        #}{% if isTuple %}{{tuple_prefix}}{% endif %}{{stripped_var_name}}{#
+        #}{% endif %}{#
+        #}{%endfor%}{#
+        #}{% if not forloop.last %}, {% endif %}{#
+        #}{% endfor %}{% endmacro %}
 
-{% macro ApplyingParameterBody variable %}{% filter removeNewlines %}
-{% if variable|annotated:"param_anon_bool_color" %}
-    true, color: value!
-{% elif variable|annotated:"param_anon_bool" %}
-    true
-{% elif variable.typeName.unwrappedTypeName != "Bool" %}
-    value!
-{% else %}
-{% endif %}{% endfilter %}{% endmacro %}
+{% macro ParameterBinding variable instance_var_prefix isTuple %}{% if isTuple %}({% endif %}{#
+#}{% if variable|annotated: "swiftui_view_mod_param" %}{#
+#}{% call ParameterListFromExplicitAnnotation variable instance_var_prefix %}{#
+#}{% elif variable|annotated: "swiftui_view_mod_param_true" %}true{#
+#}{% else %}{{variable.name|replace:"_", ""}}{% endif %}{% if isTuple %}){% endif %}{#
+#}{% endmacro %}
 
-{% macro ModifyingParameterBody variable %}{% filter removeNewlines %}
-    {% if variable|annotated:"param_anon_bool_color" %}
-        value!
-    {% elif variable|annotated:"param_anon_bool" %}
+{#
+    GENERATOR PROCEDURE
+#}
+{% for type in types.implementing._StyleGenerating %}
+{% set SwiftUIConcreteViewType %}{{type.name|replace:"Style",""}}{% endset %}
+// sourcery:file:Styles/{{type.name}}+Extensions.generated.swift
+import SwiftUI
 
-    {% elif variable.typeName.unwrappedTypeName != "Bool" %}
-        value!
-    {% else %}
-    {% endif %}{% endfilter %}{% endmacro %}
+// MARK: - Public 'View Modifier'-style interface 
+{#
+    USED MACROS: ParameterBinding, ParameterListFromExplicitAnnotation
 
-{% macro ApplyingStyleBody variable %}
-{% set name %}{{variable.name|replace:"_", ""}}{% endset %}
-{% if variable|annotated:"return_concrete" %}
-        guard value != nil else { return self }
-        return self.{{name}}({% call ApplyingParameterBody variable %})
-{% elif variable|annotated:"return_some_view" %}
-        return Group {
-            if value != nil {
-                self.{{name}}({% call ApplyingParameterBody variable %})
-            } else {
-                self
-            }
-        }
-{% endif %}{% endmacro %}
-
-{#/*
     Generates semantic API setters for each style
     e.g.:
 
@@ -46,26 +40,37 @@
             return new
         }
     }
-*/#}
-{% for type in types.implementing._StyleGenerating %}
-{% set SwiftUIConcreteViewType %}{{type.name|replace:"Style",""}}{% endset %}
-// sourcery:file:Styles/{{type.name}}+Extensions.generated.swift
-import SwiftUI
 
+ sourcery instructions: 
+ 1. public API should imitate related `ViewModifier` API, with annotation "swiftui_view_mod_param"
+ 2. return type should reflect the concrete `View` type, with annotation "return_concrete"
+      or `some View` with annotation "return_some_view"
+ 3. binding of public API parameters to internal property according to the following:
+    a. multiple parameter functions are bound to a tuple, with parameter names matching the public function
+    b. single parameter functions are mapped directly between `_<parameter_name>` and public function, 
+         unless explicitly declared in "swiftui_view_mod_param"
+#}
 public extension {{type.name }} {
 {% for variable in type.variables %}
 {% set name %}{{variable.name|replace:"_", ""}}{% endset %}
-    func {{name}}({% call ParameterBody variable.typeName.unwrappedTypeName %}) -> {{type.name }} {
+{% set isTuple variable.annotations.swiftui_view_mod_param|default:""|contains:"," %}
+    func {{name}}({% if variable|annotated: "swiftui_view_mod_param" %}{#
+        #}{{variable.annotations.swiftui_view_mod_param}}{#
+        #}{% elif variable|annotated: "swiftui_view_mod_param_true" %}{#
+        #}{% else %}{#
+        #}_ {{name}}: {{ variable.typeName.unwrappedTypeName }}{% endif %}) -> {{type.name }} {
         var new = self
-        new.{{variable.name}} = {% if variable.typeName.unwrappedTypeName == "Bool" %}true{% else %}value{% endif %}
+        new.{{variable.name}} = {% call ParameterBinding variable "" isTuple %}
         return new
-    }
+    } 
 {% endfor %}
 }
 
-{#/*
+{#
+    USED MACROS: none
+
     Generates the `apply` method, which invokes each of the private `_apply(...)` methods
-*/#}
+#}
 public extension {{SwiftUIConcreteViewType}} {
     func applying(_ style: {{type.name|upperFirstLetter}}) -> some View {
         let {{SwiftUIConcreteViewType|lowercase}} = self
@@ -81,7 +86,35 @@ public extension {{SwiftUIConcreteViewType}} {
         return someView
     }
 }
-{#/*
+
+{% macro ApplyingStyleBody variable %}
+{% set isTuple variable.annotations.swiftui_view_mod_param|default:""|contains:"," %}
+{% set name %}{% if variable|annotated:"swiftui_view_mod_func_name" %}{#
+    #}{{variable.annotations.swiftui_view_mod_func_name}}{#
+#}{% else %}{#
+    #}{{variable.name|replace:"_", ""}}{#
+#}{% endif %}{% endset %}
+{% set arg_list %}{% if variable|annotated: "swiftui_view_mod_param" and isTuple %}{#
+    #}{% call ParameterListFromExplicitAnnotation variable "value!." %}{#
+#}{% elif variable|annotated: "swiftui_view_mod_param_true" %}{#
+#}{% else %}{#
+    #}value!{#
+#}{% endif %}{% endset %}
+{% if variable|annotated:"return_concrete" %}
+        guard value != nil else { return self }
+        return self.{{name}}({{arg_list}})
+{% elif variable|annotated:"return_some_view" %}
+        return Group {
+            if value != nil {
+                self.{{name}}({{arg_list}})
+            } else {
+                self
+            }
+        }
+{% endif %}{% endmacro %}
+{#
+    USED MACROS: ApplyingStyleBody
+
     Generates private API for applying attributes of the Style to the concrete View type
     // accounts for nil values
     e.g.:
@@ -91,7 +124,7 @@ public extension {{SwiftUIConcreteViewType}} {
             guard value != nil else { return self }
             return self.fontWeight(value!)
         }
-*/#}
+#}
 
 fileprivate extension {{SwiftUIConcreteViewType}} {
     {% for variable in type.variables|annotated:"return_concrete" %}
@@ -103,7 +136,9 @@ fileprivate extension {{SwiftUIConcreteViewType}} {
     {% endfor %}
 }
 
-{#/*
+{#
+    USED MACROS: ApplyingStyleBody
+
     Generates private API for applying attributes of the Style to `some View`
     // accounts for nil values
     e.g.:
@@ -118,7 +153,7 @@ fileprivate extension {{SwiftUIConcreteViewType}} {
                 }
             }
         }
-*/#}
+#}
 fileprivate extension View {
     {% for variable in type.variables|annotated:"return_some_view" %}
     {% set name %}{{variable.name|replace:"_", ""}}{% endset %}
@@ -129,7 +164,9 @@ fileprivate extension View {
     {% endfor %}
 }
 
-{#/*
+{#
+    USED MACROS: none
+    
     Generates public `merge()` function for upserting changes from v2 instance to v1.
 */#}
 public extension {{type.name}} {

@@ -16,6 +16,7 @@ public struct ObjectItem {
     @Environment(\.descriptionTextStyle) internal var descriptionTextStyle: TextStyle
     @Environment(\.statusStyle) internal var statusStyle: TextStyle
     @Environment(\.substatusStyle) internal var substatusStyle: TextStyle
+    @Environment(\.detailImageStyle) internal var detailImageStyle: ImageStyle
 }
 
 // TODO: Extend ObjectItem to implement View in separate file

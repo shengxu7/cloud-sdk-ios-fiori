@@ -3,102 +3,123 @@
 
 import SwiftUI
 
+// MARK: - Public 'View Modifier'-style interface 
 public extension TextStyle {
-    func font(_ value: Font) -> TextStyle {
+    func font(_ font: Font) -> TextStyle {
         var new = self
-        new._font = value
+        new._font = font
         return new
-    }
-    func fontWeight(_ value: Font.Weight) -> TextStyle {
+    } 
+    func fontWeight(_ fontWeight: Font.Weight) -> TextStyle {
         var new = self
-        new._fontWeight = value
+        new._fontWeight = fontWeight
         return new
-    }
-    func foregroundColor(_ value: Color) -> TextStyle {
+    } 
+    func foregroundColor(_ foregroundColor: Color) -> TextStyle {
         var new = self
-        new._foregroundColor = value
+        new._foregroundColor = foregroundColor
         return new
-    }
+    } 
     func bold() -> TextStyle {
         var new = self
         new._bold = true
         return new
-    }
+    } 
     func italic() -> TextStyle {
         var new = self
         new._italic = true
         return new
-    }
-    func strikethrough(_ value: Color) -> TextStyle {
+    } 
+    func strikethrough(_ active: Bool = true, color: Color? = nil) -> TextStyle {
         var new = self
-        new._strikethrough = value
+        new._strikethrough = (active, color: color)
         return new
-    }
-    func underline(_ value: Color) -> TextStyle {
+    } 
+    func underline(_ active: Bool = true, color: Color? = nil) -> TextStyle {
         var new = self
-        new._underline = value
+        new._underline = (active, color: color)
         return new
-    }
-    func kerning(_ value: CGFloat) -> TextStyle {
+    } 
+    func kerning(_ kerning: CGFloat) -> TextStyle {
         var new = self
-        new._kerning = value
+        new._kerning = kerning
         return new
-    }
-    func tracking(_ value: CGFloat) -> TextStyle {
+    } 
+    func tracking(_ tracking: CGFloat) -> TextStyle {
         var new = self
-        new._tracking = value
+        new._tracking = tracking
         return new
-    }
-    func baselineOffset(_ value: CGFloat) -> TextStyle {
+    } 
+    func baselineOffset(_ baselineOffset: CGFloat) -> TextStyle {
         var new = self
-        new._baselineOffset = value
+        new._baselineOffset = baselineOffset
         return new
-    }
-    func textCase(_ value: Text.Case) -> TextStyle {
+    } 
+    func textCase(_ textCase: Text.Case) -> TextStyle {
         var new = self
-        new._textCase = value
+        new._textCase = textCase
         return new
-    }
-    func allowsTightening() -> TextStyle {
+    } 
+    func allowsTightening(_ flag: Bool) -> TextStyle {
         var new = self
-        new._allowsTightening = true
+        new._allowsTightening = flag
         return new
-    }
-    func minimumScaleFactor(_ value: CGFloat) -> TextStyle {
+    } 
+    func minimumScaleFactor(_ minimumScaleFactor: CGFloat) -> TextStyle {
         var new = self
-        new._minimumScaleFactor = value
+        new._minimumScaleFactor = minimumScaleFactor
         return new
-    }
-    func truncationMode(_ value: Text.TruncationMode) -> TextStyle {
+    } 
+    func truncationMode(_ truncationMode: Text.TruncationMode) -> TextStyle {
         var new = self
-        new._truncationMode = value
+        new._truncationMode = truncationMode
         return new
-    }
-    func lineLimit(_ value: Int) -> TextStyle {
+    } 
+    func lineLimit(_ lineLimit: Int) -> TextStyle {
         var new = self
-        new._lineLimit = value
+        new._lineLimit = lineLimit
         return new
-    }
-    func lineSpacing(_ value: CGFloat) -> TextStyle {
+    } 
+    func lineSpacing(_ lineSpacing: CGFloat) -> TextStyle {
         var new = self
-        new._lineSpacing = value
+        new._lineSpacing = lineSpacing
         return new
-    }
-    func multilineTextAlignment(_ value: TextAlignment) -> TextStyle {
+    } 
+    func multilineTextAlignment(_ multilineTextAlignment: TextAlignment) -> TextStyle {
         var new = self
-        new._multilineTextAlignment = value
+        new._multilineTextAlignment = multilineTextAlignment
         return new
-    }
-    func flipsForRightToLeftLayoutDirection() -> TextStyle {
+    } 
+    func flipsForRightToLeftLayoutDirection(_ enabled: Bool) -> TextStyle {
         var new = self
-        new._flipsForRightToLeftLayoutDirection = true
+        new._flipsForRightToLeftLayoutDirection = enabled
         return new
-    }
+    } 
+    func paddingLength(_ length: CGFloat) -> TextStyle {
+        var new = self
+        new._paddingLength = length
+        return new
+    } 
+    func paddingInsets(_ insets: EdgeInsets) -> TextStyle {
+        var new = self
+        new._paddingInsets = insets
+        return new
+    } 
+    func paddingSet(_ edges: Edge.Set = .all, _ length: CGFloat? = nil) -> TextStyle {
+        var new = self
+        new._paddingSet = (edges, length)
+        return new
+    } 
+    func cornerRadius(_ radius: CGFloat, antialiased: Bool = true) -> TextStyle {
+        var new = self
+        new._cornerRadius = (radius, antialiased: antialiased)
+        return new
+    } 
 }
 
 public extension Text {
     func applying(_ style: TextStyle) -> some View {
-        let text = self
+        let text: Text = self
             ._applyFontWeight(style._fontWeight)
             ._applyBold(style._bold)
             ._applyItalic(style._italic)
@@ -108,6 +129,7 @@ public extension Text {
             ._applyTracking(style._tracking)
             ._applyBaselineOffset(style._baselineOffset)
         let someView = text
+            ._applyLineSpacing(style._lineSpacing)
             ._applyFont(style._font)
             ._applyForegroundColor(style._foregroundColor)
             ._applyTextCase(style._textCase)
@@ -115,12 +137,16 @@ public extension Text {
             ._applyMinimumScaleFactor(style._minimumScaleFactor)
             ._applyTruncationMode(style._truncationMode)
             ._applyLineLimit(style._lineLimit)
-            ._applyLineSpacing(style._lineSpacing)
             ._applyMultilineTextAlignment(style._multilineTextAlignment)
             ._applyFlipsForRightToLeftLayoutDirection(style._flipsForRightToLeftLayoutDirection)
+            ._applyPaddingLength(style._paddingLength)
+            ._applyPaddingInsets(style._paddingInsets)
+            ._applyPaddingSet(style._paddingSet)
+            ._applyCornerRadius(style._cornerRadius)
         return someView
     }
 }
+
 
 fileprivate extension Text {
 
@@ -139,14 +165,14 @@ fileprivate extension Text {
         return self.italic()
     }
 
-    func _applyStrikethrough(_ value: Color?) -> Text {
+    func _applyStrikethrough(_ value: (active: Bool, color: Color?)?) -> Text {
         guard value != nil else { return self }
-        return self.strikethrough(true,color:value!)
+        return self.strikethrough(value!.active, color: value!.color)
     }
 
-    func _applyUnderline(_ value: Color?) -> Text {
+    func _applyUnderline(_ value: (active: Bool, color: Color?)?) -> Text {
         guard value != nil else { return self }
-        return self.underline(true,color:value!)
+        return self.underline(value!.active, color: value!.color)
     }
 
     func _applyKerning(_ value: CGFloat?) -> Text {
@@ -200,7 +226,7 @@ fileprivate extension View {
     func _applyAllowsTightening(_ value: Bool?) -> some View {
         return Group {
             if value != nil {
-                self.allowsTightening(true)
+                self.allowsTightening(value!)
             } else {
                 self
             }
@@ -260,7 +286,47 @@ fileprivate extension View {
     func _applyFlipsForRightToLeftLayoutDirection(_ value: Bool?) -> some View {
         return Group {
             if value != nil {
-                self.flipsForRightToLeftLayoutDirection(true)
+                self.flipsForRightToLeftLayoutDirection(value!)
+            } else {
+                self
+            }
+        }
+    }
+
+    func _applyPaddingLength(_ value: CGFloat?) -> some View {
+        return Group {
+            if value != nil {
+                self.padding(value!)
+            } else {
+                self
+            }
+        }
+    }
+
+    func _applyPaddingInsets(_ value: EdgeInsets?) -> some View {
+        return Group {
+            if value != nil {
+                self.padding(value!)
+            } else {
+                self
+            }
+        }
+    }
+
+    func _applyPaddingSet(_ value: (edges: Edge.Set, length: CGFloat?)?) -> some View {
+        return Group {
+            if value != nil {
+                self.padding(value!.edges, value!.length)
+            } else {
+                self
+            }
+        }
+    }
+
+    func _applyCornerRadius(_ value: (radius: CGFloat, antialiased: Bool)?) -> some View {
+        return Group {
+            if value != nil {
+                self.cornerRadius(value!.radius, antialiased: value!.antialiased)
             } else {
                 self
             }
@@ -324,6 +390,18 @@ public extension TextStyle {
         }
         if let value = style._flipsForRightToLeftLayoutDirection { 
             new._flipsForRightToLeftLayoutDirection = value 
+        }
+        if let value = style._paddingLength { 
+            new._paddingLength = value 
+        }
+        if let value = style._paddingInsets { 
+            new._paddingInsets = value 
+        }
+        if let value = style._paddingSet { 
+            new._paddingSet = value 
+        }
+        if let value = style._cornerRadius { 
+            new._cornerRadius = value 
         }
         return new
     }

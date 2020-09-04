@@ -16,7 +16,7 @@ public protocol DescriptionTextComponent {
     var descriptionText: String? { get }
 }
 public protocol DetailImageComponent {
-    var detailImage: Data? { get }
+    var detailImage: Image? { get }
 }
 public protocol AttributeComponent {
     var attribute: String? { get }

@@ -9,7 +9,7 @@ import Foundation
 
 // Standard Components
 // sourcery: generated_component
-public protocol ObjectItemModel: TitleComponent, SubtitleComponent, FootnoteComponent, DescriptionTextComponent, StatusComponent, SubstatusComponent {}
+public protocol ObjectItemModel: TitleComponent, SubtitleComponent, FootnoteComponent, DescriptionTextComponent, StatusComponent, SubstatusComponent, DetailImageComponent {}
 
 // sourcery: generated_component
 public protocol ObjectHeaderModel: TitleComponent, SubtitleComponent, FootnoteComponent, DescriptionTextComponent, StatusComponent, SubstatusComponent, DetailImageComponent {}
@@ -17,8 +17,10 @@ public protocol ObjectHeaderModel: TitleComponent, SubtitleComponent, FootnoteCo
 // sourcery: generated_component
 public protocol HeaderChartModel: TitleComponent, SubtitleComponent, TrendComponent, KpiComponent {}
 
+// sourcery: add_generics = "ActionItems: View"
+// sourcery: add_init_params = "@ViewBuilder actionItems: @escaping () -> ActionItems"
 // sourcery: generated_component
-public protocol ContactItemModel: TitleComponent, SubtitleComponent, FootnoteComponent {}
+public protocol ContactItemModel: TitleComponent, SubtitleComponent, FootnoteComponent, DescriptionTextComponent, DetailImageComponent {}
 
 // sourcery: generated_component
 public protocol TimelineExtendedItemModel: TitleComponent, SubtitleComponent, FootnoteComponent, AttributeComponent, SecondaryAttributeComponent, TimestampComponent, SecondaryTimestampComponent, StatusComponent, SubstatusComponent {}

@@ -14,7 +14,7 @@ internal struct _Component: _ComponentGenerating {
     let subtitle: String?
     let footnote: String?
     let descriptionText: String?
-    let detailImage: Data?
+    let detailImage: Image?
     let attribute: String?
     let secondaryAttribute: String?
     let timestamp: String?

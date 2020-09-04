@@ -29,7 +29,7 @@ struct ContentView: View {
                     Text("Core Elements")
                 }
                 NavigationLink(
-                destination: ObjectItemViewTests()) {
+                destination: ContactItemViewTests()) {
                     Text("Generated Views")
                 }
             }

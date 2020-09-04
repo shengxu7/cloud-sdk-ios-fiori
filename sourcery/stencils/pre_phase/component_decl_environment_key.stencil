@@ -2,7 +2,7 @@
 {% macro _StyleType unwrappedTypeName %}
 {% if unwrappedTypeName == "String" or unwrappedTypeName == "[String]" %}
 TextStyle
-{% elif unwrappedTypeName == "Data" %}
+{% elif unwrappedTypeName == "Image" %}
 ImageStyle
 {% else %}
 NothingStyle
