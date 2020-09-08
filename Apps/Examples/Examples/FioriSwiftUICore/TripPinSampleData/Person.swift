@@ -189,36 +189,56 @@ extension TripPin.Person.Address {
 }
 
 extension TripPin.Person: ContactItemModel {
-    
-    var title: String {
-        return PersonNameComponentsFormatter().string(from: nameComponents)
-    }
-    
-    var subtitle: String? {
-        return Emails.joined(separator: ", ")
-    }
-    
     var footnote: String? {
         Features.joined(separator: ", ")
     }
-    
+}
+
+extension TripPin.Person: ProfileHeaderModel {}
+
+extension TripPin.Person: TitleComponent {
+    var title: String {
+        return PersonNameComponentsFormatter().string(from: nameComponents)
+    }
+}
+
+extension TripPin.Person: SubtitleComponent {
+    var subtitle: String? {
+        return Emails.joined(separator: ", ")
+    }
+}
+
+extension TripPin.Person: DetailImageComponent {
+    var detailImage: Image? {
+        guard let name = ProfilePic else { return nil }
+        return Image(name)
+    }
+}
+
+extension TripPin.Person: DescriptionTextComponent {
     var descriptionText: String? {
         return cnContact.postalAddresses.map({
             CNPostalAddressFormatter().string(from: $0.value)
         }).joined(separator: "\r")
     }
-    
-    var status: String? {
-        nil
-    }
-    
-    var substatus: String? {
-        nil
-    }
-    
-    var detailImage: Image? {
-        guard let name = ProfilePic else { return nil }
-        return Image(name)
+}
+
+extension TripPin.Person {
+    var actionItems: some View {
+        return Group {
+            Button {
+                print("Calling person: \(UserName)")
+            } label: {
+                Image(systemName: "phone")
+            }
+            ForEach(Emails, id: \.self) { email in
+                Button {
+                    print("Mailing person: \(UserName) at email address: \(email)")
+                } label: {
+                    Image(systemName: "mail")
+                }
+            }
+        }
     }
 }
 

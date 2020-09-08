@@ -21,7 +21,11 @@ struct ContactItemViewTests: View {
                 LazyVStack {
                     ForEach(model.listResults) { person in
                         
-                        NavigationLink(destination: Text(person.UserName)) {
+                        NavigationLink(destination: ProfileDetailFloorplan(header: {
+                            ProfileHeader(model: person, actionItems: { EmptyView() })
+                        }, content: {
+                            Text("hello, world")
+                        })) {
                             if person.UserName.contains("a") {
                                 ContactItem(model: person, actionItems: {
                                     Button {

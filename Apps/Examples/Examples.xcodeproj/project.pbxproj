@@ -116,6 +116,7 @@
 		F66C6EB12502EAB3007BD35A /* SAPFoundation.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F66C6EAC2502EAB3007BD35A /* SAPFoundation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F66C6EB22502EAB3007BD35A /* SAPOData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F66C6EAD2502EAB3007BD35A /* SAPOData.xcframework */; };
 		F66C6EB32502EAB3007BD35A /* SAPOData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F66C6EAD2502EAB3007BD35A /* SAPOData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F678372A25081D21007DF919 /* ProfileDetailFloorplan.swift in Sources */ = {isa = PBXBuildFile; fileRef = F678372925081D21007DF919 /* ProfileDetailFloorplan.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -266,6 +267,7 @@
 		F66C6EAB2502EAB2007BD35A /* SAPCommon.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPCommon.xcframework; path = "../../../Release-xcframework/SAPCommon.xcframework"; sourceTree = "<group>"; };
 		F66C6EAC2502EAB3007BD35A /* SAPFoundation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPFoundation.xcframework; path = "../../../Release-xcframework/SAPFoundation.xcframework"; sourceTree = "<group>"; };
 		F66C6EAD2502EAB3007BD35A /* SAPOData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPOData.xcframework; path = "../../../Release-xcframework/SAPOData.xcframework"; sourceTree = "<group>"; };
+		F678372925081D21007DF919 /* ProfileDetailFloorplan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailFloorplan.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -504,6 +506,7 @@
 				8A5579C924C1293C0098003A /* SegmentedControl */,
 				F62A2A9524F638BF00E2197E /* ObjectItemViewTests.swift */,
 				F66C6EA42502E5AB007BD35A /* ListFloorplanView.swift */,
+				F678372925081D21007DF919 /* ProfileDetailFloorplan.swift */,
 			);
 			path = FioriSwiftUICore;
 			sourceTree = "<group>";
@@ -755,6 +758,7 @@
 				8A5579CF24C1293C0098003A /* SettingsAxis.swift in Sources */,
 				8A5579D924C1293C0098003A /* SettingsSelection.swift in Sources */,
 				8A557A1124C1293C0098003A /* SegmentedControl+Chart.swift in Sources */,
+				F678372A25081D21007DF919 /* ProfileDetailFloorplan.swift in Sources */,
 				8A5579D824C1293C0098003A /* SettingsIndexSet.swift in Sources */,
 				F66C6EAA2502E995007BD35A /* TripPin.swift in Sources */,
 				8A55795924C1286E0098003A /* SceneDelegate.swift in Sources */,

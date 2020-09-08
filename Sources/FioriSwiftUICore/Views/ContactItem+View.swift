@@ -4,8 +4,11 @@ extension ContactItem: View {
     public var body: some View {
         HStack {
             if let image = model.detailImage {
-                image.applying(detailImageStyle)
+                image
+                    .resizable()
+                    .applying(detailImageStyle)
                     .frame(width: 45, height: 45)
+                    .mask(Circle())
                     
             }
             VStack(alignment: .leading) {
@@ -18,6 +21,7 @@ extension ContactItem: View {
                 }
             }
             Spacer()
+            actionItems()
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
     }

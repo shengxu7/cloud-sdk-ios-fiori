@@ -28,6 +28,9 @@ public protocol TimelineExtendedItemModel: TitleComponent, SubtitleComponent, Fo
 // sourcery: generated_component
 public protocol ChartFloorplanModel: TitleComponent, SubtitleComponent, StatusComponent, ValueAxisTitleComponent, SeriesTitlesComponent, CategoryAxisTitleComponent {}
 
+// sourcery: add_generics = "ActionItems: View"
+// sourcery: add_init_params = "@ViewBuilder actionItems: @escaping () -> ActionItems"
+// sourcery: add_env_props = "horizontalSizeClass"
 // sourcery: generated_component
 public protocol ProfileHeaderModel: TitleComponent, SubtitleComponent, FootnoteComponent, DescriptionTextComponent, DetailImageComponent {}
 
