@@ -107,6 +107,15 @@
 		8AF60E3324D34CF2003889A8 /* TimelineCardSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF60E3224D34CF2003889A8 /* TimelineCardSnapshotTests.swift */; };
 		F62A2A9624F638BF00E2197E /* ObjectItemViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62A2A9524F638BF00E2197E /* ObjectItemViewTests.swift */; };
 		F641B7B524FD453100B8C34B /* FioriSwiftUI in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 8A4A31B824E3564F00B63AF0 /* FioriSwiftUI */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		F66C6EA52502E5AB007BD35A /* ListFloorplanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66C6EA42502E5AB007BD35A /* ListFloorplanView.swift */; };
+		F66C6EA82502E7E5007BD35A /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66C6EA72502E7E5007BD35A /* Person.swift */; };
+		F66C6EAA2502E995007BD35A /* TripPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66C6EA92502E995007BD35A /* TripPin.swift */; };
+		F66C6EAE2502EAB3007BD35A /* SAPCommon.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F66C6EAB2502EAB2007BD35A /* SAPCommon.xcframework */; };
+		F66C6EAF2502EAB3007BD35A /* SAPCommon.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F66C6EAB2502EAB2007BD35A /* SAPCommon.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F66C6EB02502EAB3007BD35A /* SAPFoundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F66C6EAC2502EAB3007BD35A /* SAPFoundation.xcframework */; };
+		F66C6EB12502EAB3007BD35A /* SAPFoundation.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F66C6EAC2502EAB3007BD35A /* SAPFoundation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F66C6EB22502EAB3007BD35A /* SAPOData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F66C6EAD2502EAB3007BD35A /* SAPOData.xcframework */; };
+		F66C6EB32502EAB3007BD35A /* SAPOData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F66C6EAD2502EAB3007BD35A /* SAPOData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,7 +145,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				F66C6EB32502EAB3007BD35A /* SAPOData.xcframework in Embed Frameworks */,
+				F66C6EB12502EAB3007BD35A /* SAPFoundation.xcframework in Embed Frameworks */,
 				F641B7B524FD453100B8C34B /* FioriSwiftUI in Embed Frameworks */,
+				F66C6EAF2502EAB3007BD35A /* SAPCommon.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,6 +260,12 @@
 		8AF60E1C24D34553003889A8 /* HarveyBallSnapshotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HarveyBallSnapshotTests.swift; sourceTree = "<group>"; };
 		8AF60E3224D34CF2003889A8 /* TimelineCardSnapshotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineCardSnapshotTests.swift; sourceTree = "<group>"; };
 		F62A2A9524F638BF00E2197E /* ObjectItemViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectItemViewTests.swift; sourceTree = "<group>"; };
+		F66C6EA42502E5AB007BD35A /* ListFloorplanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFloorplanView.swift; sourceTree = "<group>"; };
+		F66C6EA72502E7E5007BD35A /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		F66C6EA92502E995007BD35A /* TripPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripPin.swift; sourceTree = "<group>"; };
+		F66C6EAB2502EAB2007BD35A /* SAPCommon.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPCommon.xcframework; path = "../../../Release-xcframework/SAPCommon.xcframework"; sourceTree = "<group>"; };
+		F66C6EAC2502EAB3007BD35A /* SAPFoundation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPFoundation.xcframework; path = "../../../Release-xcframework/SAPFoundation.xcframework"; sourceTree = "<group>"; };
+		F66C6EAD2502EAB3007BD35A /* SAPOData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPOData.xcframework; path = "../../../Release-xcframework/SAPOData.xcframework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,7 +273,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F66C6EB22502EAB3007BD35A /* SAPOData.xcframework in Frameworks */,
+				F66C6EB02502EAB3007BD35A /* SAPFoundation.xcframework in Frameworks */,
 				8ACBFA1424F7F011009233DE /* FioriSwiftUI in Frameworks */,
+				F66C6EAE2502EAB3007BD35A /* SAPCommon.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,9 +499,11 @@
 		8A5579C824C1293C0098003A /* FioriSwiftUICore */ = {
 			isa = PBXGroup;
 			children = (
+				F66C6EA62502E7D4007BD35A /* TripPinSampleData */,
 				8A557A2124C12C9B0098003A /* CoreContentView.swift */,
 				8A5579C924C1293C0098003A /* SegmentedControl */,
 				F62A2A9524F638BF00E2197E /* ObjectItemViewTests.swift */,
+				F66C6EA42502E5AB007BD35A /* ListFloorplanView.swift */,
 			);
 			path = FioriSwiftUICore;
 			sourceTree = "<group>";
@@ -496,6 +519,9 @@
 		8A557A1224C129900098003A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F66C6EAB2502EAB2007BD35A /* SAPCommon.xcframework */,
+				F66C6EAC2502EAB3007BD35A /* SAPFoundation.xcframework */,
+				F66C6EAD2502EAB3007BD35A /* SAPOData.xcframework */,
 				8A1E99AD24D59C8000ED8A39 /* cloud-sdk-ios-fiori */,
 			);
 			name = Frameworks;
@@ -539,6 +565,15 @@
 				8A8B9BDB24D3DADA0096000F /* ListCardSnapshotTests.swift */,
 			);
 			path = FioriIntegrationCards;
+			sourceTree = "<group>";
+		};
+		F66C6EA62502E7D4007BD35A /* TripPinSampleData */ = {
+			isa = PBXGroup;
+			children = (
+				F66C6EA92502E995007BD35A /* TripPin.swift */,
+				F66C6EA72502E7E5007BD35A /* Person.swift */,
+			);
+			path = TripPinSampleData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -709,8 +744,10 @@
 				8A557A2424C12F380098003A /* ChartDetailView.swift in Sources */,
 				8A5579D024C1293C0098003A /* SettingsLine.swift in Sources */,
 				8A557A2024C12C940098003A /* IntegrationCardsContentView.swift in Sources */,
+				F66C6EA52502E5AB007BD35A /* ListFloorplanView.swift in Sources */,
 				8A5579CC24C1293C0098003A /* SettingsColorForCategory.swift in Sources */,
 				8A557A1A24C12C820098003A /* ChartsContentView.swift in Sources */,
+				F66C6EA82502E7E5007BD35A /* Person.swift in Sources */,
 				8A5579CE24C1293C0098003A /* SettingColor.swift in Sources */,
 				8A5579D124C1293C0098003A /* Settings.swift in Sources */,
 				8A5579EF24C1293C0098003A /* TestCases.swift in Sources */,
@@ -719,6 +756,7 @@
 				8A5579D924C1293C0098003A /* SettingsSelection.swift in Sources */,
 				8A557A1124C1293C0098003A /* SegmentedControl+Chart.swift in Sources */,
 				8A5579D824C1293C0098003A /* SettingsIndexSet.swift in Sources */,
+				F66C6EAA2502E995007BD35A /* TripPin.swift in Sources */,
 				8A55795924C1286E0098003A /* SceneDelegate.swift in Sources */,
 				8A55795B24C1286E0098003A /* ContentView.swift in Sources */,
 				8A5579D724C1293C0098003A /* SettingsCategoryAxis.swift in Sources */,

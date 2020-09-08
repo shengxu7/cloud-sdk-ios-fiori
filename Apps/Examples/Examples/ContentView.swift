@@ -7,6 +7,8 @@
 //
 
 import SwiftUI
+import Floorplan
+import FioriSwiftUICore
 
 struct ContentView: View {
     private let oneMany = ["table", "list", "timeline"]
@@ -32,6 +34,15 @@ struct ContentView: View {
                 destination: ContactItemViewTests()) {
                     Text("Generated Views")
                 }
+//                NavigationLink(
+//                    destination: ListFloorplanSwiftUI<ContactItem<EmptyView>, TripPin.Person, TripPin.Person.Section>(model: ListViewModel<TripPin.Person, TripPin.Person.Section>(queries: [.default: AnyIDataLoader(TripPin.IPeopleLoader())]), binding: { person in
+//                            ContactItem(model: person)
+//                                
+//                    }
+//                    ).detailImageStyle(ImageStyle().resizable().cornerRadius(6))
+//                ) {
+//                    Text("Generated Views")
+//                }
             }
             .navigationBarTitle("Examples")
             .listStyle(SidebarListStyle())
