@@ -35,7 +35,7 @@ let package = Package(
     targets: [
         .target(
             name: "FioriSwiftUI",
-            dependencies: ["FioriIntegrationCards", /*"Floorplan",*/ "FioriCharts"]),
+            dependencies: ["FioriIntegrationCards", /*"Floorplan",*/ "FioriCharts", "FioriSwiftUICore"]),
 //        .target(
 //            name: "Floorplan",
 //            dependencies: []),
