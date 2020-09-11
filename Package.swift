@@ -20,10 +20,10 @@ let package = Package(
             name: "FioriIntegrationCards",
             type: .dynamic,
             targets: ["FioriIntegrationCards"]),
-        .library(
-            name: "Floorplan",
-            type: .dynamic,
-            targets: ["Floorplan"]),
+//        .library(
+//            name: "Floorplan",
+//            type: .dynamic,
+//            targets: ["Floorplan"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -35,10 +35,10 @@ let package = Package(
     targets: [
         .target(
             name: "FioriSwiftUI",
-            dependencies: ["FioriIntegrationCards", "Floorplan", "FioriCharts"]),
-        .target(
-            name: "Floorplan",
-            dependencies: []),
+            dependencies: ["FioriIntegrationCards", /*"Floorplan",*/ "FioriCharts"]),
+//        .target(
+//            name: "Floorplan",
+//            dependencies: []),
         .target(
             name: "FioriIntegrationCards",
             dependencies: ["AnyCodable", "TinyNetworking", "ObservableArray", "FioriCharts", "Zip"]),
