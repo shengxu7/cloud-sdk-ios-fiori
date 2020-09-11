@@ -4,10 +4,14 @@
 import SwiftUI
 
 public struct ProfileHeader<ActionItems: View> {
-    let model: ProfileHeaderModel & ContactItemModel
-    let actionItems: () -> ActionItems
+    let model: ProfileHeaderModel
+    let actionItems: ActionItems
 
-    public init(model: ProfileHeaderModel & ContactItemModel, @ViewBuilder actionItems: @escaping () -> ActionItems) {
+    public init(model: ProfileHeaderModel, @ViewBuilder actionItems: @escaping () -> ActionItems) {
+        self.model = model
+        self.actionItems = actionItems()
+    }
+    public init(model: ProfileHeaderModel, actionItems: ActionItems) {
         self.model = model
         self.actionItems = actionItems
     }
@@ -17,7 +21,7 @@ public struct ProfileHeader<ActionItems: View> {
     @Environment(\.footnoteStyle) internal var footnoteStyle: TextStyle
     @Environment(\.descriptionTextStyle) internal var descriptionTextStyle: TextStyle
     @Environment(\.detailImageStyle) internal var detailImageStyle: ImageStyle
-    @Environment(\.horizontalSizeClass) var sizeClass
+    @Environment(\.horizontalSizeClass) internal var horizontalSizeClass
 }
 
 // TODO: Extend ProfileHeader to implement View in separate file

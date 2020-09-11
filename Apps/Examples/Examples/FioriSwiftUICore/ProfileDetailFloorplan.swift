@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import FioriSwiftUICore
 
 struct ProfileDetailFloorplan<Header: View, Content: View>: View {
     private let header: Header
@@ -30,4 +31,10 @@ struct ProfileDetailFloorplan<Header: View, Content: View>: View {
         .padding()
     }
     
+}
+
+struct ProfileDetailFloorplan_Previews: PreviewProvider {
+    static var previews: some View {
+        ProfileDetailFloorplan(header: { EmptyView() }, content: { EmptyView() })
+    }
 }

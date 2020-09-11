@@ -14,35 +14,23 @@ import Floorplan
 
 struct ContactItemViewTests: View {
     
-    @ObservedObject var model = TripPin.PeopleModel()
+    @ObservedObject var model = TripPin.PeopleLoader()
     
     var body: some View {
-            ScrollView {
-                LazyVStack {
-                    ForEach(model.listResults) { person in
-                        
-                        NavigationLink(destination: ProfileDetailFloorplan(header: {
-                            ProfileHeader(model: person, actionItems: { EmptyView() })
-                        }, content: {
-                            Text("hello, world")
-                        })) {
-                            if person.UserName.contains("a") {
-                                ContactItem(model: person, actionItems: {
-                                    Button {
-                                        print("Calling person: \(person.UserName)")
-                                    } label: {
-                                        Image(systemName: "phone")
-                                    }
-                                    Button {
-                                        print("Mailing person: \(person.UserName)")
-                                    } label: {
-                                        Image(systemName: "mail")
-                                    }
-                                })
-                                .titleStyle(TextStyle().foregroundColor(.accentColor))
-                            } else {
-                                ContactItem(model: person)
-                            }
+        ScrollView {
+            LazyVStack {
+                ForEach(model.listResults) { person in
+                    NavigationLink(destination: ProfileDetailFloorplan(header: {
+                        ProfileHeader(model: person, actionItems: person.actionItems)
+                            .titleStyle(TextStyle().font(.largeTitle).foregroundColor(.orange))
+                    }, content: {
+                        Text("hello, world")
+                    })) {
+                        if person.UserName.contains("a") {
+                            ContactItem(model: person, actionItems: person.actionItems)
+//                                .titleStyle(TextStyle().foregroundColor(.accentColor))
+                        } else {
+                            ContactItem(model: person)
                         }
                     }
                     .padding()
@@ -50,12 +38,10 @@ struct ContactItemViewTests: View {
                 }
                 .navigationTitle("Contacts")
             }
-            .titleStyle(TextStyle().font(.headline))
-            .subtitleStyle(TextStyle().italic())
-            .detailImageStyle(ImageStyle().resizable().cornerRadius(8))
+            
         }
+    }
 }
-
 
 
 

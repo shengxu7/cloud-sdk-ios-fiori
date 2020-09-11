@@ -119,7 +119,7 @@ public extension TextStyle {
 
 public extension Text {
     func applying(_ style: TextStyle) -> some View {
-        let text: Text = self
+        let text = self
             ._applyFontWeight(style._fontWeight)
             ._applyBold(style._bold)
             ._applyItalic(style._italic)
@@ -129,7 +129,6 @@ public extension Text {
             ._applyTracking(style._tracking)
             ._applyBaselineOffset(style._baselineOffset)
         let someView = text
-            ._applyLineSpacing(style._lineSpacing)
             ._applyFont(style._font)
             ._applyForegroundColor(style._foregroundColor)
             ._applyTextCase(style._textCase)
@@ -137,6 +136,7 @@ public extension Text {
             ._applyMinimumScaleFactor(style._minimumScaleFactor)
             ._applyTruncationMode(style._truncationMode)
             ._applyLineLimit(style._lineLimit)
+            ._applyLineSpacing(style._lineSpacing)
             ._applyMultilineTextAlignment(style._multilineTextAlignment)
             ._applyFlipsForRightToLeftLayoutDirection(style._flipsForRightToLeftLayoutDirection)
             ._applyPaddingLength(style._paddingLength)

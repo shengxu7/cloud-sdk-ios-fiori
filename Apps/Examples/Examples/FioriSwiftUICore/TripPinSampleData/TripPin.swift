@@ -9,5 +9,9 @@
 import Foundation
 
 
-enum TripPin {}
+enum TripPin {
+    
+    static let serviceRoot: URL = URL(string: "https://services.odata.org/TripPinRESTierService/(S(3mslpb2bc0k5ufk24olpghzx))/")!
+    
+}
 

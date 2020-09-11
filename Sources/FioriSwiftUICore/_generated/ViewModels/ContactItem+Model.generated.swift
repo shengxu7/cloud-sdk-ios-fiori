@@ -5,9 +5,13 @@ import SwiftUI
 
 public struct ContactItem<ActionItems: View> {
     let model: ContactItemModel
-    let actionItems: () -> ActionItems
+    let actionItems: ActionItems
 
     public init(model: ContactItemModel, @ViewBuilder actionItems: @escaping () -> ActionItems) {
+        self.model = model
+        self.actionItems = actionItems()
+    }
+    public init(model: ContactItemModel, actionItems: ActionItems) {
         self.model = model
         self.actionItems = actionItems
     }
@@ -17,12 +21,6 @@ public struct ContactItem<ActionItems: View> {
     @Environment(\.footnoteStyle) internal var footnoteStyle: TextStyle
     @Environment(\.descriptionTextStyle) internal var descriptionTextStyle: TextStyle
     @Environment(\.detailImageStyle) internal var detailImageStyle: ImageStyle
-}
-
-extension ContactItem where ActionItems == EmptyView {
-    public init(model: ContactItemModel) {
-        self.init(model: model, actionItems: { EmptyView() })
-    }
 }
 
 // TODO: Extend ContactItem to implement View in separate file

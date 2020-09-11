@@ -8,35 +8,64 @@ NothingStyle
 {% endif %}
 {% endmacro %}
 
+{% macro ViewBuilderInitParam add_view_builder_param %}{#
+#}{% for p in add_view_builder_param|split:": " %}{% if forloop.first %}@ViewBuilder {{p}}{% else %}: @escaping () -> {{p}}{% endif %}{% endfor %}{#
+#}{% endmacro %}
+
+{% macro ViewBuilderTemplateType add_view_builder_params %}{#
+#}{% for annotation in add_view_builder_params|split:", " %}{#
+#}{% for p in annotation|split:": " %}{% if forloop.last %}{{p}}: View{% endif %}{% endfor %}{% endfor %}{#
+#}{% endmacro %}
+
+{% macro AddEnvPropDecl add_env_props %}{#
+#}{% for p in add_env_props|split:", " %}{#
+#}@Environment(\.{{p}}) internal var {{p}}{#
+#}{% endfor %}{#
+#}{% endmacro %}
+
 {% macro StyleType unwrappedTypeName %}{% set tmp %}{% call _StyleType unwrappedTypeName %}{% endset %}{{tmp|removeNewlines}}{% endmacro %}
 {% for MODEL_TYPE in types.protocols|annotated:"generated_component" %}
 {% set VIEW_TYPE_NAME %}{{ MODEL_TYPE.name|replace:"Model","" }}{% endset %}
-{% set HAS_GENERICS %}{{MODEL_TYPE.annotations.add_generics}}{% endset %}
+{% set HAS_GENERICS %}{{MODEL_TYPE.annotations.add_view_builder_params}}{% endset %}
 // sourcery:file:ViewModels/{{VIEW_TYPE_NAME}}+Model.generated.swift
 import SwiftUI
 
-public struct {{ VIEW_TYPE_NAME }}{% if MODEL_TYPE|annotated:"add_generics" %}<{{MODEL_TYPE.annotations.add_generics}}>{% endif %} {
+public struct {{ VIEW_TYPE_NAME }}{% if MODEL_TYPE|annotated:"add_view_builder_params" %}<{% call ViewBuilderTemplateType MODEL_TYPE.annotations.add_view_builder_params %}>{% endif %} {
     let model: {{MODEL_TYPE.name }}
-    {% for property in MODEL_TYPE.annotations.add_init_params|split:", " %}
-        let {{property|replace:"@ViewBuilder ",""|replace:"@escaping ","" }}
+    {% for property in MODEL_TYPE.annotations.add_view_builder_params|split:", " %}
+    let {{property }}
     {% endfor %}
 
-    public init(model: {{ MODEL_TYPE.name }}{% for p in MODEL_TYPE.annotations.add_init_params|split:", " %}, {{p}}{% endfor %}) {
+    public init(model: {{ MODEL_TYPE.name }}{% for p in MODEL_TYPE.annotations.add_view_builder_params|split:", " %}, {% call ViewBuilderInitParam p %}{% endfor %}) {
         self.model = model
-        {% for p in MODEL_TYPE.annotations.add_init_params|split:", " %}
-        {% for prop in p|replace:"@ViewBuilder ",""|replace:"@escaping ",""|split:": "%}
+        {% for p in MODEL_TYPE.annotations.add_view_builder_params|split:", " %}
+        {% for prop in p|split:": " %}
+            {% if forloop.first %}
+        self.{{prop}} = {{prop}}()
+            {% endif %}
+        {% endfor %}
+        {% endfor %}
+    }
+    {% if MODEL_TYPE|annotated:"add_view_builder_params" %}
+        
+    public init(model: {{ MODEL_TYPE.name }}{% for p in MODEL_TYPE.annotations.add_view_builder_params|split:", " %}, {{p}}{% endfor %}) {
+        self.model = model
+        {% for p in MODEL_TYPE.annotations.add_view_builder_params|split:", " %}
+        {% for prop in p|split:": " %}
             {% if forloop.first %}
         self.{{prop}} = {{prop}}
             {% endif %}
         {% endfor %}
         {% endfor %}
     }
+    {% endif %}
 
     {% for x in MODEL_TYPE.inheritedTypes %}
         {% for y in type[x].allVariables %}
     @Environment(\.{{y.name}}Style) internal var {{y.name}}Style: {% call StyleType y.unwrappedTypeName %}
         {% endfor %}
     {% endfor %}
+    {% call AddEnvPropDecl MODEL_TYPE.annotations.add_env_props %}
 }
 
 // TODO: Extend {{ VIEW_TYPE_NAME }} to implement View in separate file

@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUI
+import FioriSwiftUICore
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 

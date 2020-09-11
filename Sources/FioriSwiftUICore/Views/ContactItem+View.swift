@@ -21,8 +21,27 @@ extension ContactItem: View {
                 }
             }
             Spacer()
-            actionItems()
+            actionItems
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
     }
 }
+
+extension ContactItem where ActionItems == EmptyView {
+    public init(model: ContactItemModel) {
+        self.init(model: model, actionItems: { EmptyView() })
+    }
+}
+
+struct ContactItem_View_Previews: PreviewProvider {
+    static var previews: some View {
+        List(0..<3) {_ in
+            ContactItem(model: LibraryPreviewData.Person.laurelosborn, actionItems: LibraryPreviewData.Person.laurelosborn.actionItems)
+                .subtitleStyle(TextStyle())
+        }
+        
+    }
+}
+
+
+

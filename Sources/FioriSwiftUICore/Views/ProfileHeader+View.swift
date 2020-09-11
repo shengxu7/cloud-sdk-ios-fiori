@@ -2,13 +2,13 @@ import SwiftUI
 
 extension ProfileHeader: View {
     public var body: some View {
-        if sizeClass == .some(.compact) {
+        if horizontalSizeClass == .some(.compact) {
             VStack {
                 if let image = model.detailImage {
                     image
                         .resizable()
                         .applying(detailImageStyle)
-                        .frame(width: 45, height: 45)
+                        .frame(width: 128, height: 128)
                         .mask(Circle())
                         
                 }
@@ -17,7 +17,7 @@ extension ProfileHeader: View {
                     Text(subtitle).applying(subtitleStyle)
                 }
                 HStack(spacing: 16) {
-                    actionItems()
+                    actionItems
                 }
             }
         } else {
@@ -40,7 +40,7 @@ extension ProfileHeader: View {
                     }
                 }
                 Spacer()
-                actionItems()
+                actionItems
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         }

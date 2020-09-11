@@ -37,7 +37,7 @@ struct ContentView: View {
 //                NavigationLink(
 //                    destination: ListFloorplanSwiftUI<ContactItem<EmptyView>, TripPin.Person, TripPin.Person.Section>(model: ListViewModel<TripPin.Person, TripPin.Person.Section>(queries: [.default: AnyIDataLoader(TripPin.IPeopleLoader())]), binding: { person in
 //                            ContactItem(model: person)
-//                                
+//
 //                    }
 //                    ).detailImageStyle(ImageStyle().resizable().cornerRadius(6))
 //                ) {
@@ -47,6 +47,8 @@ struct ContentView: View {
             .navigationBarTitle("Examples")
             .listStyle(SidebarListStyle())
         }
+        .titleStyle(TextStyle().font(.headline))
+        .subtitleStyle(TextStyle().italic())
     }
 }
 
