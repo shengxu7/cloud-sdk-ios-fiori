@@ -6,15 +6,14 @@ extension ProfileHeader: View {
             VStack {
                 if let image = model.detailImage {
                     image
-                        .resizable()
-                        .applying(detailImageStyle)
+                        .resizable().applying(detailImageStyle).modifier(detailImageModifier)
                         .frame(width: 128, height: 128)
                         .mask(Circle())
                         
                 }
-                Text(model.title).applying(titleStyle)
+                Text(model.title).applying(titleStyle).modifier(titleModifier)
                 if let subtitle = model.subtitle {
-                    Text(subtitle).applying(subtitleStyle)
+                    Text(subtitle).applying(subtitleStyle).modifier(subtitleModifier)
                 }
                 HStack(spacing: 16) {
                     actionItems
@@ -25,18 +24,18 @@ extension ProfileHeader: View {
                 if let image = model.detailImage {
                     image
                         .resizable()
-                        .applying(detailImageStyle)
+                        .applying(detailImageStyle).modifier(detailImageModifier)
                         .frame(width: 65, height: 65)
                         .mask(Circle())
                         
                 }
                 VStack(alignment: .leading) {
-                    Text(model.title).applying(titleStyle)
+                    Text(model.title).applying(titleStyle).modifier(titleModifier)
                     if let subtitle = model.subtitle {
-                        Text(subtitle).applying(subtitleStyle)
+                        Text(subtitle).applying(subtitleStyle).modifier(subtitleModifier)
                     }
                     if let footnote = model.footnote {
-                        Text(footnote).applying(footnoteStyle)
+                        Text(footnote).applying(footnoteStyle).modifier(footnoteModifier)
                     }
                 }
                 Spacer()

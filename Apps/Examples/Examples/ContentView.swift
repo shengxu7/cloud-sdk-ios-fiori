@@ -44,11 +44,13 @@ struct ContentView: View {
 //                    Text("Generated Views")
 //                }
             }
+
             .navigationBarTitle("Examples")
             .listStyle(SidebarListStyle())
         }
-        .titleStyle(TextStyle().font(.headline))
-        .subtitleStyle(TextStyle().italic())
+        .modifier(AcmeStyle())
+//        .titleStyle(TextStyle().font(.headline))
+//        .subtitleStyle(TextStyle().italic())
     }
 }
 

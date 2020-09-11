@@ -63,6 +63,7 @@ public struct {{ VIEW_TYPE_NAME }}{% if MODEL_TYPE|annotated:"add_view_builder_p
     {% for x in MODEL_TYPE.inheritedTypes %}
         {% for y in type[x].allVariables %}
     @Environment(\.{{y.name}}Style) internal var {{y.name}}Style: {% call StyleType y.unwrappedTypeName %}
+    @Environment(\.{{y.name}}Modifier) internal var {{y.name}}Modifier: AnyViewModifier
         {% endfor %}
     {% endfor %}
     {% call AddEnvPropDecl MODEL_TYPE.annotations.add_env_props %}

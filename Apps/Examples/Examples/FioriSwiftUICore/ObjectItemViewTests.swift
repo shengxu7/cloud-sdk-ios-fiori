@@ -12,9 +12,49 @@ import FioriSwiftUICore
 import UIKit
 import Floorplan
 
+struct AcmeStyle: ViewModifier {
+    
+    func body(content: Content) -> some View {
+        content
+            .titleStyle(TextStyle().bold().font(.custom("Avenir", size: 21.0, relativeTo: .largeTitle)))
+            .subtitleStyle(TextStyle(font: .custom("Avenir", size: 18.0, relativeTo: .largeTitle)))
+            .footnoteStyle(TextStyle(font: .custom("Avenir", size: 14.0, relativeTo: .footnote)))
+            .detailImageModifier({ $0.frame(width: 80, height: 80) })
+            .accentColor(.green)
+    }
+}
+
+
+struct AcmeTagSplitter: ViewModifier {
+    let tags: [String]
+
+    init(_ text: String?) {
+        self.tags = text?.split(separator: ",").map { String($0) } ?? []
+    }
+    
+    @ViewBuilder
+    func body(content: Content) -> some View {
+        if tags.count > 0 {
+            HStack {
+                ForEach(0..<tags.count) { idx in
+                    Text(tags[idx])
+                        .padding([.top, .bottom], 3.0)
+                        .padding([.leading, .trailing], 6.0)
+                        .background(Color.accentColor)
+                        .foregroundColor(.white)
+                        .font(.headline)
+                        .clipShape(RoundedRectangle(cornerRadius: 6))
+                }
+            }
+        } else {
+            EmptyView()
+        }
+    }
+}
+
 struct ContactItemViewTests: View {
     
-    @ObservedObject var model = TripPin.PeopleLoader()
+    @ObservedObject var model = TripPin.PeopleModel()
     
     var body: some View {
         ScrollView {
@@ -22,27 +62,30 @@ struct ContactItemViewTests: View {
                 ForEach(model.listResults) { person in
                     NavigationLink(destination: ProfileDetailFloorplan(header: {
                         ProfileHeader(model: person, actionItems: person.actionItems)
-                            .titleStyle(TextStyle().font(.largeTitle).foregroundColor(.orange))
+                            .footnoteModifier({
+                                $0.modifier(AcmeTagSplitter(person.footnote))
+                            })
                     }, content: {
                         Text("hello, world")
                     })) {
                         if person.UserName.contains("a") {
                             ContactItem(model: person, actionItems: person.actionItems)
-//                                .titleStyle(TextStyle().foregroundColor(.accentColor))
+                                .titleStyle(TextStyle().foregroundColor(.accentColor))
                         } else {
                             ContactItem(model: person)
                         }
                     }
                     .padding()
                     .buttonStyle(PlainButtonStyle())
+                    .footnoteModifier({
+                        $0.modifier(AcmeTagSplitter(person.footnote))
+                    })
                 }
                 .navigationTitle("Contacts")
             }
-            
         }
     }
 }
-
 
 
 struct ContactItemViewTests_Previews: PreviewProvider {
@@ -50,4 +93,3 @@ struct ContactItemViewTests_Previews: PreviewProvider {
         ContactItemViewTests()
     }
 }
-

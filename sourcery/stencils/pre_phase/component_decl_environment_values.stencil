@@ -22,14 +22,24 @@ extension EnvironmentValues {
         get { return self[{{keyname}}.self] }
         set { self[{{keyname}}.self] = newValue }
     }
+
+    public var {{variable.name}}Modifier: AnyViewModifier {
+        get { return self[{{variable.name | upperFirstLetter }}ModifierKey.self] }
+        set { self[{{variable.name | upperFirstLetter }}ModifierKey.self] = newValue }
+    }
 {% endfor %}
 }
 
 public extension View {
 {% for variable in type.variables %}
 {% set AStyle %}{% call StyleType variable.typeName.unwrappedTypeName %}{% endset %}
+
     func {{variable.name}}Style(_ style: {{AStyle}}) -> some View {
         return transformEnvironment(\.{{variable.name}}Style) { $0 = $0.merging(style) }
+    }
+
+    func {{variable.name}}Modifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
+        self.environment(\.{{variable.name}}Modifier, AnyViewModifier(transform: transform))
     }
 {% endfor %}
 }

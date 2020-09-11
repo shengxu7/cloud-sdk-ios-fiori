@@ -12,12 +12,16 @@ NothingStyle
 {% macro StyleType unwrappedTypeName %}{% set tmp %}{% call _StyleType unwrappedTypeName %}{% endset %}{{tmp|removeNewlines}}{% endmacro %}
 // sourcery:file:EnvironmentKey+Styles.generated.swift
 import SwiftUI
-
 {% for type in types.implementing._ComponentGenerating %}
 {% for variable in type.variables %}
 {% set AStyle %}{% call StyleType variable.typeName.unwrappedTypeName %}{% endset %}
+
 public struct {{variable.name | upperFirstLetter }}StyleKey: EnvironmentKey {
     public static let defaultValue: {{ AStyle }} = {{ AStyle }}()
+}
+
+public struct {{variable.name | upperFirstLetter }}ModifierKey: EnvironmentKey {
+    public static let defaultValue = AnyViewModifier { $0 }
 }
 {% endfor %}
 {% endfor %}

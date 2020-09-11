@@ -11,11 +11,17 @@ public struct ChartFloorplan {
     }
 
     @Environment(\.titleStyle) internal var titleStyle: TextStyle
+    @Environment(\.titleModifier) internal var titleModifier: AnyViewModifier
     @Environment(\.subtitleStyle) internal var subtitleStyle: TextStyle
+    @Environment(\.subtitleModifier) internal var subtitleModifier: AnyViewModifier
     @Environment(\.statusStyle) internal var statusStyle: TextStyle
+    @Environment(\.statusModifier) internal var statusModifier: AnyViewModifier
     @Environment(\.valueAxisTitleStyle) internal var valueAxisTitleStyle: TextStyle
+    @Environment(\.valueAxisTitleModifier) internal var valueAxisTitleModifier: AnyViewModifier
     @Environment(\.seriesTitlesStyle) internal var seriesTitlesStyle: TextStyle
+    @Environment(\.seriesTitlesModifier) internal var seriesTitlesModifier: AnyViewModifier
     @Environment(\.categoryAxisTitleStyle) internal var categoryAxisTitleStyle: TextStyle
+    @Environment(\.categoryAxisTitleModifier) internal var categoryAxisTitleModifier: AnyViewModifier
 }
 
 // TODO: Extend ChartFloorplan to implement View in separate file

@@ -17,10 +17,15 @@ public struct ContactItem<ActionItems: View> {
     }
 
     @Environment(\.titleStyle) internal var titleStyle: TextStyle
+    @Environment(\.titleModifier) internal var titleModifier: AnyViewModifier
     @Environment(\.subtitleStyle) internal var subtitleStyle: TextStyle
+    @Environment(\.subtitleModifier) internal var subtitleModifier: AnyViewModifier
     @Environment(\.footnoteStyle) internal var footnoteStyle: TextStyle
+    @Environment(\.footnoteModifier) internal var footnoteModifier: AnyViewModifier
     @Environment(\.descriptionTextStyle) internal var descriptionTextStyle: TextStyle
+    @Environment(\.descriptionTextModifier) internal var descriptionTextModifier: AnyViewModifier
     @Environment(\.detailImageStyle) internal var detailImageStyle: ImageStyle
+    @Environment(\.detailImageModifier) internal var detailImageModifier: AnyViewModifier
 }
 
 // TODO: Extend ContactItem to implement View in separate file

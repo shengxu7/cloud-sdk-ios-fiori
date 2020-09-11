@@ -11,8 +11,11 @@ public struct TimelineItem {
     }
 
     @Environment(\.titleStyle) internal var titleStyle: TextStyle
+    @Environment(\.titleModifier) internal var titleModifier: AnyViewModifier
     @Environment(\.timestampStyle) internal var timestampStyle: TextStyle
+    @Environment(\.timestampModifier) internal var timestampModifier: AnyViewModifier
     @Environment(\.statusStyle) internal var statusStyle: TextStyle
+    @Environment(\.statusModifier) internal var statusModifier: AnyViewModifier
 }
 
 // TODO: Extend TimelineItem to implement View in separate file
