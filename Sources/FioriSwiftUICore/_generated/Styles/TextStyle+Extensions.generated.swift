@@ -118,8 +118,9 @@ public extension TextStyle {
 }
 
 public extension Text {
+    @ViewBuilder
     func applying(_ style: TextStyle) -> some View {
-        let text = self
+        self
             ._applyFontWeight(style._fontWeight)
             ._applyBold(style._bold)
             ._applyItalic(style._italic)
@@ -128,22 +129,22 @@ public extension Text {
             ._applyKerning(style._kerning)
             ._applyTracking(style._tracking)
             ._applyBaselineOffset(style._baselineOffset)
-        let someView = text
+//        let someView = text
             ._applyFont(style._font)
             ._applyForegroundColor(style._foregroundColor)
             ._applyTextCase(style._textCase)
-            ._applyAllowsTightening(style._allowsTightening)
-            ._applyMinimumScaleFactor(style._minimumScaleFactor)
+//            ._applyAllowsTightening(style._allowsTightening)
+//            ._applyMinimumScaleFactor(style._minimumScaleFactor)
             ._applyTruncationMode(style._truncationMode)
             ._applyLineLimit(style._lineLimit)
             ._applyLineSpacing(style._lineSpacing)
             ._applyMultilineTextAlignment(style._multilineTextAlignment)
-            ._applyFlipsForRightToLeftLayoutDirection(style._flipsForRightToLeftLayoutDirection)
-            ._applyPaddingLength(style._paddingLength)
-            ._applyPaddingInsets(style._paddingInsets)
-            ._applyPaddingSet(style._paddingSet)
-            ._applyCornerRadius(style._cornerRadius)
-        return someView
+//            ._applyFlipsForRightToLeftLayoutDirection(style._flipsForRightToLeftLayoutDirection)
+//            ._applyPaddingLength(style._paddingLength)
+//            ._applyPaddingInsets(style._paddingInsets)
+//            ._applyPaddingSet(style._paddingSet)
+//            ._applyCornerRadius(style._cornerRadius)
+
     }
 }
 
@@ -192,144 +193,116 @@ fileprivate extension Text {
 }
 
 fileprivate extension View {
-
+    @ViewBuilder
     func _applyFont(_ value: Font?) -> some View {
-        return Group {
-            if value != nil {
-                self.font(value!)
-            } else {
-                self
-            }
+        if value != nil {
+            self.font(value!)
+        } else {
+            self
         }
     }
-
+    @ViewBuilder
     func _applyForegroundColor(_ value: Color?) -> some View {
-        return Group {
-            if value != nil {
-                self.foregroundColor(value!)
-            } else {
-                self
-            }
+        if value != nil {
+            self.foregroundColor(value!)
+        } else {
+            self
         }
     }
-
+    @ViewBuilder
     func _applyTextCase(_ value: Text.Case?) -> some View {
-        return Group {
-            if value != nil {
-                self.textCase(value!)
-            } else {
-                self
-            }
+        if value != nil {
+            self.textCase(value!)
+        } else {
+            self
         }
     }
-
+    @ViewBuilder
     func _applyAllowsTightening(_ value: Bool?) -> some View {
-        return Group {
-            if value != nil {
-                self.allowsTightening(value!)
-            } else {
-                self
-            }
+        if value != nil {
+            self.allowsTightening(value!)
+        } else {
+            self
         }
     }
-
+    @ViewBuilder
     func _applyMinimumScaleFactor(_ value: CGFloat?) -> some View {
-        return Group {
-            if value != nil {
-                self.minimumScaleFactor(value!)
-            } else {
-                self
-            }
+        if value != nil {
+            self.minimumScaleFactor(value!)
+        } else {
+            self
         }
     }
-
+    @ViewBuilder
     func _applyTruncationMode(_ value: Text.TruncationMode?) -> some View {
-        return Group {
-            if value != nil {
-                self.truncationMode(value!)
-            } else {
-                self
-            }
+        if value != nil {
+            self.truncationMode(value!)
+        } else {
+            self
         }
     }
-
+    @ViewBuilder
     func _applyLineLimit(_ value: Int?) -> some View {
-        return Group {
-            if value != nil {
-                self.lineLimit(value!)
-            } else {
-                self
-            }
+        if value != nil {
+            self.lineLimit(value!)
+        } else {
+            self
         }
     }
-
+    @ViewBuilder
     func _applyLineSpacing(_ value: CGFloat?) -> some View {
-        return Group {
-            if value != nil {
-                self.lineSpacing(value!)
-            } else {
-                self
-            }
+        if value != nil {
+            self.lineSpacing(value!)
+        } else {
+            self
         }
     }
-
+    @ViewBuilder
     func _applyMultilineTextAlignment(_ value: TextAlignment?) -> some View {
-        return Group {
-            if value != nil {
-                self.multilineTextAlignment(value!)
-            } else {
-                self
-            }
+        if value != nil {
+            self.multilineTextAlignment(value!)
+        } else {
+            self
         }
     }
-
+    @ViewBuilder
     func _applyFlipsForRightToLeftLayoutDirection(_ value: Bool?) -> some View {
-        return Group {
-            if value != nil {
-                self.flipsForRightToLeftLayoutDirection(value!)
-            } else {
-                self
-            }
+        if value != nil {
+            self.flipsForRightToLeftLayoutDirection(value!)
+        } else {
+            self
         }
     }
-
+    @ViewBuilder
     func _applyPaddingLength(_ value: CGFloat?) -> some View {
-        return Group {
-            if value != nil {
-                self.padding(value!)
-            } else {
-                self
-            }
+        if value != nil {
+            self.padding(value!)
+        } else {
+            self
         }
     }
-
+    @ViewBuilder
     func _applyPaddingInsets(_ value: EdgeInsets?) -> some View {
-        return Group {
-            if value != nil {
-                self.padding(value!)
-            } else {
-                self
-            }
+        if value != nil {
+            self.padding(value!)
+        } else {
+            self
         }
     }
-
+    @ViewBuilder
     func _applyPaddingSet(_ value: (edges: Edge.Set, length: CGFloat?)?) -> some View {
-        return Group {
-            if value != nil {
-                self.padding(value!.edges, value!.length)
-            } else {
-                self
-            }
+        if value != nil {
+            self.padding(value!.edges, value!.length)
+        } else {
+            self
         }
     }
-
+    @ViewBuilder
     func _applyCornerRadius(_ value: (radius: CGFloat, antialiased: Bool)?) -> some View {
-        return Group {
-            if value != nil {
-                self.cornerRadius(value!.radius, antialiased: value!.antialiased)
-            } else {
-                self
-            }
+        if value != nil {
+            self.cornerRadius(value!.radius, antialiased: value!.antialiased)
+        } else {
+            self
         }
     }
 }
