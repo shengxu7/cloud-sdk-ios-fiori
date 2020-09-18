@@ -25,47 +25,16 @@ public extension ImageStyle {
         new._resizable = (capInsets: capInsets, resizingMode: resizingMode)
         return new
     } 
-    func fixedSize() -> ImageStyle {
-        var new = self
-        new._fixedSize = true
-        return new
-    } 
-    func paddingLength(_ length: CGFloat) -> ImageStyle {
-        var new = self
-        new._paddingLength = length
-        return new
-    } 
-    func paddingInsets(_ insets: EdgeInsets) -> ImageStyle {
-        var new = self
-        new._paddingInsets = insets
-        return new
-    } 
-    func paddingSet(_ edges: Edge.Set = .all, _ length: CGFloat? = nil) -> ImageStyle {
-        var new = self
-        new._paddingSet = (edges, length)
-        return new
-    } 
-    func cornerRadius(_ radius: CGFloat, antialiased: Bool = true) -> ImageStyle {
-        var new = self
-        new._cornerRadius = (radius, antialiased: antialiased)
-        return new
-    } 
 }
 
 public extension Image {
+    @ViewBuilder
     func applying(_ style: ImageStyle) -> some View {
-        let image = self
+        self
             ._applyRenderingMode(style._renderingMode)
             ._applyInterpolation(style._interpolation)
             ._applyAntialiased(style._antialiased)
             ._applyResizable(style._resizable)
-        let someView = image
-            ._applyFixedSize(style._fixedSize)
-            ._applyPaddingLength(style._paddingLength)
-            ._applyPaddingInsets(style._paddingInsets)
-            ._applyPaddingSet(style._paddingSet)
-            ._applyCornerRadius(style._cornerRadius)
-        return someView
     }
 }
 
@@ -94,56 +63,6 @@ fileprivate extension Image {
 }
 
 fileprivate extension View {
-
-    func _applyFixedSize(_ value: Bool?) -> some View {
-        return Group {
-            if value != nil {
-                self.fixedSize()
-            } else {
-                self
-            }
-        }
-    }
-
-    func _applyPaddingLength(_ value: CGFloat?) -> some View {
-        return Group {
-            if value != nil {
-                self.padding(value!)
-            } else {
-                self
-            }
-        }
-    }
-
-    func _applyPaddingInsets(_ value: EdgeInsets?) -> some View {
-        return Group {
-            if value != nil {
-                self.padding(value!)
-            } else {
-                self
-            }
-        }
-    }
-
-    func _applyPaddingSet(_ value: (edges: Edge.Set, length: CGFloat?)?) -> some View {
-        return Group {
-            if value != nil {
-                self.padding(value!.edges, value!.length)
-            } else {
-                self
-            }
-        }
-    }
-
-    func _applyCornerRadius(_ value: (radius: CGFloat, antialiased: Bool)?) -> some View {
-        return Group {
-            if value != nil {
-                self.cornerRadius(value!.radius, antialiased: value!.antialiased)
-            } else {
-                self
-            }
-        }
-    }
 }
 
 public extension ImageStyle {
@@ -160,21 +79,6 @@ public extension ImageStyle {
         }
         if let value = style._resizable { 
             new._resizable = value 
-        }
-        if let value = style._fixedSize { 
-            new._fixedSize = value 
-        }
-        if let value = style._paddingLength { 
-            new._paddingLength = value 
-        }
-        if let value = style._paddingInsets { 
-            new._paddingInsets = value 
-        }
-        if let value = style._paddingSet { 
-            new._paddingSet = value 
-        }
-        if let value = style._cornerRadius { 
-            new._cornerRadius = value 
         }
         return new
     }

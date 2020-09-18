@@ -72,18 +72,17 @@ public extension {{type.name }} {
     Generates the `apply` method, which invokes each of the private `_apply(...)` methods
 #}
 public extension {{SwiftUIConcreteViewType}} {
+    @ViewBuilder
     func applying(_ style: {{type.name|upperFirstLetter}}) -> some View {
-        let {{SwiftUIConcreteViewType|lowercase}} = self
+        self
     {% for variable in type.variables|annotated:"return_concrete" %}
     {% set name %}{{variable.name|replace:"_", ""}}{% endset %}
             ._apply{{name|upperFirstLetter}}(style.{{variable.name}})
     {% endfor %}
-        let someView = {{SwiftUIConcreteViewType|lowercase}}
     {% for variable in type.variables|annotated:"return_some_view" %}
     {% set name %}{{variable.name|replace:"_", ""}}{% endset %}
             ._apply{{name|upperFirstLetter}}(style.{{variable.name}})
     {% endfor %}
-        return someView
     }
 }
 
@@ -104,12 +103,10 @@ public extension {{SwiftUIConcreteViewType}} {
         guard value != nil else { return self }
         return self.{{name}}({{arg_list}})
 {% elif variable|annotated:"return_some_view" %}
-        return Group {
-            if value != nil {
-                self.{{name}}({{arg_list}})
-            } else {
-                self
-            }
+        if value != nil {
+            self.{{name}}({{arg_list}})
+        } else {
+            self
         }
 {% endif %}{% endmacro %}
 {#
@@ -158,6 +155,7 @@ fileprivate extension View {
     {% for variable in type.variables|annotated:"return_some_view" %}
     {% set name %}{{variable.name|replace:"_", ""}}{% endset %}
 
+    @ViewBuilder
     func _apply{{name|upperFirstLetter}}(_ value: {{variable.typeName}}) -> some View {
         {% call ApplyingStyleBody variable %}
     }
