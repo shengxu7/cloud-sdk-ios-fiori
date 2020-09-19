@@ -37,7 +37,7 @@ public protocol TimelineItemModel: TitleComponent, TimestampComponent, StatusCom
 
 // sourcery: add_view_builder_params = "actionItems: ActionItems"
 // sourcery: generated_component
-public protocol GridItemModel: DetailImageComponent, TitleComponent, SubtitleComponent {}
+public protocol CollectionItemModel: DetailImageComponent, TitleComponent, SubtitleComponent {}
 
 // sourcery: generated_component
 public protocol SectionHeaderModel: TitleComponent, AttributeComponent {}

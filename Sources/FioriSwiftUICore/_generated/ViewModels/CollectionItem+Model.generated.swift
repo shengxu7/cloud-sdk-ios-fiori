@@ -3,15 +3,15 @@
 
 import SwiftUI
 
-public struct GridItem<ActionItems: View> {
-    let model: GridItemModel
+public struct CollectionItem<ActionItems: View> {
+    let model: CollectionItemModel
     let actionItems: ActionItems
 
-    public init(model: GridItemModel, @ViewBuilder actionItems: @escaping () -> ActionItems) {
+    public init(model: CollectionItemModel, @ViewBuilder actionItems: @escaping () -> ActionItems) {
         self.model = model
         self.actionItems = actionItems()
     }
-    public init(model: GridItemModel, actionItems: ActionItems) {
+    public init(model: CollectionItemModel, actionItems: ActionItems) {
         self.model = model
         self.actionItems = actionItems
     }
@@ -24,12 +24,12 @@ public struct GridItem<ActionItems: View> {
     @Environment(\.subtitleModifier) internal var subtitleModifier: AnyViewModifier
 }
 
-// TODO: Extend GridItem to implement View in separate file
-// place at FioriSwiftUICore/Views/GridItem+View.swift
+// TODO: Extend CollectionItem to implement View in separate file
+// place at FioriSwiftUICore/Views/CollectionItem+View.swift
 /*
 import SwiftUI
 
-extension GridItem: View {
+extension CollectionItem: View {
     public var body: some View { 
         <# View body #> 
     }
