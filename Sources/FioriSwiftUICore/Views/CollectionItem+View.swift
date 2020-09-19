@@ -33,8 +33,14 @@ extension CollectionItem {
         let subtitle: String?
     }
     
-    public init(detailImage: Image? = nil, title: String, subtitle: String? = nil) {
+    public init(detailImage: Image? = nil, title: String, subtitle: String? = nil, actionItems: @escaping () -> ActionItems) {
         self.model = Model(detailImage: detailImage, title: title, subtitle: subtitle)
+        self.actionItems = actionItems()
+    }
+    
+    public init(detailImage: Image? = nil, title: String, subtitle: String? = nil, actionItems: ActionItems) {
+        self.model = Model(detailImage: detailImage, title: title, subtitle: subtitle)
+        self.actionItems = actionItems
     }
 }
 
@@ -44,7 +50,7 @@ extension CollectionItem where ActionItems == EmptyView {
     }
     
     public init(detailImage: Image? = nil, title: String, subtitle: String? = nil) {
-        self.model = Model(detailImage: detailImage, title: title, subtitle: subtitle)
+        self.init(detailImage: detailImage, title: title, subtitle: subtitle, actionItems: EmptyView())
     }
 }
 
