@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import Floorplan
 import FioriSwiftUICore
 
 struct ContentView: View {

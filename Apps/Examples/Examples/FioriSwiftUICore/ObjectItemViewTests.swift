@@ -10,7 +10,6 @@ import SwiftUI
 import Combine
 import FioriSwiftUICore
 import UIKit
-import Floorplan
 
 struct AcmeStyle: ViewModifier {
     

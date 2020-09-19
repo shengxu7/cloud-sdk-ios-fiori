@@ -9,7 +9,6 @@
 import Foundation
 import Contacts
 import FioriSwiftUICore
-import Floorplan
 import Combine
 import SwiftUI
 

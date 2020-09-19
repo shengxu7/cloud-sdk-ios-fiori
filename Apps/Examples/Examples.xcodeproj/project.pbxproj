@@ -109,12 +109,6 @@
 		F641B7B524FD453100B8C34B /* FioriSwiftUI in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 8A4A31B824E3564F00B63AF0 /* FioriSwiftUI */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		F66C6EA82502E7E5007BD35A /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66C6EA72502E7E5007BD35A /* Person.swift */; };
 		F66C6EAA2502E995007BD35A /* TripPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66C6EA92502E995007BD35A /* TripPin.swift */; };
-		F66C6EAE2502EAB3007BD35A /* SAPCommon.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F66C6EAB2502EAB2007BD35A /* SAPCommon.xcframework */; };
-		F66C6EAF2502EAB3007BD35A /* SAPCommon.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F66C6EAB2502EAB2007BD35A /* SAPCommon.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F66C6EB02502EAB3007BD35A /* SAPFoundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F66C6EAC2502EAB3007BD35A /* SAPFoundation.xcframework */; };
-		F66C6EB12502EAB3007BD35A /* SAPFoundation.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F66C6EAC2502EAB3007BD35A /* SAPFoundation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F66C6EB22502EAB3007BD35A /* SAPOData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F66C6EAD2502EAB3007BD35A /* SAPOData.xcframework */; };
-		F66C6EB32502EAB3007BD35A /* SAPOData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F66C6EAD2502EAB3007BD35A /* SAPOData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F678372A25081D21007DF919 /* ProfileDetailFloorplan.swift in Sources */ = {isa = PBXBuildFile; fileRef = F678372925081D21007DF919 /* ProfileDetailFloorplan.swift */; };
 		F678372C25084BCD007DF919 /* PlanItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F678372B25084BCD007DF919 /* PlanItem.swift */; };
 /* End PBXBuildFile section */
@@ -146,10 +140,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F66C6EB32502EAB3007BD35A /* SAPOData.xcframework in Embed Frameworks */,
-				F66C6EB12502EAB3007BD35A /* SAPFoundation.xcframework in Embed Frameworks */,
 				F641B7B524FD453100B8C34B /* FioriSwiftUI in Embed Frameworks */,
-				F66C6EAF2502EAB3007BD35A /* SAPCommon.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,10 +266,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F66C6EB22502EAB3007BD35A /* SAPOData.xcframework in Frameworks */,
-				F66C6EB02502EAB3007BD35A /* SAPFoundation.xcframework in Frameworks */,
 				8ACBFA1424F7F011009233DE /* FioriSwiftUI in Frameworks */,
-				F66C6EAE2502EAB3007BD35A /* SAPCommon.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
