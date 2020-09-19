@@ -35,3 +35,9 @@ public protocol ProfileHeaderModel: TitleComponent, SubtitleComponent, FootnoteC
 // sourcery: generated_component
 public protocol TimelineItemModel: TitleComponent, TimestampComponent, StatusComponent {}
 
+// sourcery: add_view_builder_params = "actionItems: ActionItems"
+// sourcery: generated_component
+public protocol GridItemModel: DetailImageComponent, TitleComponent, SubtitleComponent {}
+
+// sourcery: generated_component
+public protocol SectionHeaderModel: TitleComponent, AttributeComponent {}
