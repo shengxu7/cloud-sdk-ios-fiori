@@ -16,6 +16,17 @@ public struct SectionHeader {
     @Environment(\.attributeModifier) internal var attributeModifier: AnyViewModifier
 }
 
+extension SectionHeader {
+    private struct Model: SectionHeaderModel {
+        let title: String
+        let attribute: String?
+    }
+    public init(title: String, attribute: String? = nil) {
+        self.model = Model(title: title, attribute: attribute)
+    }
+}
+
+
 // TODO: Extend SectionHeader to implement View in separate file
 // place at FioriSwiftUICore/Views/SectionHeader+View.swift
 /*

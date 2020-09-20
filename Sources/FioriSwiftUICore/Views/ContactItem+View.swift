@@ -27,11 +27,11 @@ extension ContactItem: View {
     }
 }
 
-extension ContactItem where ActionItems == EmptyView {
-    public init(model: ContactItemModel) {
-        self.init(model: model, actionItems: { EmptyView() })
-    }
-}
+//extension ContactItem where ActionItems == EmptyView {
+//    public init(model: ContactItemModel) {
+//        self.init(model: model, actionItems: { EmptyView() })
+//    }
+//}
 
 struct ContactItem_View_Previews: PreviewProvider {
     static var previews: some View {

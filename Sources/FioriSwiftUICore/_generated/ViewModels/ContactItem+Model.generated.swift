@@ -28,6 +28,33 @@ public struct ContactItem<ActionItems: View> {
     @Environment(\.detailImageModifier) internal var detailImageModifier: AnyViewModifier
 }
 
+extension ContactItem {
+    private struct Model: ContactItemModel {
+        let title: String
+        let subtitle: String?
+        let footnote: String?
+        let descriptionText: String?
+        let detailImage: Image?
+    }
+    public init(title: String, subtitle: String? = nil, footnote: String? = nil, descriptionText: String? = nil, detailImage: Image? = nil, @ViewBuilder actionItems: @escaping () -> ActionItems) {
+        self.model = Model(title: title, subtitle: subtitle, footnote: footnote, descriptionText: descriptionText, detailImage: detailImage)
+        self.actionItems = actionItems()
+    }
+    public init(title: String, subtitle: String? = nil, footnote: String? = nil, descriptionText: String? = nil, detailImage: Image? = nil, actionItems: ActionItems) {
+        self.model = Model(title: title, subtitle: subtitle, footnote: footnote, descriptionText: descriptionText, detailImage: detailImage)
+        self.actionItems = actionItems
+    }
+}
+extension ContactItem where ActionItems == EmptyView {
+    public init(model: ContactItemModel) {
+        self.init(model: model, actionItems: { EmptyView() })
+    }
+    public init(title: String, subtitle: String? = nil, footnote: String? = nil, descriptionText: String? = nil, detailImage: Image? = nil) {
+        self.init(title: title, subtitle: subtitle, footnote: footnote, descriptionText: descriptionText, detailImage: detailImage, actionItems: EmptyView())
+    }
+}
+
+
 // TODO: Extend ContactItem to implement View in separate file
 // place at FioriSwiftUICore/Views/ContactItem+View.swift
 /*

@@ -26,6 +26,22 @@ public struct ObjectItem {
     @Environment(\.detailImageModifier) internal var detailImageModifier: AnyViewModifier
 }
 
+extension ObjectItem {
+    private struct Model: ObjectItemModel {
+        let title: String
+        let subtitle: String?
+        let footnote: String?
+        let descriptionText: String?
+        let status: String?
+        let substatus: String?
+        let detailImage: Image?
+    }
+    public init(title: String, subtitle: String? = nil, footnote: String? = nil, descriptionText: String? = nil, status: String? = nil, substatus: String? = nil, detailImage: Image? = nil) {
+        self.model = Model(title: title, subtitle: subtitle, footnote: footnote, descriptionText: descriptionText, status: status, substatus: substatus, detailImage: detailImage)
+    }
+}
+
+
 // TODO: Extend ObjectItem to implement View in separate file
 // place at FioriSwiftUICore/Views/ObjectItem+View.swift
 /*

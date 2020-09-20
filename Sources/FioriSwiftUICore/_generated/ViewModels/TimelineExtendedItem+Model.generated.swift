@@ -30,6 +30,24 @@ public struct TimelineExtendedItem {
     @Environment(\.substatusModifier) internal var substatusModifier: AnyViewModifier
 }
 
+extension TimelineExtendedItem {
+    private struct Model: TimelineExtendedItemModel {
+        let title: String
+        let subtitle: String?
+        let footnote: String?
+        let attribute: String?
+        let secondaryAttribute: String?
+        let timestamp: String?
+        let secondaryTimestamp: String?
+        let status: String?
+        let substatus: String?
+    }
+    public init(title: String, subtitle: String? = nil, footnote: String? = nil, attribute: String? = nil, secondaryAttribute: String? = nil, timestamp: String? = nil, secondaryTimestamp: String? = nil, status: String? = nil, substatus: String? = nil) {
+        self.model = Model(title: title, subtitle: subtitle, footnote: footnote, attribute: attribute, secondaryAttribute: secondaryAttribute, timestamp: timestamp, secondaryTimestamp: secondaryTimestamp, status: status, substatus: substatus)
+    }
+}
+
+
 // TODO: Extend TimelineExtendedItem to implement View in separate file
 // place at FioriSwiftUICore/Views/TimelineExtendedItem+View.swift
 /*

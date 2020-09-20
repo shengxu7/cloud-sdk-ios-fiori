@@ -26,6 +26,22 @@ public struct ObjectHeader {
     @Environment(\.detailImageModifier) internal var detailImageModifier: AnyViewModifier
 }
 
+extension ObjectHeader {
+    private struct Model: ObjectHeaderModel {
+        let title: String
+        let subtitle: String?
+        let footnote: String?
+        let descriptionText: String?
+        let status: String?
+        let substatus: String?
+        let detailImage: Image?
+    }
+    public init(title: String, subtitle: String? = nil, footnote: String? = nil, descriptionText: String? = nil, status: String? = nil, substatus: String? = nil, detailImage: Image? = nil) {
+        self.model = Model(title: title, subtitle: subtitle, footnote: footnote, descriptionText: descriptionText, status: status, substatus: substatus, detailImage: detailImage)
+    }
+}
+
+
 // TODO: Extend ObjectHeader to implement View in separate file
 // place at FioriSwiftUICore/Views/ObjectHeader+View.swift
 /*

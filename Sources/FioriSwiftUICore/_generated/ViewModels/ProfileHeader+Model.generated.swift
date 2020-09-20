@@ -29,6 +29,33 @@ public struct ProfileHeader<ActionItems: View> {
     @Environment(\.horizontalSizeClass) internal var horizontalSizeClass
 }
 
+extension ProfileHeader {
+    private struct Model: ProfileHeaderModel {
+        let title: String
+        let subtitle: String?
+        let footnote: String?
+        let descriptionText: String?
+        let detailImage: Image?
+    }
+    public init(title: String, subtitle: String? = nil, footnote: String? = nil, descriptionText: String? = nil, detailImage: Image? = nil, @ViewBuilder actionItems: @escaping () -> ActionItems) {
+        self.model = Model(title: title, subtitle: subtitle, footnote: footnote, descriptionText: descriptionText, detailImage: detailImage)
+        self.actionItems = actionItems()
+    }
+    public init(title: String, subtitle: String? = nil, footnote: String? = nil, descriptionText: String? = nil, detailImage: Image? = nil, actionItems: ActionItems) {
+        self.model = Model(title: title, subtitle: subtitle, footnote: footnote, descriptionText: descriptionText, detailImage: detailImage)
+        self.actionItems = actionItems
+    }
+}
+extension ProfileHeader where ActionItems == EmptyView {
+    public init(model: ProfileHeaderModel) {
+        self.init(model: model, actionItems: { EmptyView() })
+    }
+    public init(title: String, subtitle: String? = nil, footnote: String? = nil, descriptionText: String? = nil, detailImage: Image? = nil) {
+        self.init(title: title, subtitle: subtitle, footnote: footnote, descriptionText: descriptionText, detailImage: detailImage, actionItems: EmptyView())
+    }
+}
+
+
 // TODO: Extend ProfileHeader to implement View in separate file
 // place at FioriSwiftUICore/Views/ProfileHeader+View.swift
 /*

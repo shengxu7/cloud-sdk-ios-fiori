@@ -20,6 +20,19 @@ public struct HeaderChart {
     @Environment(\.kpiModifier) internal var kpiModifier: AnyViewModifier
 }
 
+extension HeaderChart {
+    private struct Model: HeaderChartModel {
+        let title: String
+        let subtitle: String?
+        let trend: String?
+        let kpi: String?
+    }
+    public init(title: String, subtitle: String? = nil, trend: String? = nil, kpi: String? = nil) {
+        self.model = Model(title: title, subtitle: subtitle, trend: trend, kpi: kpi)
+    }
+}
+
+
 // TODO: Extend HeaderChart to implement View in separate file
 // place at FioriSwiftUICore/Views/HeaderChart+View.swift
 /*

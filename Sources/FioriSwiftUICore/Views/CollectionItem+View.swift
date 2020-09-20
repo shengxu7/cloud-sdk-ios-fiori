@@ -26,31 +26,31 @@ extension CollectionItem: View {
     }
 }
 
-extension CollectionItem {
-    struct Model: CollectionItemModel {
-        let detailImage: Image?
-        let title: String
-        let subtitle: String?
-    }
-    
-    public init(detailImage: Image? = nil, title: String, subtitle: String? = nil, actionItems: @escaping () -> ActionItems) {
-        self.model = Model(detailImage: detailImage, title: title, subtitle: subtitle)
-        self.actionItems = actionItems()
-    }
-    
-    public init(detailImage: Image? = nil, title: String, subtitle: String? = nil, actionItems: ActionItems) {
-        self.model = Model(detailImage: detailImage, title: title, subtitle: subtitle)
-        self.actionItems = actionItems
-    }
-}
-
-extension CollectionItem where ActionItems == EmptyView {
-    public init(model: CollectionItemModel) {
-        self.init(model: model, actionItems: { EmptyView() })
-    }
-    
-    public init(detailImage: Image? = nil, title: String, subtitle: String? = nil) {
-        self.init(detailImage: detailImage, title: title, subtitle: subtitle, actionItems: EmptyView())
-    }
-}
+//extension CollectionItem {
+//    struct Model: CollectionItemModel {
+//        let detailImage: Image?
+//        let title: String
+//        let subtitle: String?
+//    }
+//    
+//    public init(detailImage: Image? = nil, title: String, subtitle: String? = nil, actionItems: @escaping () -> ActionItems) {
+//        self.model = Model(detailImage: detailImage, title: title, subtitle: subtitle)
+//        self.actionItems = actionItems()
+//    }
+//    
+//    public init(detailImage: Image? = nil, title: String, subtitle: String? = nil, actionItems: ActionItems) {
+//        self.model = Model(detailImage: detailImage, title: title, subtitle: subtitle)
+//        self.actionItems = actionItems
+//    }
+//}
+//
+//extension CollectionItem where ActionItems == EmptyView {
+//    public init(model: CollectionItemModel) {
+//        self.init(model: model, actionItems: { EmptyView() })
+//    }
+//    
+//    public init(detailImage: Image? = nil, title: String, subtitle: String? = nil) {
+//        self.init(detailImage: detailImage, title: title, subtitle: subtitle, actionItems: EmptyView())
+//    }
+//}
 

@@ -24,6 +24,21 @@ public struct ChartFloorplan {
     @Environment(\.categoryAxisTitleModifier) internal var categoryAxisTitleModifier: AnyViewModifier
 }
 
+extension ChartFloorplan {
+    private struct Model: ChartFloorplanModel {
+        let title: String
+        let subtitle: String?
+        let status: String?
+        let valueAxisTitle: String?
+        let seriesTitles: [String]?
+        let categoryAxisTitle: String?
+    }
+    public init(title: String, subtitle: String? = nil, status: String? = nil, valueAxisTitle: String? = nil, seriesTitles: [String]? = nil, categoryAxisTitle: String? = nil) {
+        self.model = Model(title: title, subtitle: subtitle, status: status, valueAxisTitle: valueAxisTitle, seriesTitles: seriesTitles, categoryAxisTitle: categoryAxisTitle)
+    }
+}
+
+
 // TODO: Extend ChartFloorplan to implement View in separate file
 // place at FioriSwiftUICore/Views/ChartFloorplan+View.swift
 /*

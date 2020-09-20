@@ -18,6 +18,18 @@ public struct TimelineItem {
     @Environment(\.statusModifier) internal var statusModifier: AnyViewModifier
 }
 
+extension TimelineItem {
+    private struct Model: TimelineItemModel {
+        let title: String
+        let timestamp: String?
+        let status: String?
+    }
+    public init(title: String, timestamp: String? = nil, status: String? = nil) {
+        self.model = Model(title: title, timestamp: timestamp, status: status)
+    }
+}
+
+
 // TODO: Extend TimelineItem to implement View in separate file
 // place at FioriSwiftUICore/Views/TimelineItem+View.swift
 /*
