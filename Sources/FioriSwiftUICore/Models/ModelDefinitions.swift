@@ -8,6 +8,8 @@
 import Foundation
 
 // Standard Components
+
+// sourcery: add_env_props = "horizontalSizeClass"
 // sourcery: generated_component
 public protocol ObjectItemModel: TitleComponent, SubtitleComponent, FootnoteComponent, DescriptionTextComponent, StatusComponent, SubstatusComponent, DetailImageComponent {}
 
@@ -18,6 +20,7 @@ public protocol ObjectHeaderModel: TitleComponent, SubtitleComponent, FootnoteCo
 public protocol HeaderChartModel: TitleComponent, SubtitleComponent, TrendComponent, KpiComponent {}
 
 // sourcery: add_view_builder_params = "actionItems: ActionItems"
+// sourcery: add_env_props = "horizontalSizeClass"
 // sourcery: generated_component
 public protocol ContactItemModel: TitleComponent, SubtitleComponent, FootnoteComponent, DescriptionTextComponent, DetailImageComponent {}
 
@@ -39,5 +42,7 @@ public protocol TimelineItemModel: TitleComponent, TimestampComponent, StatusCom
 // sourcery: generated_component
 public protocol CollectionItemModel: DetailImageComponent, TitleComponent, SubtitleComponent {}
 
+// sourcery: add_view_builder_params = "action: Action"
+// sourcery: add_env_props = "colorScheme"
 // sourcery: generated_component
 public protocol SectionHeaderModel: TitleComponent, AttributeComponent {}

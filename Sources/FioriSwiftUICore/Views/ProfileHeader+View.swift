@@ -24,10 +24,9 @@ extension ProfileHeader: View {
                 if let image = model.detailImage {
                     image
                         .resizable()
-                        .applying(detailImageStyle).modifier(detailImageModifier)
+                        .applying(detailImageStyle)
+                        .modifier(detailImageModifier)
                         .frame(width: 65, height: 65)
-                        .mask(Circle())
-                        
                 }
                 VStack(alignment: .leading) {
                     Text(model.title).applying(titleStyle).modifier(titleModifier)

@@ -24,6 +24,7 @@ public struct ObjectItem {
     @Environment(\.substatusModifier) internal var substatusModifier: AnyViewModifier
     @Environment(\.detailImageStyle) internal var detailImageStyle: ImageStyle
     @Environment(\.detailImageModifier) internal var detailImageModifier: AnyViewModifier
+    @Environment(\.horizontalSizeClass) internal var horizontalSizeClass
 }
 
 extension ObjectItem {

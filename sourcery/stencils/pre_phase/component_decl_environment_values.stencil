@@ -15,7 +15,7 @@ import SwiftUI
 {% for type in types.implementing._ComponentGenerating %}
 
 extension EnvironmentValues {
-{% for variable in type.variables %}
+{% for variable in type.variables where variable|!annotated:"no_style" %}
 {% set keyname %}{{variable.name | upperFirstLetter }}StyleKey{% endset %}
 {% set AStyle %}{% call StyleType variable.typeName.unwrappedTypeName %}{% endset %}
     public var {{variable.name}}Style: {{AStyle}} {
@@ -31,7 +31,7 @@ extension EnvironmentValues {
 }
 
 public extension View {
-{% for variable in type.variables %}
+{% for variable in type.variables where variable|!annotated:"no_style" %}
 {% set AStyle %}{% call StyleType variable.typeName.unwrappedTypeName %}{% endset %}
 
     func {{variable.name}}Style(_ style: {{AStyle}}) -> some View {

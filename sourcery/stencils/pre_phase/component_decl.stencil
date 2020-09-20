@@ -14,7 +14,7 @@ NothingStyle
 import SwiftUI
 {% for type in types.implementing._ComponentGenerating %}
 
-{% for variable in type.variables %}
+{% for variable in type.variables where variable|!annotated:"no_style" %}
 public protocol {{variable.name | upperFirstLetter}}Component {
     var {{variable.name}}: {{variable.typeName}} { get }
 }

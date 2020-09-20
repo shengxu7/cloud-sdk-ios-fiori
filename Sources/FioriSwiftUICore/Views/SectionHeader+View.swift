@@ -6,18 +6,28 @@
 //
 
 import SwiftUI
+import UIKit
 
 extension SectionHeader: View {
     public var body: some View {
-        HStack {
-            Text(model.title).applying(titleStyle).modifier(titleModifier)
-            if let attribute = model.attribute {
-                Text(attribute)
-                    .applying(attributeStyle)
-                    .multilineTextAlignment(.trailing)
-                    .modifier(attributeModifier)
+//        ZStack {
+//            VisualEffectView(effect: UIBlurEffect(style: colorScheme == .some(.light) ? .extraLight : .dark))
+//                            .edgesIgnoringSafeArea(.all)
+            HStack {
+                Text(model.title).applying(titleStyle).modifier(titleModifier)
+                Spacer()
+                HStack {
+                    if let attribute = model.attribute {
+                        Text(attribute)
+                            .applying(attributeStyle)
+                            .multilineTextAlignment(.trailing)
+                            .modifier(attributeModifier)
+                    }
+                    action
+                }
             }
-        }.padding()
+            .padding()
+//        }
     }
 }
 
@@ -30,4 +40,10 @@ struct SectionHeader_Previews: PreviewProvider {
 struct SectionHeaderM: SectionHeaderModel {
     let title: String = "Hello, world"
     let attribute: String? = "See all"
+}
+
+public struct VisualEffectView: UIViewRepresentable {
+    public var effect: UIVisualEffect?
+    public func makeUIView(context: UIViewRepresentableContext<Self>) -> UIVisualEffectView { UIVisualEffectView() }
+    public func updateUIView(_ uiView: UIVisualEffectView, context: UIViewRepresentableContext<Self>) { uiView.effect = effect }
 }

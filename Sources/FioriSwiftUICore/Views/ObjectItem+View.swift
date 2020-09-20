@@ -18,6 +18,18 @@ extension ObjectItem: View {
                     Text(footnote).applying(footnoteStyle)
                 }
             }
+            if horizontalSizeClass == .some(.regular),
+               let descriptionText = model.descriptionText {
+                Text(descriptionText).applying(descriptionTextStyle).modifier(descriptionTextModifier)
+            }
+            VStack(alignment: .trailing) {
+                if let status = model.status {
+                    Text(status).applying(statusStyle).modifier(statusModifier)
+                }
+                if let substatus = model.substatus {
+                    Text(substatus).applying(substatusStyle).modifier(substatusModifier)
+                }
+            }
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         .padding([.top, .bottom], 1)

@@ -13,7 +13,7 @@ NothingStyle
 // sourcery:file:EnvironmentKey+Styles.generated.swift
 import SwiftUI
 {% for type in types.implementing._ComponentGenerating %}
-{% for variable in type.variables %}
+{% for variable in type.variables where variable|!annotated:"no_style" %}
 {% set AStyle %}{% call StyleType variable.typeName.unwrappedTypeName %}{% endset %}
 
 public struct {{variable.name | upperFirstLetter }}StyleKey: EnvironmentKey {

@@ -26,6 +26,7 @@ public struct ContactItem<ActionItems: View> {
     @Environment(\.descriptionTextModifier) internal var descriptionTextModifier: AnyViewModifier
     @Environment(\.detailImageStyle) internal var detailImageStyle: ImageStyle
     @Environment(\.detailImageModifier) internal var detailImageModifier: AnyViewModifier
+    @Environment(\.horizontalSizeClass) internal var horizontalSizeClass
 }
 
 extension ContactItem {

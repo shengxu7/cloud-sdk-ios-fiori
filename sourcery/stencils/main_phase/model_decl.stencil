@@ -65,7 +65,7 @@ public struct {{ VIEW_TYPE_NAME }}{% if HAS_GENERICS %}<{% call ViewBuilderTempl
     {% endif %}
 
     {% for x in MODEL_TYPE.inheritedTypes %}
-        {% for y in type[x].allVariables %}
+        {% for y in type[x].allVariables where y|!annotated:"no_style" %}
     @Environment(\.{{y.name}}Style) internal var {{y.name}}Style: {% call StyleType y.unwrappedTypeName %}
     @Environment(\.{{y.name}}Modifier) internal var {{y.name}}Modifier: AnyViewModifier
         {% endfor %}

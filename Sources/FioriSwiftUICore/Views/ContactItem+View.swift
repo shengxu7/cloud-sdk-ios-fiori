@@ -20,6 +20,10 @@ extension ContactItem: View {
                     Text(footnote).applying(footnoteStyle).modifier(footnoteModifier)
                 }
             }
+            if horizontalSizeClass == .some(.regular),
+               let descriptionText = model.descriptionText {
+                Text(descriptionText).applying(descriptionTextStyle).modifier(descriptionTextModifier)
+            }
             Spacer()
             actionItems
         }
