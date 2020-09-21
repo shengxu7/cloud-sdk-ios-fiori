@@ -2,13 +2,12 @@ import SwiftUI
 
 extension ContactItem: View {
     public var body: some View {
-        HStack {
+        HStack(spacing: 8) {
             if let image = model.detailImage {
                 image
                     .resizable()
                     .applying(detailImageStyle).modifier(detailImageModifier)
                     .frame(width: 45, height: 45)
-                    .mask(Circle())
                     
             }
             VStack(alignment: .leading) {
@@ -20,11 +19,11 @@ extension ContactItem: View {
                     Text(footnote).applying(footnoteStyle).modifier(footnoteModifier)
                 }
             }
+            Spacer()
             if horizontalSizeClass == .some(.regular),
                let descriptionText = model.descriptionText {
                 Text(descriptionText).applying(descriptionTextStyle).modifier(descriptionTextModifier)
             }
-            Spacer()
             actionItems
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
