@@ -2,22 +2,24 @@ import SwiftUI
 
 extension ObjectItem: View {
     public var body: some View {
-        HStack {
+        HStack(spacing: 8) {
             if let image = model.detailImage {
                 image
                     .applying(detailImageStyle)
                     .frame(width: 45, height: 45)
+                    .modifier(detailImageModifier)
                     
             }
             VStack(alignment: .leading) {
-                Text(model.title).applying(titleStyle)
+                Text(model.title).applying(titleStyle).modifier(titleModifier)
                 if let subtitle = model.subtitle {
-                    Text(subtitle).applying(subtitleStyle)
+                    Text(subtitle).applying(subtitleStyle).modifier(subtitleModifier)
                 }
                 if let footnote = model.footnote {
-                    Text(footnote).applying(footnoteStyle)
+                    Text(footnote).applying(footnoteStyle).modifier(footnoteModifier)
                 }
             }
+            Spacer()
             if horizontalSizeClass == .some(.regular),
                let descriptionText = model.descriptionText {
                 Text(descriptionText).applying(descriptionTextStyle).modifier(descriptionTextModifier)
@@ -32,6 +34,5 @@ extension ObjectItem: View {
             }
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-        .padding([.top, .bottom], 1)
     }
 }
