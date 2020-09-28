@@ -116,10 +116,11 @@ extension TripPin.Person: ContactItemModel {
     }
 }
 
-
+// Developer conforms Business Object to ViewModel
 extension TripPin.Person: TitleComponent {
     var title: String {
-        return PersonNameComponentsFormatter().string(from: nameComponents)
+        return PersonNameComponentsFormatter()
+            .string(from: nameComponents)
     }
 }
 
@@ -139,7 +140,8 @@ extension TripPin.Person: DetailImageComponent {
 extension TripPin.Person: DescriptionTextComponent {
     var descriptionText: String? {
         return cnContact.postalAddresses.map({
-            CNPostalAddressFormatter().string(from: $0.value)
+            CNPostalAddressFormatter()
+                .string(from: $0.value)
         }).joined(separator: "\r")
     }
 }

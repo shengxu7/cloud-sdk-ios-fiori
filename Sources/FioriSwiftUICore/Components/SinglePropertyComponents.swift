@@ -37,6 +37,4 @@ internal struct _Component: _ComponentGenerating {
     let tags: [String]?
     let lowerBoundTitle: String?
     let upperBoundTitle: String?
-    // sourcery: no_style
-//    let accessory: AccessoryType
 }
