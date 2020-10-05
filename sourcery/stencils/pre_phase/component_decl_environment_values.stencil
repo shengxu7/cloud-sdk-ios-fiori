@@ -28,11 +28,6 @@ extension EnvironmentValues {
         set { self[{{variable.name | upperFirstLetter }}ModifierKey.self] = newValue }
     }
 
-    var {{variable.name}}StyleClassPath: [String] {
-        get { return self[{{variable.name | upperFirstLetter }}StyleClassPathKey.self] }
-        set { self[{{variable.name | upperFirstLetter }}StyleClassPathKey.self] = newValue }
-    }
-
 {% endfor %}
 }
 

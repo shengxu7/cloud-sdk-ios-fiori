@@ -14,11 +14,6 @@ extension EnvironmentValues {
         set { self[TitleModifierKey.self] = newValue }
     }
 
-    var titleStyleClassPath: [String] {
-        get { return self[TitleStyleClassPathKey.self] }
-        set { self[TitleStyleClassPathKey.self] = newValue }
-    }
-
     public var subtitleStyle: TextStyle {
         get { return self[SubtitleStyleKey.self] }
         set { self[SubtitleStyleKey.self] = newValue }
@@ -27,11 +22,6 @@ extension EnvironmentValues {
     public var subtitleModifier: AnyViewModifier {
         get { return self[SubtitleModifierKey.self] }
         set { self[SubtitleModifierKey.self] = newValue }
-    }
-
-    var subtitleStyleClassPath: [String] {
-        get { return self[SubtitleStyleClassPathKey.self] }
-        set { self[SubtitleStyleClassPathKey.self] = newValue }
     }
 
     public var footnoteStyle: TextStyle {
@@ -44,11 +34,6 @@ extension EnvironmentValues {
         set { self[FootnoteModifierKey.self] = newValue }
     }
 
-    var footnoteStyleClassPath: [String] {
-        get { return self[FootnoteStyleClassPathKey.self] }
-        set { self[FootnoteStyleClassPathKey.self] = newValue }
-    }
-
     public var descriptionTextStyle: TextStyle {
         get { return self[DescriptionTextStyleKey.self] }
         set { self[DescriptionTextStyleKey.self] = newValue }
@@ -57,11 +42,6 @@ extension EnvironmentValues {
     public var descriptionTextModifier: AnyViewModifier {
         get { return self[DescriptionTextModifierKey.self] }
         set { self[DescriptionTextModifierKey.self] = newValue }
-    }
-
-    var descriptionTextStyleClassPath: [String] {
-        get { return self[DescriptionTextStyleClassPathKey.self] }
-        set { self[DescriptionTextStyleClassPathKey.self] = newValue }
     }
 
     public var detailImageStyle: ImageStyle {
@@ -74,11 +54,6 @@ extension EnvironmentValues {
         set { self[DetailImageModifierKey.self] = newValue }
     }
 
-    var detailImageStyleClassPath: [String] {
-        get { return self[DetailImageStyleClassPathKey.self] }
-        set { self[DetailImageStyleClassPathKey.self] = newValue }
-    }
-
     public var attributeStyle: TextStyle {
         get { return self[AttributeStyleKey.self] }
         set { self[AttributeStyleKey.self] = newValue }
@@ -87,11 +62,6 @@ extension EnvironmentValues {
     public var attributeModifier: AnyViewModifier {
         get { return self[AttributeModifierKey.self] }
         set { self[AttributeModifierKey.self] = newValue }
-    }
-
-    var attributeStyleClassPath: [String] {
-        get { return self[AttributeStyleClassPathKey.self] }
-        set { self[AttributeStyleClassPathKey.self] = newValue }
     }
 
     public var secondaryAttributeStyle: TextStyle {
@@ -104,11 +74,6 @@ extension EnvironmentValues {
         set { self[SecondaryAttributeModifierKey.self] = newValue }
     }
 
-    var secondaryAttributeStyleClassPath: [String] {
-        get { return self[SecondaryAttributeStyleClassPathKey.self] }
-        set { self[SecondaryAttributeStyleClassPathKey.self] = newValue }
-    }
-
     public var timestampStyle: TextStyle {
         get { return self[TimestampStyleKey.self] }
         set { self[TimestampStyleKey.self] = newValue }
@@ -117,11 +82,6 @@ extension EnvironmentValues {
     public var timestampModifier: AnyViewModifier {
         get { return self[TimestampModifierKey.self] }
         set { self[TimestampModifierKey.self] = newValue }
-    }
-
-    var timestampStyleClassPath: [String] {
-        get { return self[TimestampStyleClassPathKey.self] }
-        set { self[TimestampStyleClassPathKey.self] = newValue }
     }
 
     public var secondaryTimestampStyle: TextStyle {
@@ -134,11 +94,6 @@ extension EnvironmentValues {
         set { self[SecondaryTimestampModifierKey.self] = newValue }
     }
 
-    var secondaryTimestampStyleClassPath: [String] {
-        get { return self[SecondaryTimestampStyleClassPathKey.self] }
-        set { self[SecondaryTimestampStyleClassPathKey.self] = newValue }
-    }
-
     public var trendStyle: TextStyle {
         get { return self[TrendStyleKey.self] }
         set { self[TrendStyleKey.self] = newValue }
@@ -147,11 +102,6 @@ extension EnvironmentValues {
     public var trendModifier: AnyViewModifier {
         get { return self[TrendModifierKey.self] }
         set { self[TrendModifierKey.self] = newValue }
-    }
-
-    var trendStyleClassPath: [String] {
-        get { return self[TrendStyleClassPathKey.self] }
-        set { self[TrendStyleClassPathKey.self] = newValue }
     }
 
     public var statusStyle: TextStyle {
@@ -164,11 +114,6 @@ extension EnvironmentValues {
         set { self[StatusModifierKey.self] = newValue }
     }
 
-    var statusStyleClassPath: [String] {
-        get { return self[StatusStyleClassPathKey.self] }
-        set { self[StatusStyleClassPathKey.self] = newValue }
-    }
-
     public var substatusStyle: TextStyle {
         get { return self[SubstatusStyleKey.self] }
         set { self[SubstatusStyleKey.self] = newValue }
@@ -177,11 +122,6 @@ extension EnvironmentValues {
     public var substatusModifier: AnyViewModifier {
         get { return self[SubstatusModifierKey.self] }
         set { self[SubstatusModifierKey.self] = newValue }
-    }
-
-    var substatusStyleClassPath: [String] {
-        get { return self[SubstatusStyleClassPathKey.self] }
-        set { self[SubstatusStyleClassPathKey.self] = newValue }
     }
 
     public var bodyStyle: TextStyle {
@@ -194,11 +134,6 @@ extension EnvironmentValues {
         set { self[BodyModifierKey.self] = newValue }
     }
 
-    var bodyStyleClassPath: [String] {
-        get { return self[BodyStyleClassPathKey.self] }
-        set { self[BodyStyleClassPathKey.self] = newValue }
-    }
-
     public var iconsStyle: TextStyle {
         get { return self[IconsStyleKey.self] }
         set { self[IconsStyleKey.self] = newValue }
@@ -207,11 +142,6 @@ extension EnvironmentValues {
     public var iconsModifier: AnyViewModifier {
         get { return self[IconsModifierKey.self] }
         set { self[IconsModifierKey.self] = newValue }
-    }
-
-    var iconsStyleClassPath: [String] {
-        get { return self[IconsStyleClassPathKey.self] }
-        set { self[IconsStyleClassPathKey.self] = newValue }
     }
 
     public var actionTitleStyle: TextStyle {
@@ -224,11 +154,6 @@ extension EnvironmentValues {
         set { self[ActionTitleModifierKey.self] = newValue }
     }
 
-    var actionTitleStyleClassPath: [String] {
-        get { return self[ActionTitleStyleClassPathKey.self] }
-        set { self[ActionTitleStyleClassPathKey.self] = newValue }
-    }
-
     public var seriesTitlesStyle: TextStyle {
         get { return self[SeriesTitlesStyleKey.self] }
         set { self[SeriesTitlesStyleKey.self] = newValue }
@@ -237,11 +162,6 @@ extension EnvironmentValues {
     public var seriesTitlesModifier: AnyViewModifier {
         get { return self[SeriesTitlesModifierKey.self] }
         set { self[SeriesTitlesModifierKey.self] = newValue }
-    }
-
-    var seriesTitlesStyleClassPath: [String] {
-        get { return self[SeriesTitlesStyleClassPathKey.self] }
-        set { self[SeriesTitlesStyleClassPathKey.self] = newValue }
     }
 
     public var valueStyle: TextStyle {
@@ -254,11 +174,6 @@ extension EnvironmentValues {
         set { self[ValueModifierKey.self] = newValue }
     }
 
-    var valueStyleClassPath: [String] {
-        get { return self[ValueStyleClassPathKey.self] }
-        set { self[ValueStyleClassPathKey.self] = newValue }
-    }
-
     public var valuesStyle: TextStyle {
         get { return self[ValuesStyleKey.self] }
         set { self[ValuesStyleKey.self] = newValue }
@@ -267,11 +182,6 @@ extension EnvironmentValues {
     public var valuesModifier: AnyViewModifier {
         get { return self[ValuesModifierKey.self] }
         set { self[ValuesModifierKey.self] = newValue }
-    }
-
-    var valuesStyleClassPath: [String] {
-        get { return self[ValuesStyleClassPathKey.self] }
-        set { self[ValuesStyleClassPathKey.self] = newValue }
     }
 
     public var valueAxisTitleStyle: TextStyle {
@@ -284,11 +194,6 @@ extension EnvironmentValues {
         set { self[ValueAxisTitleModifierKey.self] = newValue }
     }
 
-    var valueAxisTitleStyleClassPath: [String] {
-        get { return self[ValueAxisTitleStyleClassPathKey.self] }
-        set { self[ValueAxisTitleStyleClassPathKey.self] = newValue }
-    }
-
     public var secondaryValuesAxisTitleStyle: TextStyle {
         get { return self[SecondaryValuesAxisTitleStyleKey.self] }
         set { self[SecondaryValuesAxisTitleStyleKey.self] = newValue }
@@ -297,11 +202,6 @@ extension EnvironmentValues {
     public var secondaryValuesAxisTitleModifier: AnyViewModifier {
         get { return self[SecondaryValuesAxisTitleModifierKey.self] }
         set { self[SecondaryValuesAxisTitleModifierKey.self] = newValue }
-    }
-
-    var secondaryValuesAxisTitleStyleClassPath: [String] {
-        get { return self[SecondaryValuesAxisTitleStyleClassPathKey.self] }
-        set { self[SecondaryValuesAxisTitleStyleClassPathKey.self] = newValue }
     }
 
     public var categoryAxisTitleStyle: TextStyle {
@@ -314,11 +214,6 @@ extension EnvironmentValues {
         set { self[CategoryAxisTitleModifierKey.self] = newValue }
     }
 
-    var categoryAxisTitleStyleClassPath: [String] {
-        get { return self[CategoryAxisTitleStyleClassPathKey.self] }
-        set { self[CategoryAxisTitleStyleClassPathKey.self] = newValue }
-    }
-
     public var emptyTextStyle: TextStyle {
         get { return self[EmptyTextStyleKey.self] }
         set { self[EmptyTextStyleKey.self] = newValue }
@@ -327,11 +222,6 @@ extension EnvironmentValues {
     public var emptyTextModifier: AnyViewModifier {
         get { return self[EmptyTextModifierKey.self] }
         set { self[EmptyTextModifierKey.self] = newValue }
-    }
-
-    var emptyTextStyleClassPath: [String] {
-        get { return self[EmptyTextStyleClassPathKey.self] }
-        set { self[EmptyTextStyleClassPathKey.self] = newValue }
     }
 
     public var kpiStyle: TextStyle {
@@ -344,11 +234,6 @@ extension EnvironmentValues {
         set { self[KpiModifierKey.self] = newValue }
     }
 
-    var kpiStyleClassPath: [String] {
-        get { return self[KpiStyleClassPathKey.self] }
-        set { self[KpiStyleClassPathKey.self] = newValue }
-    }
-
     public var placeholderStyle: TextStyle {
         get { return self[PlaceholderStyleKey.self] }
         set { self[PlaceholderStyleKey.self] = newValue }
@@ -357,11 +242,6 @@ extension EnvironmentValues {
     public var placeholderModifier: AnyViewModifier {
         get { return self[PlaceholderModifierKey.self] }
         set { self[PlaceholderModifierKey.self] = newValue }
-    }
-
-    var placeholderStyleClassPath: [String] {
-        get { return self[PlaceholderStyleClassPathKey.self] }
-        set { self[PlaceholderStyleClassPathKey.self] = newValue }
     }
 
     public var tagsStyle: TextStyle {
@@ -374,11 +254,6 @@ extension EnvironmentValues {
         set { self[TagsModifierKey.self] = newValue }
     }
 
-    var tagsStyleClassPath: [String] {
-        get { return self[TagsStyleClassPathKey.self] }
-        set { self[TagsStyleClassPathKey.self] = newValue }
-    }
-
     public var lowerBoundTitleStyle: TextStyle {
         get { return self[LowerBoundTitleStyleKey.self] }
         set { self[LowerBoundTitleStyleKey.self] = newValue }
@@ -389,11 +264,6 @@ extension EnvironmentValues {
         set { self[LowerBoundTitleModifierKey.self] = newValue }
     }
 
-    var lowerBoundTitleStyleClassPath: [String] {
-        get { return self[LowerBoundTitleStyleClassPathKey.self] }
-        set { self[LowerBoundTitleStyleClassPathKey.self] = newValue }
-    }
-
     public var upperBoundTitleStyle: TextStyle {
         get { return self[UpperBoundTitleStyleKey.self] }
         set { self[UpperBoundTitleStyleKey.self] = newValue }
@@ -402,11 +272,6 @@ extension EnvironmentValues {
     public var upperBoundTitleModifier: AnyViewModifier {
         get { return self[UpperBoundTitleModifierKey.self] }
         set { self[UpperBoundTitleModifierKey.self] = newValue }
-    }
-
-    var upperBoundTitleStyleClassPath: [String] {
-        get { return self[UpperBoundTitleStyleClassPathKey.self] }
-        set { self[UpperBoundTitleStyleClassPathKey.self] = newValue }
     }
 
 }
