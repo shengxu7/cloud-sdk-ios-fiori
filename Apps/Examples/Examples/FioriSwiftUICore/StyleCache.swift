@@ -8,76 +8,65 @@
 
 import SwiftUI
 import FioriSwiftUICore
-import AnyCodable
+//import AnyCodable
 
-struct StyleSheet: Decodable {
-    let palette: [String: Color]
-    let styles: [String: AnyIStyle]
-    
-    let styles2: [String: AnyDecodable]
-    let styles3: [String: Style]
-    let styles4: [String: TextStyle]
-    
-    let styles5: [String: AnyViewModifier]
-    
-    private enum CodingKeys: CodingKey {
-        case palette, styles
-    }
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        let keyPairMap = try container.decode([String: String].self, forKey: .palette)
-        self.palette = try keyPairMap.mapValues({ try Color(hexCode: $0) })
-        let stylePairMap = try container.decode([String: Style].self, forKey: .styles)
-        self.styles = stylePairMap.compactMapValues({
-            switch $0 {
-            case .text(let style):
-                return AnyIStyle(style)
-            case .none:
-                return nil
-            }
-        })
-        
-        self.styles2 = try container.decode([String: AnyDecodable].self, forKey: .styles)
-        self.styles3 = try container.decode([String: Style].self, forKey: .styles)
-        self.styles4 = try container.decode([String: TextStyle].self, forKey: .styles)
-        self.styles5 = [:]
-    }
-}
-
-public class StyleCache: ObservableObject {
-//    var userDefaults: UserDefaults = UserDefaults()
-    static let shared = StyleCache()
-    var styles: StyleSheet!
-    init() {
-        do {
-            styles = try JSONDecoder().decode(StyleSheet.self, from: jsonData)
-            
-            print(styles.palette.map(\.value))
-            print(styles.styles.map(\.key))
-            
-        } catch {
-            print(error)
-        }
-    }
-    
-//    subscript<T: IStyle>(dynamicMember string: String) -> T? {
-//        if let style = styles.styles[string] {
-//            return style.value as? T
-//        } else {
-//            let components = string.components(separatedBy: ":")
-//            let value: AnyIStyle? = components.reduce(into: nil) { prev, next in
-//                guard let accumulator = prev else {
-//                    prev = styles.styles[next]
-//                    return
-//                }
-//                if let style = styles.styles[next] {
-//                    prev = accumulator.value
-//                }
-//            }
-//        }
+//struct StyleSheet: Decodable {
+//    let palette: [String: Color]
 //
+//    let styles2: [String: AnyDecodable]
+//    let styles4: [String: TextStyle]
+//
+//    let styles5: [String: AnyViewModifier]
+//
+//    private enum CodingKeys: CodingKey {
+//        case palette, styles
 //    }
-}
+//    init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//        let keyPairMap = try container.decode([String: String].self, forKey: .palette)
+//        self.palette = try keyPairMap.mapValues({ try Color(hexCode: $0) })
+//
+//
+//        self.styles2 = try container.decode([String: AnyDecodable].self, forKey: .styles)
+//        self.styles4 = try container.decode([String: TextStyle].self, forKey: .styles)
+//        self.styles5 = [:]
+//    }
+//}
+
+//public class StyleCache: ObservableObject {
+////    var userDefaults: UserDefaults = UserDefaults()
+//    static let shared = StyleCache()
+//    var styles: StyleSheet!
+//    init() {
+//        do {
+//            styles = try JSONDecoder().decode(StyleSheet.self, from: jsonData)
+//
+//            print(styles.palette.map(\.value))
+//            print(styles.styles2.map(\.key))
+//
+//        } catch {
+//            print(error)
+//        }
+//    }
+//
+////    subscript<T: IStyle>(dynamicMember string: String) -> T? {
+////        if let style = styles.styles[string] {
+////            return style.value as? T
+////        } else {
+////            let components = string.components(separatedBy: ":")
+////            let value: AnyIStyle? = components.reduce(into: nil) { prev, next in
+////                guard let accumulator = prev else {
+////                    prev = styles.styles[next]
+////                    return
+////                }
+////                if let style = styles.styles[next] {
+////                    prev = accumulator.value
+////                }
+////            }
+////        }
+////
+////    }
+//}
 
 struct ObjectItemStyle {
     

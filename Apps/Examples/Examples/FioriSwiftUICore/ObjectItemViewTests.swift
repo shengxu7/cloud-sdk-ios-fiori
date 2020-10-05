@@ -18,7 +18,7 @@ struct AcmeStyle: ViewModifier {
             .titleStyle(TextStyle().bold().font(.custom("Avenir", size: 21.0, relativeTo: .largeTitle)))
             .subtitleStyle(TextStyle(font: .custom("Avenir", size: 18.0, relativeTo: .largeTitle)))
             .footnoteStyle(TextStyle(font: .custom("Avenir", size: 14.0, relativeTo: .footnote)))
-            .detailImageModifier({ $0.frame(width: 80, height: 80) })
+            .detailImageModifier({ $0.scaledToFill().mask(Circle()) })
             .accentColor(.green)
     }
 }

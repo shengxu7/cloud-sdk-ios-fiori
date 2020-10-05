@@ -13,7 +13,7 @@ struct ContentView: View {
     private let oneMany = ["table", "list", "timeline"]
     private let manyMany = ["LowCode", "object", "analytical"]
     private let cards: [String] = ["LowCode", "timeline", "table", "list" , "object", "analytical"]
-
+    
     var body: some View {
         NavigationView {
             List {
@@ -33,23 +33,12 @@ struct ContentView: View {
                 destination: ContactItemViewTests()) {
                     Text("Generated Views")
                 }
-//                NavigationLink(
-//                    destination: ListFloorplanSwiftUI<ContactItem<EmptyView>, TripPin.Person, TripPin.Person.Section>(model: ListViewModel<TripPin.Person, TripPin.Person.Section>(queries: [.default: AnyIDataLoader(TripPin.IPeopleLoader())]), binding: { person in
-//                            ContactItem(model: person)
-//
-//                    }
-//                    ).detailImageStyle(ImageStyle().resizable().cornerRadius(6))
-//                ) {
-//                    Text("Generated Views")
-//                }
             }
-
             .navigationBarTitle("Examples")
             .listStyle(SidebarListStyle())
         }
         .modifier(AcmeStyle())
-//        .titleStyle(TextStyle().font(.headline))
-//        .subtitleStyle(TextStyle().italic())
+        .titleStyleClassPath(["h1"])
     }
 }
 

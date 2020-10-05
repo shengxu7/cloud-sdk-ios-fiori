@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SwiftUI
+import FioriSwiftUICore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        do {
+//            let stylesheet = try JSONDecoder().decode(StyleSheet.self, from: jsonData)
+            try StyleCache.upsertStyles(["h1": AnyViewModifier(transform: { $0.modifier(PurpleText())})])
+            
+            
+        } catch {
+            print(error)
+        }
         return true
     }
 
@@ -35,3 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+struct PurpleText: ViewModifier {
+    func body(content: Content) -> some View {
+        content.foregroundColor(.purple)
+    }
+}
