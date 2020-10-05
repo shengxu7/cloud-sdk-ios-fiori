@@ -12,16 +12,16 @@ extension ContactItem: View {
             }
             VStack(alignment: .leading) {
                 Text(model.title).applying(titleStyle).modifier(titleModifier)
-                if let subtitle = model.subtitle {
+                if let subtitle = model.subtitle, !subtitle.isEmpty {
                     Text(subtitle).applying(subtitleStyle).modifier(subtitleModifier)
                 }
-                if let footnote = model.footnote {
+                if let footnote = model.footnote, !footnote.isEmpty {
                     Text(footnote).applying(footnoteStyle).modifier(footnoteModifier)
                 }
             }
             Spacer()
             if horizontalSizeClass == .some(.regular),
-               let descriptionText = model.descriptionText {
+               let descriptionText = model.descriptionText, !descriptionText.isEmpty {
                 Text(descriptionText).applying(descriptionTextStyle).modifier(descriptionTextModifier)
             }
             actionItems
@@ -46,7 +46,9 @@ struct ContactItem_View_Previews: PreviewProvider {
 }
 
 public struct AnyViewModifier: ViewModifier {
-    let apply: (Content) -> AnyView
+    var apply: (Content) -> AnyView
+    var _concat: ((AnyViewModifier) -> AnyView)?
+    
     public init<V: View>(transform: @escaping (Content) -> V) {
         self.apply = { AnyView(transform($0)) }
     }

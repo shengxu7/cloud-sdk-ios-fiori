@@ -16,13 +16,22 @@ import SwiftUI
 {% for variable in type.variables where variable|!annotated:"no_style" %}
 {% set AStyle %}{% call StyleType variable.typeName.unwrappedTypeName %}{% endset %}
 
-public struct {{variable.name | upperFirstLetter }}StyleKey: EnvironmentKey {
+struct {{variable.name | upperFirstLetter }}StyleKey: EnvironmentKey {
     public static let defaultValue: {{ AStyle }} = {{ AStyle }}()
 }
 
-public struct {{variable.name | upperFirstLetter }}ModifierKey: EnvironmentKey {
+struct {{variable.name | upperFirstLetter }}ModifierKey: EnvironmentKey {
     public static let defaultValue = AnyViewModifier { $0 }
 }
+
+struct {{variable.name | upperFirstLetter }}StyleClassPathKey: EnvironmentKey {
+    public static let defaultValue: [String] = []
+}
+
+struct {{variable.name | upperFirstLetter }}StyleClassModifierKey: EnvironmentKey {
+    public static let defaultValue = AnyViewModifier { $0 }
+}
+
 {% endfor %}
 {% endfor %}
 // sourcery:end

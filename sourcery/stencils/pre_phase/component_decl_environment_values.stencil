@@ -27,6 +27,12 @@ extension EnvironmentValues {
         get { return self[{{variable.name | upperFirstLetter }}ModifierKey.self] }
         set { self[{{variable.name | upperFirstLetter }}ModifierKey.self] = newValue }
     }
+
+    var {{variable.name}}StyleClassPath: [String] {
+        get { return self[{{variable.name | upperFirstLetter }}StyleClassPathKey.self] }
+        set { self[{{variable.name | upperFirstLetter }}StyleClassPathKey.self] = newValue }
+    }
+
 {% endfor %}
 }
 
@@ -41,7 +47,22 @@ public extension View {
     func {{variable.name}}Modifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.{{variable.name}}Modifier, AnyViewModifier(transform: transform))
     }
+
+    func {{variable.name}}StyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.{{variable.name}}Modifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
+    }
 {% endfor %}
 }
+
 {% endfor %}
 // sourcery:end

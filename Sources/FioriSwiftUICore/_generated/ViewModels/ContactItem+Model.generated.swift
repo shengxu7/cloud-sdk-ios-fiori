@@ -3,6 +3,18 @@
 
 import SwiftUI
 
+struct StyleSheeetModifier: ViewModifier {
+    
+    let fontName: String
+    let fontWeight: String
+    let textColor: Color
+    
+    
+    func body(content: Content) -> some View {
+        return EmptyView()
+    }
+}
+
 public struct ContactItem<ActionItems: View> {
     let model: ContactItemModel
     let actionItems: ActionItems

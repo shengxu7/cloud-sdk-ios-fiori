@@ -18,7 +18,7 @@ extension CollectionItem: View {
                 
             }
             Text(model.title).applying(titleStyle).modifier(titleModifier)
-            if let subtitle = model.subtitle {
+            if let subtitle = model.subtitle, !subtitle.isEmpty {
                 Text(subtitle).applying(subtitleStyle).modifier(subtitleModifier)
             }
             actionItems

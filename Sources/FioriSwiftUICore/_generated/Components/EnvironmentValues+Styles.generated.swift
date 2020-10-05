@@ -13,6 +13,12 @@ extension EnvironmentValues {
         get { return self[TitleModifierKey.self] }
         set { self[TitleModifierKey.self] = newValue }
     }
+
+    var titleStyleClassPath: [String] {
+        get { return self[TitleStyleClassPathKey.self] }
+        set { self[TitleStyleClassPathKey.self] = newValue }
+    }
+
     public var subtitleStyle: TextStyle {
         get { return self[SubtitleStyleKey.self] }
         set { self[SubtitleStyleKey.self] = newValue }
@@ -22,6 +28,12 @@ extension EnvironmentValues {
         get { return self[SubtitleModifierKey.self] }
         set { self[SubtitleModifierKey.self] = newValue }
     }
+
+    var subtitleStyleClassPath: [String] {
+        get { return self[SubtitleStyleClassPathKey.self] }
+        set { self[SubtitleStyleClassPathKey.self] = newValue }
+    }
+
     public var footnoteStyle: TextStyle {
         get { return self[FootnoteStyleKey.self] }
         set { self[FootnoteStyleKey.self] = newValue }
@@ -31,6 +43,12 @@ extension EnvironmentValues {
         get { return self[FootnoteModifierKey.self] }
         set { self[FootnoteModifierKey.self] = newValue }
     }
+
+    var footnoteStyleClassPath: [String] {
+        get { return self[FootnoteStyleClassPathKey.self] }
+        set { self[FootnoteStyleClassPathKey.self] = newValue }
+    }
+
     public var descriptionTextStyle: TextStyle {
         get { return self[DescriptionTextStyleKey.self] }
         set { self[DescriptionTextStyleKey.self] = newValue }
@@ -40,6 +58,12 @@ extension EnvironmentValues {
         get { return self[DescriptionTextModifierKey.self] }
         set { self[DescriptionTextModifierKey.self] = newValue }
     }
+
+    var descriptionTextStyleClassPath: [String] {
+        get { return self[DescriptionTextStyleClassPathKey.self] }
+        set { self[DescriptionTextStyleClassPathKey.self] = newValue }
+    }
+
     public var detailImageStyle: ImageStyle {
         get { return self[DetailImageStyleKey.self] }
         set { self[DetailImageStyleKey.self] = newValue }
@@ -49,6 +73,12 @@ extension EnvironmentValues {
         get { return self[DetailImageModifierKey.self] }
         set { self[DetailImageModifierKey.self] = newValue }
     }
+
+    var detailImageStyleClassPath: [String] {
+        get { return self[DetailImageStyleClassPathKey.self] }
+        set { self[DetailImageStyleClassPathKey.self] = newValue }
+    }
+
     public var attributeStyle: TextStyle {
         get { return self[AttributeStyleKey.self] }
         set { self[AttributeStyleKey.self] = newValue }
@@ -58,6 +88,12 @@ extension EnvironmentValues {
         get { return self[AttributeModifierKey.self] }
         set { self[AttributeModifierKey.self] = newValue }
     }
+
+    var attributeStyleClassPath: [String] {
+        get { return self[AttributeStyleClassPathKey.self] }
+        set { self[AttributeStyleClassPathKey.self] = newValue }
+    }
+
     public var secondaryAttributeStyle: TextStyle {
         get { return self[SecondaryAttributeStyleKey.self] }
         set { self[SecondaryAttributeStyleKey.self] = newValue }
@@ -67,6 +103,12 @@ extension EnvironmentValues {
         get { return self[SecondaryAttributeModifierKey.self] }
         set { self[SecondaryAttributeModifierKey.self] = newValue }
     }
+
+    var secondaryAttributeStyleClassPath: [String] {
+        get { return self[SecondaryAttributeStyleClassPathKey.self] }
+        set { self[SecondaryAttributeStyleClassPathKey.self] = newValue }
+    }
+
     public var timestampStyle: TextStyle {
         get { return self[TimestampStyleKey.self] }
         set { self[TimestampStyleKey.self] = newValue }
@@ -76,6 +118,12 @@ extension EnvironmentValues {
         get { return self[TimestampModifierKey.self] }
         set { self[TimestampModifierKey.self] = newValue }
     }
+
+    var timestampStyleClassPath: [String] {
+        get { return self[TimestampStyleClassPathKey.self] }
+        set { self[TimestampStyleClassPathKey.self] = newValue }
+    }
+
     public var secondaryTimestampStyle: TextStyle {
         get { return self[SecondaryTimestampStyleKey.self] }
         set { self[SecondaryTimestampStyleKey.self] = newValue }
@@ -85,6 +133,12 @@ extension EnvironmentValues {
         get { return self[SecondaryTimestampModifierKey.self] }
         set { self[SecondaryTimestampModifierKey.self] = newValue }
     }
+
+    var secondaryTimestampStyleClassPath: [String] {
+        get { return self[SecondaryTimestampStyleClassPathKey.self] }
+        set { self[SecondaryTimestampStyleClassPathKey.self] = newValue }
+    }
+
     public var trendStyle: TextStyle {
         get { return self[TrendStyleKey.self] }
         set { self[TrendStyleKey.self] = newValue }
@@ -94,6 +148,12 @@ extension EnvironmentValues {
         get { return self[TrendModifierKey.self] }
         set { self[TrendModifierKey.self] = newValue }
     }
+
+    var trendStyleClassPath: [String] {
+        get { return self[TrendStyleClassPathKey.self] }
+        set { self[TrendStyleClassPathKey.self] = newValue }
+    }
+
     public var statusStyle: TextStyle {
         get { return self[StatusStyleKey.self] }
         set { self[StatusStyleKey.self] = newValue }
@@ -103,6 +163,12 @@ extension EnvironmentValues {
         get { return self[StatusModifierKey.self] }
         set { self[StatusModifierKey.self] = newValue }
     }
+
+    var statusStyleClassPath: [String] {
+        get { return self[StatusStyleClassPathKey.self] }
+        set { self[StatusStyleClassPathKey.self] = newValue }
+    }
+
     public var substatusStyle: TextStyle {
         get { return self[SubstatusStyleKey.self] }
         set { self[SubstatusStyleKey.self] = newValue }
@@ -112,6 +178,12 @@ extension EnvironmentValues {
         get { return self[SubstatusModifierKey.self] }
         set { self[SubstatusModifierKey.self] = newValue }
     }
+
+    var substatusStyleClassPath: [String] {
+        get { return self[SubstatusStyleClassPathKey.self] }
+        set { self[SubstatusStyleClassPathKey.self] = newValue }
+    }
+
     public var bodyStyle: TextStyle {
         get { return self[BodyStyleKey.self] }
         set { self[BodyStyleKey.self] = newValue }
@@ -121,6 +193,12 @@ extension EnvironmentValues {
         get { return self[BodyModifierKey.self] }
         set { self[BodyModifierKey.self] = newValue }
     }
+
+    var bodyStyleClassPath: [String] {
+        get { return self[BodyStyleClassPathKey.self] }
+        set { self[BodyStyleClassPathKey.self] = newValue }
+    }
+
     public var iconsStyle: TextStyle {
         get { return self[IconsStyleKey.self] }
         set { self[IconsStyleKey.self] = newValue }
@@ -130,6 +208,12 @@ extension EnvironmentValues {
         get { return self[IconsModifierKey.self] }
         set { self[IconsModifierKey.self] = newValue }
     }
+
+    var iconsStyleClassPath: [String] {
+        get { return self[IconsStyleClassPathKey.self] }
+        set { self[IconsStyleClassPathKey.self] = newValue }
+    }
+
     public var actionTitleStyle: TextStyle {
         get { return self[ActionTitleStyleKey.self] }
         set { self[ActionTitleStyleKey.self] = newValue }
@@ -139,6 +223,12 @@ extension EnvironmentValues {
         get { return self[ActionTitleModifierKey.self] }
         set { self[ActionTitleModifierKey.self] = newValue }
     }
+
+    var actionTitleStyleClassPath: [String] {
+        get { return self[ActionTitleStyleClassPathKey.self] }
+        set { self[ActionTitleStyleClassPathKey.self] = newValue }
+    }
+
     public var seriesTitlesStyle: TextStyle {
         get { return self[SeriesTitlesStyleKey.self] }
         set { self[SeriesTitlesStyleKey.self] = newValue }
@@ -148,6 +238,12 @@ extension EnvironmentValues {
         get { return self[SeriesTitlesModifierKey.self] }
         set { self[SeriesTitlesModifierKey.self] = newValue }
     }
+
+    var seriesTitlesStyleClassPath: [String] {
+        get { return self[SeriesTitlesStyleClassPathKey.self] }
+        set { self[SeriesTitlesStyleClassPathKey.self] = newValue }
+    }
+
     public var valueStyle: TextStyle {
         get { return self[ValueStyleKey.self] }
         set { self[ValueStyleKey.self] = newValue }
@@ -157,6 +253,12 @@ extension EnvironmentValues {
         get { return self[ValueModifierKey.self] }
         set { self[ValueModifierKey.self] = newValue }
     }
+
+    var valueStyleClassPath: [String] {
+        get { return self[ValueStyleClassPathKey.self] }
+        set { self[ValueStyleClassPathKey.self] = newValue }
+    }
+
     public var valuesStyle: TextStyle {
         get { return self[ValuesStyleKey.self] }
         set { self[ValuesStyleKey.self] = newValue }
@@ -166,6 +268,12 @@ extension EnvironmentValues {
         get { return self[ValuesModifierKey.self] }
         set { self[ValuesModifierKey.self] = newValue }
     }
+
+    var valuesStyleClassPath: [String] {
+        get { return self[ValuesStyleClassPathKey.self] }
+        set { self[ValuesStyleClassPathKey.self] = newValue }
+    }
+
     public var valueAxisTitleStyle: TextStyle {
         get { return self[ValueAxisTitleStyleKey.self] }
         set { self[ValueAxisTitleStyleKey.self] = newValue }
@@ -175,6 +283,12 @@ extension EnvironmentValues {
         get { return self[ValueAxisTitleModifierKey.self] }
         set { self[ValueAxisTitleModifierKey.self] = newValue }
     }
+
+    var valueAxisTitleStyleClassPath: [String] {
+        get { return self[ValueAxisTitleStyleClassPathKey.self] }
+        set { self[ValueAxisTitleStyleClassPathKey.self] = newValue }
+    }
+
     public var secondaryValuesAxisTitleStyle: TextStyle {
         get { return self[SecondaryValuesAxisTitleStyleKey.self] }
         set { self[SecondaryValuesAxisTitleStyleKey.self] = newValue }
@@ -184,6 +298,12 @@ extension EnvironmentValues {
         get { return self[SecondaryValuesAxisTitleModifierKey.self] }
         set { self[SecondaryValuesAxisTitleModifierKey.self] = newValue }
     }
+
+    var secondaryValuesAxisTitleStyleClassPath: [String] {
+        get { return self[SecondaryValuesAxisTitleStyleClassPathKey.self] }
+        set { self[SecondaryValuesAxisTitleStyleClassPathKey.self] = newValue }
+    }
+
     public var categoryAxisTitleStyle: TextStyle {
         get { return self[CategoryAxisTitleStyleKey.self] }
         set { self[CategoryAxisTitleStyleKey.self] = newValue }
@@ -193,6 +313,12 @@ extension EnvironmentValues {
         get { return self[CategoryAxisTitleModifierKey.self] }
         set { self[CategoryAxisTitleModifierKey.self] = newValue }
     }
+
+    var categoryAxisTitleStyleClassPath: [String] {
+        get { return self[CategoryAxisTitleStyleClassPathKey.self] }
+        set { self[CategoryAxisTitleStyleClassPathKey.self] = newValue }
+    }
+
     public var emptyTextStyle: TextStyle {
         get { return self[EmptyTextStyleKey.self] }
         set { self[EmptyTextStyleKey.self] = newValue }
@@ -202,6 +328,12 @@ extension EnvironmentValues {
         get { return self[EmptyTextModifierKey.self] }
         set { self[EmptyTextModifierKey.self] = newValue }
     }
+
+    var emptyTextStyleClassPath: [String] {
+        get { return self[EmptyTextStyleClassPathKey.self] }
+        set { self[EmptyTextStyleClassPathKey.self] = newValue }
+    }
+
     public var kpiStyle: TextStyle {
         get { return self[KpiStyleKey.self] }
         set { self[KpiStyleKey.self] = newValue }
@@ -211,6 +343,12 @@ extension EnvironmentValues {
         get { return self[KpiModifierKey.self] }
         set { self[KpiModifierKey.self] = newValue }
     }
+
+    var kpiStyleClassPath: [String] {
+        get { return self[KpiStyleClassPathKey.self] }
+        set { self[KpiStyleClassPathKey.self] = newValue }
+    }
+
     public var placeholderStyle: TextStyle {
         get { return self[PlaceholderStyleKey.self] }
         set { self[PlaceholderStyleKey.self] = newValue }
@@ -220,6 +358,12 @@ extension EnvironmentValues {
         get { return self[PlaceholderModifierKey.self] }
         set { self[PlaceholderModifierKey.self] = newValue }
     }
+
+    var placeholderStyleClassPath: [String] {
+        get { return self[PlaceholderStyleClassPathKey.self] }
+        set { self[PlaceholderStyleClassPathKey.self] = newValue }
+    }
+
     public var tagsStyle: TextStyle {
         get { return self[TagsStyleKey.self] }
         set { self[TagsStyleKey.self] = newValue }
@@ -229,6 +373,12 @@ extension EnvironmentValues {
         get { return self[TagsModifierKey.self] }
         set { self[TagsModifierKey.self] = newValue }
     }
+
+    var tagsStyleClassPath: [String] {
+        get { return self[TagsStyleClassPathKey.self] }
+        set { self[TagsStyleClassPathKey.self] = newValue }
+    }
+
     public var lowerBoundTitleStyle: TextStyle {
         get { return self[LowerBoundTitleStyleKey.self] }
         set { self[LowerBoundTitleStyleKey.self] = newValue }
@@ -238,6 +388,12 @@ extension EnvironmentValues {
         get { return self[LowerBoundTitleModifierKey.self] }
         set { self[LowerBoundTitleModifierKey.self] = newValue }
     }
+
+    var lowerBoundTitleStyleClassPath: [String] {
+        get { return self[LowerBoundTitleStyleClassPathKey.self] }
+        set { self[LowerBoundTitleStyleClassPathKey.self] = newValue }
+    }
+
     public var upperBoundTitleStyle: TextStyle {
         get { return self[UpperBoundTitleStyleKey.self] }
         set { self[UpperBoundTitleStyleKey.self] = newValue }
@@ -247,6 +403,12 @@ extension EnvironmentValues {
         get { return self[UpperBoundTitleModifierKey.self] }
         set { self[UpperBoundTitleModifierKey.self] = newValue }
     }
+
+    var upperBoundTitleStyleClassPath: [String] {
+        get { return self[UpperBoundTitleStyleClassPathKey.self] }
+        set { self[UpperBoundTitleStyleClassPathKey.self] = newValue }
+    }
+
 }
 
 public extension View {
@@ -259,12 +421,40 @@ public extension View {
         self.environment(\.titleModifier, AnyViewModifier(transform: transform))
     }
 
+    func titleStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.titleModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
+    }
+
     func subtitleStyle(_ style: TextStyle) -> some View {
         return transformEnvironment(\.subtitleStyle) { $0 = $0.merging(style) }
     }
 
     func subtitleModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.subtitleModifier, AnyViewModifier(transform: transform))
+    }
+
+    func subtitleStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.subtitleModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
     }
 
     func footnoteStyle(_ style: TextStyle) -> some View {
@@ -275,12 +465,40 @@ public extension View {
         self.environment(\.footnoteModifier, AnyViewModifier(transform: transform))
     }
 
+    func footnoteStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.footnoteModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
+    }
+
     func descriptionTextStyle(_ style: TextStyle) -> some View {
         return transformEnvironment(\.descriptionTextStyle) { $0 = $0.merging(style) }
     }
 
     func descriptionTextModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.descriptionTextModifier, AnyViewModifier(transform: transform))
+    }
+
+    func descriptionTextStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.descriptionTextModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
     }
 
     func detailImageStyle(_ style: ImageStyle) -> some View {
@@ -291,12 +509,40 @@ public extension View {
         self.environment(\.detailImageModifier, AnyViewModifier(transform: transform))
     }
 
+    func detailImageStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.detailImageModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
+    }
+
     func attributeStyle(_ style: TextStyle) -> some View {
         return transformEnvironment(\.attributeStyle) { $0 = $0.merging(style) }
     }
 
     func attributeModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.attributeModifier, AnyViewModifier(transform: transform))
+    }
+
+    func attributeStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.attributeModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
     }
 
     func secondaryAttributeStyle(_ style: TextStyle) -> some View {
@@ -307,12 +553,40 @@ public extension View {
         self.environment(\.secondaryAttributeModifier, AnyViewModifier(transform: transform))
     }
 
+    func secondaryAttributeStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.secondaryAttributeModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
+    }
+
     func timestampStyle(_ style: TextStyle) -> some View {
         return transformEnvironment(\.timestampStyle) { $0 = $0.merging(style) }
     }
 
     func timestampModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.timestampModifier, AnyViewModifier(transform: transform))
+    }
+
+    func timestampStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.timestampModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
     }
 
     func secondaryTimestampStyle(_ style: TextStyle) -> some View {
@@ -323,12 +597,40 @@ public extension View {
         self.environment(\.secondaryTimestampModifier, AnyViewModifier(transform: transform))
     }
 
+    func secondaryTimestampStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.secondaryTimestampModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
+    }
+
     func trendStyle(_ style: TextStyle) -> some View {
         return transformEnvironment(\.trendStyle) { $0 = $0.merging(style) }
     }
 
     func trendModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.trendModifier, AnyViewModifier(transform: transform))
+    }
+
+    func trendStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.trendModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
     }
 
     func statusStyle(_ style: TextStyle) -> some View {
@@ -339,12 +641,40 @@ public extension View {
         self.environment(\.statusModifier, AnyViewModifier(transform: transform))
     }
 
+    func statusStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.statusModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
+    }
+
     func substatusStyle(_ style: TextStyle) -> some View {
         return transformEnvironment(\.substatusStyle) { $0 = $0.merging(style) }
     }
 
     func substatusModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.substatusModifier, AnyViewModifier(transform: transform))
+    }
+
+    func substatusStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.substatusModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
     }
 
     func bodyStyle(_ style: TextStyle) -> some View {
@@ -355,12 +685,40 @@ public extension View {
         self.environment(\.bodyModifier, AnyViewModifier(transform: transform))
     }
 
+    func bodyStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.bodyModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
+    }
+
     func iconsStyle(_ style: TextStyle) -> some View {
         return transformEnvironment(\.iconsStyle) { $0 = $0.merging(style) }
     }
 
     func iconsModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.iconsModifier, AnyViewModifier(transform: transform))
+    }
+
+    func iconsStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.iconsModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
     }
 
     func actionTitleStyle(_ style: TextStyle) -> some View {
@@ -371,12 +729,40 @@ public extension View {
         self.environment(\.actionTitleModifier, AnyViewModifier(transform: transform))
     }
 
+    func actionTitleStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.actionTitleModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
+    }
+
     func seriesTitlesStyle(_ style: TextStyle) -> some View {
         return transformEnvironment(\.seriesTitlesStyle) { $0 = $0.merging(style) }
     }
 
     func seriesTitlesModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.seriesTitlesModifier, AnyViewModifier(transform: transform))
+    }
+
+    func seriesTitlesStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.seriesTitlesModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
     }
 
     func valueStyle(_ style: TextStyle) -> some View {
@@ -387,12 +773,40 @@ public extension View {
         self.environment(\.valueModifier, AnyViewModifier(transform: transform))
     }
 
+    func valueStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.valueModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
+    }
+
     func valuesStyle(_ style: TextStyle) -> some View {
         return transformEnvironment(\.valuesStyle) { $0 = $0.merging(style) }
     }
 
     func valuesModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.valuesModifier, AnyViewModifier(transform: transform))
+    }
+
+    func valuesStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.valuesModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
     }
 
     func valueAxisTitleStyle(_ style: TextStyle) -> some View {
@@ -403,12 +817,40 @@ public extension View {
         self.environment(\.valueAxisTitleModifier, AnyViewModifier(transform: transform))
     }
 
+    func valueAxisTitleStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.valueAxisTitleModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
+    }
+
     func secondaryValuesAxisTitleStyle(_ style: TextStyle) -> some View {
         return transformEnvironment(\.secondaryValuesAxisTitleStyle) { $0 = $0.merging(style) }
     }
 
     func secondaryValuesAxisTitleModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.secondaryValuesAxisTitleModifier, AnyViewModifier(transform: transform))
+    }
+
+    func secondaryValuesAxisTitleStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.secondaryValuesAxisTitleModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
     }
 
     func categoryAxisTitleStyle(_ style: TextStyle) -> some View {
@@ -419,12 +861,40 @@ public extension View {
         self.environment(\.categoryAxisTitleModifier, AnyViewModifier(transform: transform))
     }
 
+    func categoryAxisTitleStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.categoryAxisTitleModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
+    }
+
     func emptyTextStyle(_ style: TextStyle) -> some View {
         return transformEnvironment(\.emptyTextStyle) { $0 = $0.merging(style) }
     }
 
     func emptyTextModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.emptyTextModifier, AnyViewModifier(transform: transform))
+    }
+
+    func emptyTextStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.emptyTextModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
     }
 
     func kpiStyle(_ style: TextStyle) -> some View {
@@ -435,12 +905,40 @@ public extension View {
         self.environment(\.kpiModifier, AnyViewModifier(transform: transform))
     }
 
+    func kpiStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.kpiModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
+    }
+
     func placeholderStyle(_ style: TextStyle) -> some View {
         return transformEnvironment(\.placeholderStyle) { $0 = $0.merging(style) }
     }
 
     func placeholderModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.placeholderModifier, AnyViewModifier(transform: transform))
+    }
+
+    func placeholderStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.placeholderModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
     }
 
     func tagsStyle(_ style: TextStyle) -> some View {
@@ -451,6 +949,20 @@ public extension View {
         self.environment(\.tagsModifier, AnyViewModifier(transform: transform))
     }
 
+    func tagsStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.tagsModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
+    }
+
     func lowerBoundTitleStyle(_ style: TextStyle) -> some View {
         return transformEnvironment(\.lowerBoundTitleStyle) { $0 = $0.merging(style) }
     }
@@ -459,11 +971,39 @@ public extension View {
         self.environment(\.lowerBoundTitleModifier, AnyViewModifier(transform: transform))
     }
 
+    func lowerBoundTitleStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.lowerBoundTitleModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
+    }
+
     func upperBoundTitleStyle(_ style: TextStyle) -> some View {
         return transformEnvironment(\.upperBoundTitleStyle) { $0 = $0.merging(style) }
     }
 
     func upperBoundTitleModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.upperBoundTitleModifier, AnyViewModifier(transform: transform))
+    }
+
+    func upperBoundTitleStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+        return transformEnvironment(\.upperBoundTitleModifier) {
+            switch StyleCache.shared.resolveModifier(for: path) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
     }
 }
