@@ -286,6 +286,10 @@ public extension View {
         self.environment(\.titleModifier, AnyViewModifier(transform: transform))
     }
 
+    func titleStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.titleStyleClassPath([path], isAppending: isAppending)
+    }
+
     func titleStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
         return transformEnvironment(\.titleModifier) {
             switch StyleCache.shared.resolveModifier(for: path) {
@@ -306,6 +310,10 @@ public extension View {
 
     func subtitleModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.subtitleModifier, AnyViewModifier(transform: transform))
+    }
+
+    func subtitleStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.subtitleStyleClassPath([path], isAppending: isAppending)
     }
 
     func subtitleStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
@@ -330,6 +338,10 @@ public extension View {
         self.environment(\.footnoteModifier, AnyViewModifier(transform: transform))
     }
 
+    func footnoteStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.footnoteStyleClassPath([path], isAppending: isAppending)
+    }
+
     func footnoteStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
         return transformEnvironment(\.footnoteModifier) {
             switch StyleCache.shared.resolveModifier(for: path) {
@@ -350,6 +362,10 @@ public extension View {
 
     func descriptionTextModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.descriptionTextModifier, AnyViewModifier(transform: transform))
+    }
+
+    func descriptionTextStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.descriptionTextStyleClassPath([path], isAppending: isAppending)
     }
 
     func descriptionTextStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
@@ -374,6 +390,10 @@ public extension View {
         self.environment(\.detailImageModifier, AnyViewModifier(transform: transform))
     }
 
+    func detailImageStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.detailImageStyleClassPath([path], isAppending: isAppending)
+    }
+
     func detailImageStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
         return transformEnvironment(\.detailImageModifier) {
             switch StyleCache.shared.resolveModifier(for: path) {
@@ -394,6 +414,10 @@ public extension View {
 
     func attributeModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.attributeModifier, AnyViewModifier(transform: transform))
+    }
+
+    func attributeStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.attributeStyleClassPath([path], isAppending: isAppending)
     }
 
     func attributeStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
@@ -418,6 +442,10 @@ public extension View {
         self.environment(\.secondaryAttributeModifier, AnyViewModifier(transform: transform))
     }
 
+    func secondaryAttributeStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.secondaryAttributeStyleClassPath([path], isAppending: isAppending)
+    }
+
     func secondaryAttributeStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
         return transformEnvironment(\.secondaryAttributeModifier) {
             switch StyleCache.shared.resolveModifier(for: path) {
@@ -438,6 +466,10 @@ public extension View {
 
     func timestampModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.timestampModifier, AnyViewModifier(transform: transform))
+    }
+
+    func timestampStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.timestampStyleClassPath([path], isAppending: isAppending)
     }
 
     func timestampStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
@@ -462,6 +494,10 @@ public extension View {
         self.environment(\.secondaryTimestampModifier, AnyViewModifier(transform: transform))
     }
 
+    func secondaryTimestampStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.secondaryTimestampStyleClassPath([path], isAppending: isAppending)
+    }
+
     func secondaryTimestampStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
         return transformEnvironment(\.secondaryTimestampModifier) {
             switch StyleCache.shared.resolveModifier(for: path) {
@@ -482,6 +518,10 @@ public extension View {
 
     func trendModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.trendModifier, AnyViewModifier(transform: transform))
+    }
+
+    func trendStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.trendStyleClassPath([path], isAppending: isAppending)
     }
 
     func trendStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
@@ -506,6 +546,10 @@ public extension View {
         self.environment(\.statusModifier, AnyViewModifier(transform: transform))
     }
 
+    func statusStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.statusStyleClassPath([path], isAppending: isAppending)
+    }
+
     func statusStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
         return transformEnvironment(\.statusModifier) {
             switch StyleCache.shared.resolveModifier(for: path) {
@@ -526,6 +570,10 @@ public extension View {
 
     func substatusModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.substatusModifier, AnyViewModifier(transform: transform))
+    }
+
+    func substatusStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.substatusStyleClassPath([path], isAppending: isAppending)
     }
 
     func substatusStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
@@ -550,6 +598,10 @@ public extension View {
         self.environment(\.bodyModifier, AnyViewModifier(transform: transform))
     }
 
+    func bodyStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.bodyStyleClassPath([path], isAppending: isAppending)
+    }
+
     func bodyStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
         return transformEnvironment(\.bodyModifier) {
             switch StyleCache.shared.resolveModifier(for: path) {
@@ -570,6 +622,10 @@ public extension View {
 
     func iconsModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.iconsModifier, AnyViewModifier(transform: transform))
+    }
+
+    func iconsStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.iconsStyleClassPath([path], isAppending: isAppending)
     }
 
     func iconsStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
@@ -594,6 +650,10 @@ public extension View {
         self.environment(\.actionTitleModifier, AnyViewModifier(transform: transform))
     }
 
+    func actionTitleStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.actionTitleStyleClassPath([path], isAppending: isAppending)
+    }
+
     func actionTitleStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
         return transformEnvironment(\.actionTitleModifier) {
             switch StyleCache.shared.resolveModifier(for: path) {
@@ -614,6 +674,10 @@ public extension View {
 
     func seriesTitlesModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.seriesTitlesModifier, AnyViewModifier(transform: transform))
+    }
+
+    func seriesTitlesStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.seriesTitlesStyleClassPath([path], isAppending: isAppending)
     }
 
     func seriesTitlesStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
@@ -638,6 +702,10 @@ public extension View {
         self.environment(\.valueModifier, AnyViewModifier(transform: transform))
     }
 
+    func valueStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.valueStyleClassPath([path], isAppending: isAppending)
+    }
+
     func valueStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
         return transformEnvironment(\.valueModifier) {
             switch StyleCache.shared.resolveModifier(for: path) {
@@ -658,6 +726,10 @@ public extension View {
 
     func valuesModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.valuesModifier, AnyViewModifier(transform: transform))
+    }
+
+    func valuesStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.valuesStyleClassPath([path], isAppending: isAppending)
     }
 
     func valuesStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
@@ -682,6 +754,10 @@ public extension View {
         self.environment(\.valueAxisTitleModifier, AnyViewModifier(transform: transform))
     }
 
+    func valueAxisTitleStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.valueAxisTitleStyleClassPath([path], isAppending: isAppending)
+    }
+
     func valueAxisTitleStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
         return transformEnvironment(\.valueAxisTitleModifier) {
             switch StyleCache.shared.resolveModifier(for: path) {
@@ -702,6 +778,10 @@ public extension View {
 
     func secondaryValuesAxisTitleModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.secondaryValuesAxisTitleModifier, AnyViewModifier(transform: transform))
+    }
+
+    func secondaryValuesAxisTitleStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.secondaryValuesAxisTitleStyleClassPath([path], isAppending: isAppending)
     }
 
     func secondaryValuesAxisTitleStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
@@ -726,6 +806,10 @@ public extension View {
         self.environment(\.categoryAxisTitleModifier, AnyViewModifier(transform: transform))
     }
 
+    func categoryAxisTitleStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.categoryAxisTitleStyleClassPath([path], isAppending: isAppending)
+    }
+
     func categoryAxisTitleStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
         return transformEnvironment(\.categoryAxisTitleModifier) {
             switch StyleCache.shared.resolveModifier(for: path) {
@@ -746,6 +830,10 @@ public extension View {
 
     func emptyTextModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.emptyTextModifier, AnyViewModifier(transform: transform))
+    }
+
+    func emptyTextStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.emptyTextStyleClassPath([path], isAppending: isAppending)
     }
 
     func emptyTextStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
@@ -770,6 +858,10 @@ public extension View {
         self.environment(\.kpiModifier, AnyViewModifier(transform: transform))
     }
 
+    func kpiStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.kpiStyleClassPath([path], isAppending: isAppending)
+    }
+
     func kpiStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
         return transformEnvironment(\.kpiModifier) {
             switch StyleCache.shared.resolveModifier(for: path) {
@@ -790,6 +882,10 @@ public extension View {
 
     func placeholderModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.placeholderModifier, AnyViewModifier(transform: transform))
+    }
+
+    func placeholderStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.placeholderStyleClassPath([path], isAppending: isAppending)
     }
 
     func placeholderStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
@@ -814,6 +910,10 @@ public extension View {
         self.environment(\.tagsModifier, AnyViewModifier(transform: transform))
     }
 
+    func tagsStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.tagsStyleClassPath([path], isAppending: isAppending)
+    }
+
     func tagsStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
         return transformEnvironment(\.tagsModifier) {
             switch StyleCache.shared.resolveModifier(for: path) {
@@ -836,6 +936,10 @@ public extension View {
         self.environment(\.lowerBoundTitleModifier, AnyViewModifier(transform: transform))
     }
 
+    func lowerBoundTitleStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.lowerBoundTitleStyleClassPath([path], isAppending: isAppending)
+    }
+
     func lowerBoundTitleStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
         return transformEnvironment(\.lowerBoundTitleModifier) {
             switch StyleCache.shared.resolveModifier(for: path) {
@@ -856,6 +960,10 @@ public extension View {
 
     func upperBoundTitleModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.upperBoundTitleModifier, AnyViewModifier(transform: transform))
+    }
+
+    func upperBoundTitleStyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.upperBoundTitleStyleClassPath([path], isAppending: isAppending)
     }
 
     func upperBoundTitleStyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {

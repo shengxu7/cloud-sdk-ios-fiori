@@ -43,6 +43,10 @@ public extension View {
         self.environment(\.{{variable.name}}Modifier, AnyViewModifier(transform: transform))
     }
 
+    func {{variable.name}}StyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+        self.{{variable.name}}StyleClassPath([path], isAppending: isAppending)
+    }
+
     func {{variable.name}}StyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
         return transformEnvironment(\.{{variable.name}}Modifier) {
             switch StyleCache.shared.resolveModifier(for: path) {
