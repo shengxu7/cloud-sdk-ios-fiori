@@ -42,10 +42,10 @@ public final class StyleCache: ObservableObject {
     
     func resolveModifier(for path: [String]) -> Result<AnyViewModifier, Error> {
         var isDirty = false
-        let modifier: AnyViewModifier = path.reduce(AnyViewModifier(transform: { $0 })) { prevMod, nextClass in
+        let modifier: AnyViewModifier = path.reduce(AnyViewModifier({ $0 })) { prevMod, nextClass in
             guard let mod = styles[nextClass] else { return prevMod }
             isDirty = true
-            return AnyViewModifier(transform: { $0.modifier(prevMod.concat(mod)) })
+            return AnyViewModifier { $0.modifier(prevMod.concat(mod)) }
         }
         guard isDirty else { return .failure(.none) }
         return .success(modifier)

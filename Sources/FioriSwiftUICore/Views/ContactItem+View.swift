@@ -45,20 +45,6 @@ struct ContactItem_View_Previews: PreviewProvider {
     }
 }
 
-public struct AnyViewModifier: ViewModifier {
-    var apply: (Content) -> AnyView
-    var _concat: ((AnyViewModifier) -> AnyView)?
-    
-    public init<V: View>(transform: @escaping (Content) -> V) {
-        self.apply = { AnyView(transform($0)) }
-    }
-    public func body(content: Content) -> AnyView {
-        apply(content)
-    }
-}
-
-
-
 struct MyTheme: ViewModifier {
     func body(content: Content) -> some View {
         content

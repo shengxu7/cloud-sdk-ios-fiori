@@ -64,7 +64,7 @@ public struct TextStyle: Decodable, _StyleGenerating {
     }
     
     func toViewModifier() -> AnyViewModifier {
-        return AnyViewModifier(transform: { $0.modifier(ViewModifier(style: self)) })
+        return AnyViewModifier { $0.modifier(ViewModifier(style: self)) }
     }
 }
 

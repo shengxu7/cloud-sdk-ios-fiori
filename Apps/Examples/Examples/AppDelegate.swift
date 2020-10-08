@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         do {
 //            let stylesheet = try JSONDecoder().decode(StyleSheet.self, from: jsonData)
-            try StyleCache.upsertStyles(["h1": AnyViewModifier(transform: { $0.modifier(PurpleText())})])
+            try StyleCache.upsertStyles(["h1": AnyViewModifier { $0.modifier(PurpleText())}])
             
             
         } catch {

@@ -35,24 +35,30 @@ public extension View {
 {% for variable in type.variables where variable|!annotated:"no_style" %}
 {% set AStyle %}{% call StyleType variable.typeName.unwrappedTypeName %}{% endset %}
 
-    func {{variable.name}}Style(_ style: {{AStyle}}) -> some View {
-        return transformEnvironment(\.{{variable.name}}Style) { $0 = $0.merging(style) }
+    @ViewBuilder
+    func {{variable.name}}Style(_ style: {{AStyle}}, isAppending: Bool = true) -> some View {
+        if isAppending {
+            transformEnvironment(\.{{variable.name}}Style) { $0 = $0.merging(style) }
+        } else {
+            environment(\.{{variable.name}}Style, style)
+        }
     }
 
+    @ViewBuilder
     func {{variable.name}}Modifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
-        self.environment(\.{{variable.name}}Modifier, AnyViewModifier(transform: transform))
+        self.environment(\.{{variable.name}}Modifier, AnyViewModifier(transform))
     }
 
-    func {{variable.name}}StyleClassPath(_ path: String, isAppending: Bool = false) -> some View {
+    func {{variable.name}}StyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
         self.{{variable.name}}StyleClassPath([path], isAppending: isAppending)
     }
 
-    func {{variable.name}}StyleClassPath(_ path: [String], isAppending: Bool = false) -> some View {
+    func {{variable.name}}StyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.{{variable.name}}Modifier) {
             switch StyleCache.shared.resolveModifier(for: path) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier(transform: { content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
                     } else {
                         $0 = resolved
                     }
