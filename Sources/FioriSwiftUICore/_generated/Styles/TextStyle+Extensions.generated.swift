@@ -52,6 +52,19 @@ public extension TextStyle {
     } 
 }
 
+struct TextStyleViewModifier: ViewModifier {
+    let style: TextStyle
+    func body(content: Content) -> some View {
+        content
+            ._applyFont(style._viewModifierFont())
+            ._applyForegroundColor(style._foregroundColor)
+            ._applyTruncationMode(style._truncationMode)
+            ._applyLineLimit(style._lineLimit)
+            ._applyLineSpacing(style._lineSpacing)
+            ._applyMultilineTextAlignment(style._multilineTextAlignment)
+    }
+}
+
 public extension Text {
     @ViewBuilder
     func applying(_ style: TextStyle) -> some View {
@@ -68,6 +81,22 @@ public extension Text {
     }
 }
 
+internal extension TextStyle {
+    func _viewModifierFont() -> Font? {
+        guard _font != nil else { return nil }
+        var f = _font!
+        if let fontWeight = _fontWeight {
+            f = f.weight(fontWeight)
+        }
+        if let bold = _bold, bold {
+            f = f.bold()
+        }
+        if let italic = _italic, italic {
+            f = f.italic()
+        }
+        return f
+    }
+}
 
 fileprivate extension Text {
 

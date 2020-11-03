@@ -12,15 +12,16 @@ protocol _StyleGenerating {
 }
 
 
-public struct TextStyle: Decodable, _StyleGenerating {
+public struct TextStyle: IStyle, Decodable, _StyleGenerating {
+
     public init(font: Font? = nil) {
         if font != nil {
             _font = font
         }
     }
-    
+        
     public init() {}
-    typealias Concrete = Text
+    public typealias Concrete = Text
     // sourcery: return_some_view
     var _font: Font? = nil
     // sourcery: return_concrete
@@ -64,24 +65,60 @@ public struct TextStyle: Decodable, _StyleGenerating {
     }
     
     func toViewModifier() -> AnyViewModifier {
-        return AnyViewModifier { $0.modifier(ViewModifier(style: self)) }
+        return AnyViewModifier(transform: { $0.modifier(TextStyleViewModifier(style: self)) })
+    }
+
+}
+
+
+
+public protocol IStyle {
+//    associatedtype Body: View
+    func merging(_ style: Self) -> Self
+}
+
+
+public class AnyIStyle {
+    public let value: Any
+    let _merging: (Any) -> Any
+
+    public init<T: IStyle>(_ value: T) {
+        self.value = value
+        self._merging = { any in
+            return value.merging(any as! T)
+        }
     }
 }
 
-internal extension TextStyle {
-    func _viewModifierFont() -> Font? {
-        guard _font != nil else { return nil }
-        var f = _font!
-        if let fontWeight = _fontWeight {
-            f = f.weight(fontWeight)
+public enum Style: Decodable {
+    case text(TextStyle)
+    case none
+    
+    public init(from decoder: Decoder) throws {
+        if let value = try? TextStyle(from: decoder) {
+            self = .text(value)
+        } else {
+            self = .none
         }
-        if let bold = _bold, bold {
-            f = f.bold()
+    }
+    
+    public func toViewModifier() -> AnyViewModifier {
+        switch self {
+        case .text(let style):
+            return style.toViewModifier()
+        case .none:
+            return AnyViewModifier(transform: {$0.modifier(EmptyModifier()) })
         }
-        if let italic = _italic, italic {
-            f = f.italic()
-        }
-        return f
+    }
+}
+
+struct DUMMY {
+    var styles: [String: AnyIStyle]
+    init() {
+        let titleStyle = TextStyle().bold()
+        let imageStyle = ImageStyle().resizable()
+        
+        self.styles = ["title": AnyIStyle(titleStyle), "image": AnyIStyle(imageStyle)]
     }
 }
 
@@ -136,19 +173,3 @@ extension Color {
         }
     }
 }
-
-// KEEP, need to copy into generated file until added to generation
-//extension TextStyle {
-//    struct ViewModifier: SwiftUI.ViewModifier {
-//        let style: TextStyle
-//        func body(content: Content) -> some View {
-//            content
-//                ._applyFont(style._viewModifierFont())
-//                ._applyForegroundColor(style._foregroundColor)
-//                ._applyTruncationMode(style._truncationMode)
-//                ._applyLineLimit(style._lineLimit)
-//                ._applyLineSpacing(style._lineSpacing)
-//                ._applyMultilineTextAlignment(style._multilineTextAlignment)
-//        }
-//    }
-//}

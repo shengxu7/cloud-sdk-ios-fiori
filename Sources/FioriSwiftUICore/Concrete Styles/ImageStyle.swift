@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct ImageStyle: _StyleGenerating {
+public struct ImageStyle: IStyle, _StyleGenerating {
     typealias Concrete = Image
     public init() {}
     // sourcery: return_concrete

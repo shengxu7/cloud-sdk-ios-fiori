@@ -11,6 +11,7 @@ import Combine
 import FioriSwiftUICore
 import UIKit
 
+
 struct AcmeStyle: ViewModifier {
     
     func body(content: Content) -> some View {
@@ -53,6 +54,7 @@ struct AcmeTagSplitter: ViewModifier {
 
 struct ContactItemViewTests: View {
     
+    @StateObject var styleCache = StyleCache.shared
     @ObservedObject var model = TripPin.PeopleModel()
     
     var body: some View {
@@ -82,7 +84,7 @@ struct ContactItemViewTests: View {
                 }
                 .navigationTitle("Contacts")
             }
-        }
+        }.detailImageModifier({$0.scaledToFill() })
     }
 }
 

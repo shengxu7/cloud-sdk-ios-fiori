@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B1A39BF2522FCC8007919A5 /* StyleCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1A39BE2522FCC8007919A5 /* StyleCache.swift */; };
 		8A3C4E0424EB4A7B0084451B /* DataRequestTestCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3C4E0324EB4A7B0084451B /* DataRequestTestCases.swift */; };
 		8A55795724C1286E0098003A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A55795624C1286E0098003A /* AppDelegate.swift */; };
 		8A55795924C1286E0098003A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A55795824C1286E0098003A /* SceneDelegate.swift */; };
@@ -156,6 +157,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1B1A39BE2522FCC8007919A5 /* StyleCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleCache.swift; sourceTree = "<group>"; };
 		8A1E99AD24D59C8000ED8A39 /* cloud-sdk-ios-fiori */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "cloud-sdk-ios-fiori"; path = ../..; sourceTree = "<group>"; };
 		8A3C4E0324EB4A7B0084451B /* DataRequestTestCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequestTestCases.swift; sourceTree = "<group>"; };
 		8A55795324C1286E0098003A /* Examples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Examples.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -505,7 +507,7 @@
 		8A5579C824C1293C0098003A /* FioriSwiftUICore */ = {
 			isa = PBXGroup;
 			children = (
-				F6E269752527D292002934C6 /* StyleCache.swift */,
+				1B1A39BE2522FCC8007919A5 /* StyleCache.swift */,
 				F66C6EA62502E7D4007BD35A /* TripPinSampleData */,
 				8A557A2124C12C9B0098003A /* CoreContentView.swift */,
 				8A5579C924C1293C0098003A /* SegmentedControl */,
@@ -769,7 +771,7 @@
 				8A5579CF24C1293C0098003A /* SettingsAxis.swift in Sources */,
 				8A5579D924C1293C0098003A /* SettingsSelection.swift in Sources */,
 				8A557A1124C1293C0098003A /* SegmentedControl+Chart.swift in Sources */,
-				F6E269762527D292002934C6 /* StyleCache.swift in Sources */,
+				1B1A39BF2522FCC8007919A5 /* StyleCache.swift in Sources */,
 				F678372A25081D21007DF919 /* ProfileDetailFloorplan.swift in Sources */,
 				8A5579D824C1293C0098003A /* SettingsIndexSet.swift in Sources */,
 				F66C6EAA2502E995007BD35A /* TripPin.swift in Sources */,
