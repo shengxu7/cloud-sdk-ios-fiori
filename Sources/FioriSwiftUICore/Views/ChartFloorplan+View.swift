@@ -1,7 +1,8 @@
 import SwiftUI
-
-extension ChartFloorplan: View {
+/*
+extension ChartFloorplan2: View {
     public var body: some View {
         EmptyView()
     }
 }
+*/

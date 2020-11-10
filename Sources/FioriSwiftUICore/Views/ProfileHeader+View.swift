@@ -1,6 +1,6 @@
 import SwiftUI
-
-extension ProfileHeader: View {
+/*
+extension ProfileHeader2: View {
     public var body: some View {
         if horizontalSizeClass == .some(.compact) {
             VStack {
@@ -55,3 +55,4 @@ extension ProfileHeader: View {
         }
     }
 }
+*/

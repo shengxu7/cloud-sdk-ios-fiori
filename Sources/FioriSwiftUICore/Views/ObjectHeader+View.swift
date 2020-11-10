@@ -1,7 +1,8 @@
 import SwiftUI
-
-extension ObjectHeader: View {
+/*
+extension ObjectHeader2: View {
     public var body: some View {
         EmptyView()
     }
 }
+*/

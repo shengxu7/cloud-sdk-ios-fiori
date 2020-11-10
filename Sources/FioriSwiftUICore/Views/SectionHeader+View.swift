@@ -7,8 +7,8 @@
 
 import SwiftUI
 import UIKit
-
-extension SectionHeader: View {
+/*
+extension SectionHeader2: View {
     public var body: some View {
 //        ZStack {
 //            VisualEffectView(effect: UIBlurEffect(style: colorScheme == .some(.light) ? .extraLight : .dark))
@@ -47,3 +47,4 @@ public struct VisualEffectView: UIViewRepresentable {
     public func makeUIView(context: UIViewRepresentableContext<Self>) -> UIVisualEffectView { UIVisualEffectView() }
     public func updateUIView(_ uiView: UIVisualEffectView, context: UIViewRepresentableContext<Self>) { uiView.effect = effect }
 }
+*/

@@ -1,7 +1,8 @@
 import SwiftUI
-
-extension HeaderChart: View {
+/*
+extension HeaderChart2: View {
     public var body: some View {
         EmptyView()
     }
 }
+*/

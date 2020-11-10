@@ -1,6 +1,6 @@
 import SwiftUI
-
-extension ContactItem: View {
+/*
+extension ContactItem2: View {
     public var body: some View {
         HStack(spacing: 8) {
             if let image = model.detailImage {

@@ -1,6 +1,6 @@
 import SwiftUI
-
-extension TimelineItem: View {
+/*
+extension TimelineItem2: View {
     public var body: some View {
         VStack(spacing: 8) {
             Text(model.title)
@@ -16,3 +16,4 @@ extension TimelineItem: View {
         }
     }
 }
+*/

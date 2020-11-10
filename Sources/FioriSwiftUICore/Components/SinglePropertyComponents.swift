@@ -26,6 +26,7 @@ internal struct _Component: _ComponentGenerating {
     let icons: [String]?
     let actionTitle: String?
     let seriesTitles: [String]?
+    let key: String
     let value: String?
     let values: [String]
     let valueAxisTitle: String?

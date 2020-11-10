@@ -11,6 +11,22 @@ protocol _StyleGenerating {
     associatedtype Concrete: View
 }
 
+internal extension TextStyle {
+    func _viewModifierFont() -> Font? {
+        guard _font != nil else { return nil }
+        var f = _font!
+        if let fontWeight = _fontWeight {
+            f = f.weight(fontWeight)
+        }
+        if let bold = _bold, bold {
+            f = f.bold()
+        }
+        if let italic = _italic, italic {
+            f = f.italic()
+        }
+        return f
+    }
+}
 
 public struct TextStyle: IStyle, Decodable, _StyleGenerating {
 
@@ -65,7 +81,7 @@ public struct TextStyle: IStyle, Decodable, _StyleGenerating {
     }
     
     func toViewModifier() -> AnyViewModifier {
-        return AnyViewModifier(transform: { $0.modifier(TextStyleViewModifier(style: self)) })
+        return AnyViewModifier(transform: { $0/*.modifier(TextStyleViewModifier(style: self))*/ })
     }
 
 }

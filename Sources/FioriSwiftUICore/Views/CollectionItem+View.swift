@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
-
-extension CollectionItem: View {
+/*
+extension CollectionItem2: View {
     public var body: some View {
         VStack {
             if let detailImage = model.detailImage {
@@ -25,7 +25,7 @@ extension CollectionItem: View {
         }.padding()
     }
 }
-
+*/
 //extension CollectionItem {
 //    struct Model: CollectionItemModel {
 //        let detailImage: Image?
