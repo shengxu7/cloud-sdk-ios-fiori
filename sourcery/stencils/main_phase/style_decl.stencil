@@ -1,10 +1,10 @@
 {% macro ParameterListFromExplicitAnnotation variable tuple_prefix %}{#
-#}{% set isTuple variable.annotations.swiftui_view_mod_param|default:""|contains:"," %}{#
-#}{% for p in variable.annotations.swiftui_view_mod_param|split:", " %}{#
-    #}{% for n in p|split:":" %}{#
+#}{% set isTuple variable.annotations.swiftui_view_mod_param|default:''|contains:',' %}{#
+#}{% for p in variable.annotations.swiftui_view_mod_param|split:', ' %}{#
+    #}{% for n in p|split:':' %}{#
         #}{% if forloop.first %}{#
-        #}{% set stripped_var_name %}{{n|replace:"_ ",""}}{% endset %}{#
-        #}{%if not n|hasPrefix:"_ " %}{{stripped_var_name}}: {% endif %}{#
+        #}{% set stripped_var_name %}{{n|replace:'_ ',''}}{% endset %}{#
+        #}{%if not n|hasPrefix:'_ ' %}{{stripped_var_name}}: {% endif %}{#
         #}{% if isTuple %}{{tuple_prefix}}{% endif %}{{stripped_var_name}}{#
         #}{% endif %}{#
         #}{%endfor%}{#
@@ -15,14 +15,14 @@
 #}{% if variable|annotated: "swiftui_view_mod_param" %}{#
 #}{% call ParameterListFromExplicitAnnotation variable instance_var_prefix %}{#
 #}{% elif variable|annotated: "swiftui_view_mod_param_true" %}true{#
-#}{% else %}{{variable.name|replace:"_", ""}}{% endif %}{% if isTuple %}){% endif %}{#
+#}{% else %}{{variable.name|replace:'_', ''}}{% endif %}{% if isTuple %}){% endif %}{#
 #}{% endmacro %}
 
 {#
     GENERATOR PROCEDURE
 #}
 {% for type in types.implementing._StyleGenerating %}
-{% set SwiftUIConcreteViewType %}{{type.name|replace:"Style",""}}{% endset %}
+{% set SwiftUIConcreteViewType %}{{type.name|replace:"Style",''}}{% endset %}
 // sourcery:file:Styles/{{type.name}}+Extensions.generated.swift
 import SwiftUI
 
@@ -52,15 +52,15 @@ import SwiftUI
 #}
 public extension {{type.name }} {
 {% for variable in type.variables %}
-{% set name %}{{variable.name|replace:"_", ""}}{% endset %}
-{% set isTuple variable.annotations.swiftui_view_mod_param|default:""|contains:"," %}
+{% set name %}{{variable.name|replace:'_', ''}}{% endset %}
+{% set isTuple variable.annotations.swiftui_view_mod_param|default:''|contains:',' %}
     func {{name}}({% if variable|annotated: "swiftui_view_mod_param" %}{#
         #}{{variable.annotations.swiftui_view_mod_param}}{#
         #}{% elif variable|annotated: "swiftui_view_mod_param_true" %}{#
         #}{% else %}{#
         #}_ {{name}}: {{ variable.typeName.unwrappedTypeName }}{% endif %}) -> {{type.name }} {
         var new = self
-        new.{{variable.name}} = {% call ParameterBinding variable "" isTuple %}
+        new.{{variable.name}} = {% call ParameterBinding variable '' isTuple %}
         return new
     } 
 {% endfor %}
@@ -76,22 +76,22 @@ public extension {{SwiftUIConcreteViewType}} {
     func applying(_ style: {{type.name|upperFirstLetter}}) -> some View {
         self
     {% for variable in type.variables|annotated:"return_concrete" %}
-    {% set name %}{{variable.name|replace:"_", ""}}{% endset %}
+    {% set name %}{{variable.name|replace:'_', ''}}{% endset %}
             ._apply{{name|upperFirstLetter}}(style.{{variable.name}})
     {% endfor %}
     {% for variable in type.variables|annotated:"return_some_view" %}
-    {% set name %}{{variable.name|replace:"_", ""}}{% endset %}
+    {% set name %}{{variable.name|replace:'_', ''}}{% endset %}
             ._apply{{name|upperFirstLetter}}(style.{{variable.name}})
     {% endfor %}
     }
 }
 
 {% macro ApplyingStyleBody variable %}
-{% set isTuple variable.annotations.swiftui_view_mod_param|default:""|contains:"," %}
+{% set isTuple variable.annotations.swiftui_view_mod_param|default:''|contains:',' %}
 {% set name %}{% if variable|annotated:"swiftui_view_mod_func_name" %}{#
     #}{{variable.annotations.swiftui_view_mod_func_name}}{#
 #}{% else %}{#
-    #}{{variable.name|replace:"_", ""}}{#
+    #}{{variable.name|replace:'_', ''}}{#
 #}{% endif %}{% endset %}
 {% set arg_list %}{% if variable|annotated: "swiftui_view_mod_param" and isTuple %}{#
     #}{% call ParameterListFromExplicitAnnotation variable "value!." %}{#
@@ -125,7 +125,7 @@ public extension {{SwiftUIConcreteViewType}} {
 
 fileprivate extension {{SwiftUIConcreteViewType}} {
     {% for variable in type.variables|annotated:"return_concrete" %}
-    {% set name %}{{variable.name|replace:"_", ""}}{% endset %}
+    {% set name %}{{variable.name|replace:'_', ''}}{% endset %}
 
     func _apply{{name|upperFirstLetter}}(_ value: {{variable.typeName}}) -> {{SwiftUIConcreteViewType}} {
         {% call ApplyingStyleBody variable %}
@@ -153,7 +153,7 @@ fileprivate extension {{SwiftUIConcreteViewType}} {
 #}
 fileprivate extension View {
     {% for variable in type.variables|annotated:"return_some_view" %}
-    {% set name %}{{variable.name|replace:"_", ""}}{% endset %}
+    {% set name %}{{variable.name|replace:'_', ''}}{% endset %}
 
     @ViewBuilder
     func _apply{{name|upperFirstLetter}}(_ value: {{variable.typeName}}) -> some View {

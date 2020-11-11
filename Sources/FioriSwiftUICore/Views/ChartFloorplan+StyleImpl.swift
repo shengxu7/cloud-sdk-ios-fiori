@@ -1,19 +1,17 @@
 import SwiftUI
 
-// TODO: Extend HeaderChart to implement LayoutRouter, Layout, and Style in separate file
-// Place at FioriSwiftUICore/Views/HeaderChart+StyleImpl.swift
-
-
 // MARK - Uncomment if View has consistent layout, regardless of context, e.g. `horizontalSizeClass`, etc.
 
 /// For single-layout components, this is where the `View.Body` should be implemented
-public struct FioriHeaderChartStyle : HeaderChartStyle {
+public struct FioriChartFloorplanStyle : ChartFloorplanStyle {
     public func makeBody(configuration: Configuration) -> some View {
         VStack {
             configuration.title
             configuration.subtitle
-            configuration.trend
-            configuration.kpi
+            configuration.status
+            configuration.valueAxisTitle
+            configuration.seriesTitles
+            configuration.categoryAxisTitle
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
     }
@@ -23,58 +21,66 @@ public struct FioriHeaderChartStyle : HeaderChartStyle {
 // MARK: - Uncomment if View has multiple layouts, depending upon context
 
 /// A pass-through `View.Body` implementation, which applies the `*LayoutRouter` `ViewModifier`
-public struct FioriHeaderChartStyle: HeaderChartStyle {
+public struct FioriChartFloorplanStyle: ChartFloorplanStyle {
     public func makeBody(configuration: Configuration) -> some View {
-        HeaderChart  {
+        ChartFloorplan  {
             configuration.title
         } subtitle: {
             configuration.subtitle
-        } trend: {
-            configuration.trend
-        } kpi: {
-            configuration.kpi
+        } status: {
+            configuration.status
+        } valueAxisTitle: {
+            configuration.valueAxisTitle
+        } seriesTitles: {
+            configuration.seriesTitles
+        } categoryAxisTitle: {
+            configuration.categoryAxisTitle
         }
-        .modifier(FioriHeaderChartLayoutRouter())
+        .modifier(FioriChartFloorplanLayoutRouter())
     }
 }
 
 /// Example layout router, which selects the correct `Style` based on `horizontalSizeClass`
 /// May be modified, replaced, or chained.
-struct FioriHeaderChartLayoutRouter: ViewModifier {
+public struct FioriChartFloorplanLayoutRouter: ViewModifier {
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
     @ViewBuilder
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         if horizontalSizeClass == .some(.compact) {
-            content.headerChart(FioriHeaderChartStyle.CompactLayout())
+            content.chartFloorplanStyle(FioriChartFloorplanStyle.CompactLayout())
         } else {
-            content.headerChart(FioriHeaderChartStyle.RegularLayout())
+            content.chartFloorplanStyle(FioriChartFloorplanStyle.RegularLayout())
         }
     }
 }
 
-extension struct FioriHeaderChartStyle {
-    public struct CompactLayout: HeaderChartStyle {
+extension FioriChartFloorplanStyle {
+    public struct CompactLayout: ChartFloorplanStyle {
         public func makeBody(configuration: Configuration) -> some View {
             VStack {
                 configuration.title
             configuration.subtitle
-            configuration.trend
-            configuration.kpi
+            configuration.status
+            configuration.valueAxisTitle
+            configuration.seriesTitles
+            configuration.categoryAxisTitle
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
                     .padding([.top, .bottom], 8)
         }
     }
 
-    public struct RegularLayout: HeaderChartStyle {
+    public struct RegularLayout: ChartFloorplanStyle {
         public func makeBody(configuration: Configuration) -> some View {
             HStack {
                 configuration.title
             configuration.subtitle
-            configuration.trend
-            configuration.kpi
+            configuration.status
+            configuration.valueAxisTitle
+            configuration.seriesTitles
+            configuration.categoryAxisTitle
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
                     .padding([.top, .bottom], 8)
@@ -90,11 +96,11 @@ extension struct FioriHeaderChartStyle {
 /// contain it in a super-structure, or replace it entirely.
 /// Invoking the `*LayoutRouter` `ViewModifier` causes the standard body implementation
 /// to attempt to layout the supplied view.
-public struct AcmeHeaderChartStyle: HeaderChartStyle {
+public struct AcmeChartFloorplanStyle: ChartFloorplanStyle {
     
     @ViewBuilder
     public func makeBody(configuration: Configuration) -> some View {
-        HeaderChart  {
+        ChartFloorplan  {
             VStack {
                 configuration.title
                 AcmeTitleView()
@@ -104,15 +110,25 @@ public struct AcmeHeaderChartStyle: HeaderChartStyle {
                 configuration.subtitle
                 AcmeSubtitleView()
             }
-        } trend: {
+        } status: {
             VStack {
-                configuration.trend
-                AcmeTrendView()
+                configuration.status
+                AcmeStatusView()
             }
-        } kpi: {
+        } valueAxisTitle: {
             VStack {
-                configuration.kpi
-                AcmeKpiView()
+                configuration.valueAxisTitle
+                AcmeValueAxisTitleView()
+            }
+        } seriesTitles: {
+            VStack {
+                configuration.seriesTitles
+                AcmeSeriesTitlesView()
+            }
+        } categoryAxisTitle: {
+            VStack {
+                configuration.categoryAxisTitle
+                AcmeCategoryAxisTitleView()
             }
         }
         .modifier(FioriKeyValueItemSizeClassModifier())

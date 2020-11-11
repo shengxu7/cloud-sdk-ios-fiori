@@ -52,19 +52,19 @@ extension ChartFloorplan where Title == Text,
 		Subtitle == _ConditionalContent<Text, EmptyView>,
 		Status == _ConditionalContent<Text, EmptyView>,
 		ValueAxisTitle == _ConditionalContent<Text, EmptyView>,
-		SeriesTitles == _ConditionalContent<Text, EmptyView>,
+		SeriesTitles == Text,
 		CategoryAxisTitle == _ConditionalContent<Text, EmptyView> {
     
     public init(model: ChartFloorplanModel) {
         self.init(title: model.title, subtitle: model.subtitle, status: model.status, valueAxisTitle: model.valueAxisTitle, seriesTitles: model.seriesTitles, categoryAxisTitle: model.categoryAxisTitle)
     }
 
-    public init(title: String, subtitle: String? = nil, status: String? = nil, valueAxisTitle: String? = nil, seriesTitles: [String]? = nil, categoryAxisTitle: String? = nil) {
+    public init(title: String, subtitle: String? = nil, status: String? = nil, valueAxisTitle: String? = nil, seriesTitles: [String] = [], categoryAxisTitle: String? = nil) {
         self._title = { Text(title) }
 		self._subtitle = { subtitle != nil ? ViewBuilder.buildEither(first: Text(subtitle!)) : ViewBuilder.buildEither(second: EmptyView()) }
 		self._status = { status != nil ? ViewBuilder.buildEither(first: Text(status!)) : ViewBuilder.buildEither(second: EmptyView()) }
 		self._valueAxisTitle = { valueAxisTitle != nil ? ViewBuilder.buildEither(first: Text(valueAxisTitle!)) : ViewBuilder.buildEither(second: EmptyView()) }
-		self._seriesTitles = { seriesTitles != nil ? ViewBuilder.buildEither(first: Text(seriesTitles!)) : ViewBuilder.buildEither(second: EmptyView()) }
+		self._seriesTitles = { Text(seriesTitles.joined(separator: ", ")) }
 		self._categoryAxisTitle = { categoryAxisTitle != nil ? ViewBuilder.buildEither(first: Text(categoryAxisTitle!)) : ViewBuilder.buildEither(second: EmptyView()) }
     }
 } 
@@ -112,8 +112,48 @@ extension ChartFloorplanStyle {
     }
 }
 
-public struct FioriChartFloorplanStyle: ChartFloorplanStyle {
+// MARK: - ChartFloorplanStyle Environment Key
+extension EnvironmentValues {
+    var chartFloorplanStyle: AnyChartFloorplanStyle {
+        get {
+            return self[ChartFloorplanStyleKey.self]
+        }
+        set {
+            self[ChartFloorplanStyleKey.self] = newValue
+        }
+    }
+}
 
+public struct ChartFloorplanStyleKey: EnvironmentKey {
+    public static let defaultValue: AnyChartFloorplanStyle = AnyChartFloorplanStyle(FioriChartFloorplanStyle())
+}
+
+// TODO: - Extend ChartFloorplan to implement LayoutRouter, Layout, and Style in separate file
+// Place at FioriSwiftUICore/Views/ChartFloorplan+StyleImpl.swift
+
+/*
+// TODO: - Uncomment if View has consistent layout, regardless of context, e.g. `horizontalSizeClass`, etc.
+
+/// For single-layout components, this is where the `View.Body` should be implemented
+public struct FioriChartFloorplanStyle : ChartFloorplanStyle {
+    public func makeBody(configuration: Configuration) -> some View {
+        VStack {
+            configuration.title
+			configuration.subtitle
+			configuration.status
+			configuration.valueAxisTitle
+			configuration.seriesTitles
+			configuration.categoryAxisTitle
+        }
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+    }
+}
+*/
+/*
+// TODO: - Uncomment if View has multiple layouts, depending upon context
+
+/// A pass-through `View.Body` implementation, which applies the `*LayoutRouter` `ViewModifier`
+public struct FioriChartFloorplanStyle: ChartFloorplanStyle {
     public func makeBody(configuration: Configuration) -> some View {
         ChartFloorplan  {
 			configuration.title
@@ -132,30 +172,98 @@ public struct FioriChartFloorplanStyle: ChartFloorplanStyle {
     }
 }
 
-// MARK: - ChartFloorplanStyle Environment Key
-extension EnvironmentValues {
-    var chartFloorplanStyle: AnyChartFloorplanStyle {
-        get {
-            return self[ChartFloorplanStyleKey.self]
-        }
-        set {
-            self[ChartFloorplanStyleKey.self] = newValue
+/// Example layout router, which selects the correct `Style` based on `horizontalSizeClass`
+/// May be modified, replaced, or chained.
+public struct FioriChartFloorplanLayoutRouter: ViewModifier {
+    
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+
+    @ViewBuilder
+    public func body(content: Content) -> some View {
+        if horizontalSizeClass == .some(.compact) {
+            content.chartFloorplanStyle(FioriChartFloorplanStyle.CompactLayout())
+        } else {
+            content.chartFloorplanStyle(FioriChartFloorplanStyle.RegularLayout())
         }
     }
 }
 
-public struct ChartFloorplanStyleKey: EnvironmentKey {
-    public static let defaultValue: AnyChartFloorplanStyle = AnyChartFloorplanStyle(FioriChartFloorplanStyle())
+extension FioriChartFloorplanStyle {
+    public struct CompactLayout: ChartFloorplanStyle {
+        public func makeBody(configuration: Configuration) -> some View {
+            VStack {
+                configuration.title
+			configuration.subtitle
+			configuration.status
+			configuration.valueAxisTitle
+			configuration.seriesTitles
+			configuration.categoryAxisTitle
+            }
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+                    .padding([.top, .bottom], 8)
+        }
+    }
+
+    public struct RegularLayout: ChartFloorplanStyle {
+        public func makeBody(configuration: Configuration) -> some View {
+            HStack {
+                configuration.title
+			configuration.subtitle
+			configuration.status
+			configuration.valueAxisTitle
+			configuration.seriesTitles
+			configuration.categoryAxisTitle
+            }
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+                    .padding([.top, .bottom], 8)
+        }
+    }
 }
-
-// TODO: Extend ChartFloorplan to implement LayoutRouter, Layout, and Style in separate file
-// place at FioriSwiftUICore/Views/TimelineItem+View.swift
+*/
 /*
-import SwiftUI
+// TODO: - Creating Application-specific Style, while leveraging Fiori Layouts
 
-extension ChartFloorplanLayoutRouter: ViewModifier {
-    public var body: some View { 
-        <# View body #> 
+/// Example Custom Style implementation, using pass-through technique from above.  
+/// Developer may pass the `AnyView` from the `Configuration` directly through, 
+/// contain it in a super-structure, or replace it entirely.
+/// Invoking the `*LayoutRouter` `ViewModifier` causes the standard body implementation
+/// to attempt to layout the supplied view.
+public struct AcmeChartFloorplanStyle: ChartFloorplanStyle {
+    
+    @ViewBuilder
+    public func makeBody(configuration: Configuration) -> some View {
+        ChartFloorplan  {
+            VStack {
+                configuration.title
+                AcmeTitleView()
+            }
+        } subtitle: {
+            VStack {
+                configuration.subtitle
+                AcmeSubtitleView()
+            }
+        } status: {
+            VStack {
+                configuration.status
+                AcmeStatusView()
+            }
+        } valueAxisTitle: {
+            VStack {
+                configuration.valueAxisTitle
+                AcmeValueAxisTitleView()
+            }
+        } seriesTitles: {
+            VStack {
+                configuration.seriesTitles
+                AcmeSeriesTitlesView()
+            }
+        } categoryAxisTitle: {
+            VStack {
+                configuration.categoryAxisTitle
+                AcmeCategoryAxisTitleView()
+            }
+        }
+        .modifier(FioriKeyValueItemSizeClassModifier())
     }
 }
 */

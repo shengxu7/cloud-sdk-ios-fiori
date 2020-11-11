@@ -274,8 +274,15 @@ struct SeriesTitlesStyleClassModifierKey: EnvironmentKey {
     public static let defaultValue = AnyViewModifier { $0 }
 }
 
+public struct KeyStyleKey: EnvironmentKey {
+    public static let defaultValue: TextStyle = TextStyle()
+}
 
-struct ValueStyleKey: EnvironmentKey {
+public struct KeyModifierKey: EnvironmentKey {
+    public static let defaultValue = AnyViewModifier { $0 }
+}
+
+public struct ValueStyleKey: EnvironmentKey {
     public static let defaultValue: TextStyle = TextStyle()
 }
 

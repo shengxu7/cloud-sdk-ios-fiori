@@ -1,21 +1,43 @@
+//
+//  File.swift
+//  
+//
+//  Created by Stadelman, Stan on 9/19/20.
+//
+
 import SwiftUI
-
-// TODO: Extend HeaderChart to implement LayoutRouter, Layout, and Style in separate file
-// Place at FioriSwiftUICore/Views/HeaderChart+StyleImpl.swift
-
+/*
+extension CollectionItem2: View {
+    public var body: some View {
+        VStack {
+            if let detailImage = model.detailImage {
+                detailImage
+                    .applying(detailImageStyle)
+                    .frame(width: 60, height: 60)
+                    .modifier(detailImageModifier)
+                
+            }
+            Text(model.title).applying(titleStyle).modifier(titleModifier)
+            if let subtitle = model.subtitle {
+                Text(subtitle).applying(subtitleStyle).modifier(subtitleModifier)
+            }
+            actionItems
+        }.padding()
+    }
+}
+*/
 
 // MARK - Uncomment if View has consistent layout, regardless of context, e.g. `horizontalSizeClass`, etc.
 
 /// For single-layout components, this is where the `View.Body` should be implemented
-public struct FioriHeaderChartStyle : HeaderChartStyle {
+public struct FioriCollectionItemStyle : CollectionItemStyle {
     public func makeBody(configuration: Configuration) -> some View {
         VStack {
+            configuration.detailImage.frame(width: 60, height: 60)
             configuration.title
             configuration.subtitle
-            configuration.trend
-            configuration.kpi
         }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+        .padding()
     }
 }
 
@@ -23,58 +45,54 @@ public struct FioriHeaderChartStyle : HeaderChartStyle {
 // MARK: - Uncomment if View has multiple layouts, depending upon context
 
 /// A pass-through `View.Body` implementation, which applies the `*LayoutRouter` `ViewModifier`
-public struct FioriHeaderChartStyle: HeaderChartStyle {
+public struct FioriCollectionItemStyle: CollectionItemStyle {
     public func makeBody(configuration: Configuration) -> some View {
-        HeaderChart  {
+        CollectionItem  {
+            configuration.detailImage
+        } title: {
             configuration.title
         } subtitle: {
             configuration.subtitle
-        } trend: {
-            configuration.trend
-        } kpi: {
-            configuration.kpi
         }
-        .modifier(FioriHeaderChartLayoutRouter())
+        .modifier(FioriCollectionItemLayoutRouter())
     }
 }
 
 /// Example layout router, which selects the correct `Style` based on `horizontalSizeClass`
 /// May be modified, replaced, or chained.
-struct FioriHeaderChartLayoutRouter: ViewModifier {
+struct FioriCollectionItemLayoutRouter: ViewModifier {
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
     @ViewBuilder
     func body(content: Content) -> some View {
         if horizontalSizeClass == .some(.compact) {
-            content.headerChart(FioriHeaderChartStyle.CompactLayout())
+            content.collectionItem(FioriCollectionItemStyle.CompactLayout())
         } else {
-            content.headerChart(FioriHeaderChartStyle.RegularLayout())
+            content.collectionItem(FioriCollectionItemStyle.RegularLayout())
         }
     }
 }
 
-extension struct FioriHeaderChartStyle {
-    public struct CompactLayout: HeaderChartStyle {
+extension struct FioriCollectionItemStyle {
+    public struct CompactLayout: CollectionItemStyle {
         public func makeBody(configuration: Configuration) -> some View {
             VStack {
-                configuration.title
+                configuration.detailImage
+            configuration.title
             configuration.subtitle
-            configuration.trend
-            configuration.kpi
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
                     .padding([.top, .bottom], 8)
         }
     }
 
-    public struct RegularLayout: HeaderChartStyle {
+    public struct RegularLayout: CollectionItemStyle {
         public func makeBody(configuration: Configuration) -> some View {
             HStack {
-                configuration.title
+                configuration.detailImage
+            configuration.title
             configuration.subtitle
-            configuration.trend
-            configuration.kpi
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
                     .padding([.top, .bottom], 8)
@@ -90,11 +108,16 @@ extension struct FioriHeaderChartStyle {
 /// contain it in a super-structure, or replace it entirely.
 /// Invoking the `*LayoutRouter` `ViewModifier` causes the standard body implementation
 /// to attempt to layout the supplied view.
-public struct AcmeHeaderChartStyle: HeaderChartStyle {
+public struct AcmeCollectionItemStyle: CollectionItemStyle {
     
     @ViewBuilder
     public func makeBody(configuration: Configuration) -> some View {
-        HeaderChart  {
+        CollectionItem  {
+            VStack {
+                configuration.detailImage
+                AcmeDetailImageView()
+            }
+        } title: {
             VStack {
                 configuration.title
                 AcmeTitleView()
@@ -103,16 +126,6 @@ public struct AcmeHeaderChartStyle: HeaderChartStyle {
             VStack {
                 configuration.subtitle
                 AcmeSubtitleView()
-            }
-        } trend: {
-            VStack {
-                configuration.trend
-                AcmeTrendView()
-            }
-        } kpi: {
-            VStack {
-                configuration.kpi
-                AcmeKpiView()
             }
         }
         .modifier(FioriKeyValueItemSizeClassModifier())

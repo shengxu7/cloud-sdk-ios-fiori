@@ -23,9 +23,9 @@ internal struct _Component: _ComponentGenerating {
     let status: String?
     let substatus: String?
     let body: String?
-    let icons: [String]?
+    let icons: [String]
     let actionTitle: String?
-    let seriesTitles: [String]?
+    let seriesTitles: [String]
     let key: String
     let value: String?
     let values: [String]
@@ -35,7 +35,7 @@ internal struct _Component: _ComponentGenerating {
     let emptyText: String?
     let kpi: String?
     let placeholder: String?
-    let tags: [String]?
+    let tags: [String]
     let lowerBoundTitle: String?
     let upperBoundTitle: String?
 }

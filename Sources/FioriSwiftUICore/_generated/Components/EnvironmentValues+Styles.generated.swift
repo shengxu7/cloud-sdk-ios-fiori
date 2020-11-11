@@ -163,7 +163,15 @@ extension EnvironmentValues {
         get { return self[SeriesTitlesModifierKey.self] }
         set { self[SeriesTitlesModifierKey.self] = newValue }
     }
+    public var keyStyle: TextStyle {
+        get { return self[KeyStyleKey.self] }
+        set { self[KeyStyleKey.self] = newValue }
+    }
 
+    public var keyModifier: AnyViewModifier {
+        get { return self[KeyModifierKey.self] }
+        set { self[KeyModifierKey.self] = newValue }
+    }
     public var valueStyle: TextStyle {
         get { return self[ValueStyleKey.self] }
         set { self[ValueStyleKey.self] = newValue }
@@ -772,8 +780,16 @@ public extension View {
         self.environment(\.seriesTitlesModifier, AnyViewModifier(transform))
     }
 
-    func seriesTitlesStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.seriesTitlesStyleClassPath([path], isAppending: isAppending)
+    func keyStyle(_ style: TextStyle) -> some View {
+        return transformEnvironment(\.keyStyle) { $0 = $0.merging(style) }
+    }
+
+    func keyModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
+        self.environment(\.keyModifier, AnyViewModifier(transform: transform))
+    }
+
+    func valueStyle(_ style: TextStyle) -> some View {
+        return transformEnvironment(\.valueStyle) { $0 = $0.merging(style) }
     }
 
     func seriesTitlesStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {

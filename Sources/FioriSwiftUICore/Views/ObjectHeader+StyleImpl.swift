@@ -1,80 +1,91 @@
 import SwiftUI
 
-// TODO: Extend HeaderChart to implement LayoutRouter, Layout, and Style in separate file
-// Place at FioriSwiftUICore/Views/HeaderChart+StyleImpl.swift
-
-
-// MARK - Uncomment if View has consistent layout, regardless of context, e.g. `horizontalSizeClass`, etc.
+// TODO - Uncomment if View has consistent layout, regardless of context, e.g. `horizontalSizeClass`, etc.
 
 /// For single-layout components, this is where the `View.Body` should be implemented
-public struct FioriHeaderChartStyle : HeaderChartStyle {
+public struct FioriObjectHeaderStyle : ObjectHeaderStyle {
     public func makeBody(configuration: Configuration) -> some View {
         VStack {
             configuration.title
             configuration.subtitle
-            configuration.trend
-            configuration.kpi
+            configuration.footnote
+            configuration.descriptionText
+            configuration.status
+            configuration.substatus
+            configuration.detailImage
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
     }
 }
 
 /*
-// MARK: - Uncomment if View has multiple layouts, depending upon context
+// TODO: - Uncomment if View has multiple layouts, depending upon context
 
 /// A pass-through `View.Body` implementation, which applies the `*LayoutRouter` `ViewModifier`
-public struct FioriHeaderChartStyle: HeaderChartStyle {
+public struct FioriObjectHeaderStyle: ObjectHeaderStyle {
     public func makeBody(configuration: Configuration) -> some View {
-        HeaderChart  {
+        ObjectHeader  {
             configuration.title
         } subtitle: {
             configuration.subtitle
-        } trend: {
-            configuration.trend
-        } kpi: {
-            configuration.kpi
+        } footnote: {
+            configuration.footnote
+        } descriptionText: {
+            configuration.descriptionText
+        } status: {
+            configuration.status
+        } substatus: {
+            configuration.substatus
+        } detailImage: {
+            configuration.detailImage
         }
-        .modifier(FioriHeaderChartLayoutRouter())
+        .modifier(FioriObjectHeaderLayoutRouter())
     }
 }
 
 /// Example layout router, which selects the correct `Style` based on `horizontalSizeClass`
 /// May be modified, replaced, or chained.
-struct FioriHeaderChartLayoutRouter: ViewModifier {
+public struct FioriObjectHeaderLayoutRouter: ViewModifier {
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
     @ViewBuilder
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         if horizontalSizeClass == .some(.compact) {
-            content.headerChart(FioriHeaderChartStyle.CompactLayout())
+            content.objectHeaderStyle(FioriObjectHeaderStyle.CompactLayout())
         } else {
-            content.headerChart(FioriHeaderChartStyle.RegularLayout())
+            content.objectHeaderStyle(FioriObjectHeaderStyle.RegularLayout())
         }
     }
 }
 
-extension struct FioriHeaderChartStyle {
-    public struct CompactLayout: HeaderChartStyle {
+extension FioriObjectHeaderStyle {
+    public struct CompactLayout: ObjectHeaderStyle {
         public func makeBody(configuration: Configuration) -> some View {
             VStack {
                 configuration.title
             configuration.subtitle
-            configuration.trend
-            configuration.kpi
+            configuration.footnote
+            configuration.descriptionText
+            configuration.status
+            configuration.substatus
+            configuration.detailImage
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
                     .padding([.top, .bottom], 8)
         }
     }
 
-    public struct RegularLayout: HeaderChartStyle {
+    public struct RegularLayout: ObjectHeaderStyle {
         public func makeBody(configuration: Configuration) -> some View {
             HStack {
                 configuration.title
             configuration.subtitle
-            configuration.trend
-            configuration.kpi
+            configuration.footnote
+            configuration.descriptionText
+            configuration.status
+            configuration.substatus
+            configuration.detailImage
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
                     .padding([.top, .bottom], 8)
@@ -83,18 +94,18 @@ extension struct FioriHeaderChartStyle {
 }
 */
 /*
-// MARK: - Creating Application-specific Style, while leveraging Fiori Layouts
+// TODO: - Creating Application-specific Style, while leveraging Fiori Layouts
 
 /// Example Custom Style implementation, using pass-through technique from above.
 /// Developer may pass the `AnyView` from the `Configuration` directly through,
 /// contain it in a super-structure, or replace it entirely.
 /// Invoking the `*LayoutRouter` `ViewModifier` causes the standard body implementation
 /// to attempt to layout the supplied view.
-public struct AcmeHeaderChartStyle: HeaderChartStyle {
+public struct AcmeObjectHeaderStyle: ObjectHeaderStyle {
     
     @ViewBuilder
     public func makeBody(configuration: Configuration) -> some View {
-        HeaderChart  {
+        ObjectHeader  {
             VStack {
                 configuration.title
                 AcmeTitleView()
@@ -104,15 +115,30 @@ public struct AcmeHeaderChartStyle: HeaderChartStyle {
                 configuration.subtitle
                 AcmeSubtitleView()
             }
-        } trend: {
+        } footnote: {
             VStack {
-                configuration.trend
-                AcmeTrendView()
+                configuration.footnote
+                AcmeFootnoteView()
             }
-        } kpi: {
+        } descriptionText: {
             VStack {
-                configuration.kpi
-                AcmeKpiView()
+                configuration.descriptionText
+                AcmeDescriptionTextView()
+            }
+        } status: {
+            VStack {
+                configuration.status
+                AcmeStatusView()
+            }
+        } substatus: {
+            VStack {
+                configuration.substatus
+                AcmeSubstatusView()
+            }
+        } detailImage: {
+            VStack {
+                configuration.detailImage
+                AcmeDetailImageView()
             }
         }
         .modifier(FioriKeyValueItemSizeClassModifier())

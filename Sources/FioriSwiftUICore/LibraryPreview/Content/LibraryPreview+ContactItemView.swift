@@ -14,7 +14,7 @@ struct ContactItemLibraryContent: LibraryContentProvider {
     var views: [LibraryItem] {
         LibraryItem(ContactItem(model: LibraryPreviewData.Person.laurelosborn),
                     category: .control)
-        LibraryItem(ContactItem(model: LibraryPreviewData.Person.laurelosborn, actionItems: LibraryPreviewData.Person.laurelosborn.actionItems), title: "ContactItem w/ActionItems", category: .control)
+//        LibraryItem(ContactItem(model: LibraryPreviewData.Person.laurelosborn, actionItems: LibraryPreviewData.Person.laurelosborn.actionItems), title: "ContactItem w/ActionItems", category: .control)
     }
     
     @LibraryContentBuilder

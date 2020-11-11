@@ -176,6 +176,52 @@ extension String {
         return prefix(1).lowercased() + dropFirst()
     }
 }
+extension Type {
+
+    var componentName: String {
+        name.replacingOccurrences(of: "Model", with: "")
+    }
+
+    var componentNameAsPropertyDecl: String {
+        componentName.lowercasingFirst()
+    }
+
+    var componentProperties: Array<Variable> {
+        inheritedTypes.compactMap({ type[$0] }).flatMap({ $0.allVariables })
+    }
+
+    var componentStyleName: String {
+        "\(componentName)Style"
+    }
+
+    var componentStyleNameAsPropertyDecl: String {
+        componentStyleName.lowercasingFirst()
+    }
+
+    var stylePropertyDecl: String {
+        "@Environment(\\.\(componentNameAsPropertyDecl)Style) var style: Any\(componentStyleName)"
+    }
+
+    var componentStyleConfigurationName: String {
+        "\(componentStyleName)Configuration"
+    }
+
+    var fioriComponentStyleName: String {
+        "Fiori\(componentStyleName)"
+    }
+
+    var fioriLayoutRouterName: String {
+        "Fiori\(componentName)LayoutRouter"
+    }
+
+    var usage: String {
+        "\(componentName) \(componentProperties.usage)"
+    }
+
+    var acmeUsage: String {
+        "\(componentName) \(componentProperties.acmeUsage)"
+    }
+}
 
 extension Variable {
     var swiftUITypeName: String {
@@ -191,29 +237,36 @@ extension Variable {
 
     var conditionalAssignment: String {
         if isOptional {
-            switch swiftUITypeName {
-                case "Image":
-                    return "\(name) != nil ? ViewBuilder.buildEither(first: \(name)!) : ViewBuilder.buildEither(second: EmptyView())"
-                default:
-                    return "\(name) != nil ? ViewBuilder.buildEither(first: \(swiftUITypeName)(\(name)!)) : ViewBuilder.buildEither(second: EmptyView())"
-            }
+            return "\(name) != nil ? ViewBuilder.buildEither(first: \(toSwiftUI)) : ViewBuilder.buildEither(second: EmptyView())"
         } else {
-            switch swiftUITypeName {
-                case "Image":
-                    return name
-                default:
-                    return "\(swiftUITypeName)(\(name))"
-            }
+            return toSwiftUI
         }
     }
-}
 
-extension Array where Element: Hashable {
-    func formSymmetricDifference(with inverse: Array<Element>) -> Array<Element> {
-        let this = Set(self)
-        let that = Set(inverse)
-        return Array(this.symmetricDifference(that))
-    } 
+    var toSwiftUI: String {
+        switch self.typeName.unwrappedTypeName {
+            case "String":
+                return isOptional ? "Text(\(name)!)" : "Text(\(name))"
+            case "[String]":
+                return "Text(\(name).joined(separator: \", \"))"
+            case "Image":
+                return isOptional ? "\(name)!" : name
+            default:
+                return "\(swiftUITypeName)(\(name))" 
+                    return "\(swiftUITypeName)(\(name))"
+                return "\(swiftUITypeName)(\(name))" 
+        }
+    }
+
+    var emptyDefault: String {
+        if isOptional {
+            return " = nil"
+        } else if typeName.isArray {
+            return " = []"
+        } else {
+            return ""
+        }
+    }
 }
 
 extension Array where Element: Variable {
@@ -223,6 +276,10 @@ extension Array where Element: Variable {
 
     var viewBuilderInitParams: String {
         map({ "@ViewBuilder \($0.name): @escaping () -> \($0.name.capitalizingFirst())"}).joined(separator: ",\n\t\t")
+    }
+
+    var viewBuilderPropertyDecls: String {
+        map({ "private let _\($0.name): () -> \($0.name.capitalizingFirst())" }).joined(separator: "\n\t")
     }
 
     var viewModifierPropertyDecls: String {
@@ -237,6 +294,14 @@ extension Array where Element: Variable {
         map({ "\($0.name): _\($0.name)().modifier(\($0.name)Modifier).typeErased" }).joined(separator: ",\n\t\t\t")
     }
 
+    var configurationPropertyDecls: String {
+        map({ "let \($0.name): AnyView" }).joined(separator: "\n\t")
+    }
+
+    var configurationPropertyViewBuilder: String {
+        map({ "configuration.\($0.name)"}).joined(separator: "\n\t\t\t")
+    }
+
     var extensionContrainedWhereEmptyView: String {
         map({ "\($0.name.capitalizingFirst()) == EmptyView" }).joined(separator: ", ")
     }
@@ -246,7 +311,7 @@ extension Array where Element: Variable {
     }
 
     var extensionModelInitParams: String {
-        map({ "\($0.name): \($0.typeName.name)\($0.isOptional ? " = nil" : "")" }).joined(separator: ", ")
+        map({ "\($0.name): \($0.typeName.name)\($0.emptyDefault)" }).joined(separator: ", ")
     }
 
     var extensionModelInitParamsAssignment: String {
@@ -256,6 +321,27 @@ extension Array where Element: Variable {
     var extensionModelInitParamAssignments: String {
         map({ "self._\($0.name) = { \($0.conditionalAssignment) }" }).joined(separator: "\n\t\t")
     }
+
+    var usage: String {
+        reduce(into: Array<String>(), { prev, next in 
+            let label = prev.count > 0 ? "\(next.name):" : ""
+            prev.append("\(label) {\n\t\t\tconfiguration.\(next.name)\n\t\t}")
+        }).joined(separator: " ")
+    }
+
+    var acmeUsage: String {
+        reduce(into: Array<String>(), { prev, next in 
+            let label = prev.count > 0 ? "\(next.name):" : ""
+            prev.append("""
+            \(label) {
+                        VStack {
+                            configuration.\(next.name)
+                            Acme\(next.name.capitalizingFirst())View()
+                        }
+                    }
+            """)
+        }).joined(separator: " ")
+    } 
 
     func extensionInitParamWhereEmptyView(scenario: Array<Element>) -> String {
         var output: Array<String> = []
@@ -283,28 +369,10 @@ extension Array where Element: Variable {
 let models = types.protocols.filter({ $0.annotations["generated_component"] != nil })
 
 for model in models {
-  let componentName = model.name.replacingOccurrences(of: "Model", with: "")
-  let componentNameLowerCamel = componentName.lowercasingFirst()
-  let componentProperties = model.inheritedTypes.compactMap({ type[$0] }).flatMap({ $0.allVariables })
 
-  let stylePropertyDecl = "@Environment(\\.\(componentNameLowerCamel)Style) var style: Any\(componentName)Style"
-  let viewBuilderPropertyDecls = componentProperties.map({ 
-    "private let _\($0.name): () -> \($0.name.capitalizingFirst())"
-  }).joined(separator: "\n\t")
+    let componentProperties = model.componentProperties
+    let styleName = model.componentStyleName
 
-
-  let styleName = "\(componentName)Style"
-  let configurationName = "\(componentName)StyleConfiguration"
-
-  let configurationPropertyDecls = componentProperties.map({ 
-    "let \($0.name): AnyView"
-  }).joined(separator: "\n\t")
-  let fioriStyleName = "Fiori\(componentName)Style"
-  let passthroughUsage = componentProperties.reduce(into: Array<String>(), { prev, next in 
-      let label = prev.count > 0 ? "\(next.name):" : ""
-      prev.append("\(label) {\n\t\t\tconfiguration.\(next.name)\n\t\t}")
-  }).joined(separator: " ")
-  let fioriLayoutRouterName = "Fiori\(componentName)LayoutRouter"
 
   func optionalPropertySequences(_ t: Type) -> [[Variable]] {
       var sequences: [[Variable]] = []
@@ -320,14 +388,14 @@ for model in models {
   
 
   -%>
-// sourcery:file:ViewModels/<%= componentName %>+ViewBuilderModel.generated.swift
+// sourcery:file:ViewModels/<%= model.componentName %>+View.generated.swift
 import SwiftUI
 
-public struct <%= componentName %><<%= componentProperties.templateParameterDecls %>>: View {
+public struct <%= model.componentName %><<%= componentProperties.templateParameterDecls %>>: View {
     <%= componentProperties.viewModifierPropertyDecls %>
-    <%= stylePropertyDecl %>
+    <%= model.stylePropertyDecl %>
 
-    <%= viewBuilderPropertyDecls %>
+    <%= componentProperties.viewBuilderPropertyDecls %>
 
     public init(
         <%= componentProperties.viewBuilderInitParams %>
@@ -336,14 +404,14 @@ public struct <%= componentName %><<%= componentProperties.templateParameterDecl
     }
 
     public var body: some View {
-        let configuration = <%= configurationName %>(
+        let configuration = <%= model.componentStyleConfigurationName %>(
             <%= componentProperties.configurationInitParams %>
         )
         return style.makeBody(configuration: configuration)
     }   
 }
 
-extension <%= componentName %> where <%= componentProperties.extensionConstrainedWhereConditionalContent %> {
+extension <%= model.componentName %> where <%= componentProperties.extensionConstrainedWhereConditionalContent %> {
     
     public init(model: <%= model.name %>) {
         self.init(<%= componentProperties.extensionModelInitParamsAssignment %>)
@@ -358,18 +426,18 @@ extension <%= componentName %> where <%= componentProperties.extensionConstraine
 public protocol <%= styleName %> {
     associatedtype Body : View
     func makeBody(configuration: Self.Configuration) -> Self.Body
-    typealias Configuration = <%= configurationName %>
+    typealias Configuration = <%= model.componentStyleConfigurationName %>
 }
 
-public struct <%= configurationName %> {
-    <%= configurationPropertyDecls %>
+public struct <%= model.componentStyleConfigurationName %> {
+    <%= componentProperties.configurationPropertyDecls %>
 }
 
 // MARK: - <%= styleName %> Environment Utility
 extension View {
-    public func <%= componentNameLowerCamel %>Style<S>(_ style: S) -> some View
+    public func <%= model.componentNameAsPropertyDecl %>Style<S>(_ style: S) -> some View
         where S: <%= styleName %> {
-            self.environment(\.<%= componentNameLowerCamel %>Style, Any<%= styleName %>(style))
+            self.environment(\.<%= model.componentNameAsPropertyDecl %>Style, Any<%= styleName %>(style))
         }
 }
 
@@ -392,17 +460,9 @@ extension <%= styleName %> {
     }
 }
 
-public struct <%= fioriStyleName %>: <%= styleName %> {
-
-    public func makeBody(configuration: Configuration) -> some View {
-        <%= componentName %> <%= passthroughUsage %>
-        .modifier(<%= fioriLayoutRouterName %>())
-    }
-}
-
 // MARK: - <%= styleName %> Environment Key
 extension EnvironmentValues {
-    var <%= componentNameLowerCamel %>Style: Any<%= styleName %> {
+    var <%= model.componentNameAsPropertyDecl %>Style: Any<%= styleName %> {
         get {
             return self[<%= styleName %>Key.self]
         }
@@ -412,31 +472,102 @@ extension EnvironmentValues {
     }
 }
 
-public struct <%= styleName %>Key: EnvironmentKey {
-    public static let defaultValue: Any<%= styleName %> = Any<%= styleName %>(Fiori<%= styleName %>())
+public struct <%= model.componentStyleName %>Key: EnvironmentKey {
+    public static let defaultValue: Any<%= styleName %> = Any<%= model.componentStyleName %>(Fiori<%= styleName %>())
 }
 
-// TODO: Extend <%= componentName %> to implement LayoutRouter, Layout, and Style in separate file
-// place at FioriSwiftUICore/Views/TimelineItem+View.swift
-/*
-import SwiftUI
+// TODO: - Extend <%= model.componentName %> to implement LayoutRouter, Layout, and Style in separate file
+// Place at FioriSwiftUICore/Views/<%= model.componentName %>+StyleImpl.swift
 
-extension <%= componentName %>LayoutRouter: ViewModifier {
-    public var body: some View { 
-        <# View body #> 
+/*
+// TODO: - Uncomment if View has consistent layout, regardless of context, e.g. `horizontalSizeClass`, etc.
+
+/// For single-layout components, this is where the `View.Body` should be implemented
+public struct <%= model.fioriComponentStyleName %> : <%=model.componentStyleName %> {
+    public func makeBody(configuration: Configuration) -> some View {
+        VStack {
+            <%= componentProperties.configurationPropertyViewBuilder %>
+        }
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+    }
+}
+*/
+/*
+// TODO: - Uncomment if View has multiple layouts, depending upon context
+
+/// A pass-through `View.Body` implementation, which applies the `*LayoutRouter` `ViewModifier`
+public struct <%= model.fioriComponentStyleName %>: <%= styleName %> {
+    public func makeBody(configuration: Configuration) -> some View {
+        <%= model.usage %>
+        .modifier(<%= model.fioriLayoutRouterName %>())
+    }
+}
+
+/// Example layout router, which selects the correct `Style` based on `horizontalSizeClass`
+/// May be modified, replaced, or chained.
+public struct <%= model.fioriLayoutRouterName %>: ViewModifier {
+    
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+
+    @ViewBuilder
+    public func body(content: Content) -> some View {
+        if horizontalSizeClass == .some(.compact) {
+            content.<%= model.componentStyleNameAsPropertyDecl %>(<%= model.fioriComponentStyleName %>.CompactLayout())
+        } else {
+            content.<%= model.componentStyleNameAsPropertyDecl %>(<%= model.fioriComponentStyleName %>.RegularLayout())
+        }
+    }
+}
+
+extension <%= model.fioriComponentStyleName %> {
+    public struct CompactLayout: <%= model.componentStyleName %> {
+        public func makeBody(configuration: Configuration) -> some View {
+            VStack {
+                <%= componentProperties.configurationPropertyViewBuilder %>
+            }
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+                    .padding([.top, .bottom], 8)
+        }
+    }
+
+    public struct RegularLayout: <%= model.componentStyleName %> {
+        public func makeBody(configuration: Configuration) -> some View {
+            HStack {
+                <%= componentProperties.configurationPropertyViewBuilder %>
+            }
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+                    .padding([.top, .bottom], 8)
+        }
+    }
+}
+*/
+/*
+// TODO: - Creating Application-specific Style, while leveraging Fiori Layouts
+
+/// Example Custom Style implementation, using pass-through technique from above.  
+/// Developer may pass the `AnyView` from the `Configuration` directly through, 
+/// contain it in a super-structure, or replace it entirely.
+/// Invoking the `*LayoutRouter` `ViewModifier` causes the standard body implementation
+/// to attempt to layout the supplied view.
+public struct Acme<%= model.componentStyleName %>: <%= model.componentStyleName %> {
+    
+    @ViewBuilder
+    public func makeBody(configuration: Configuration) -> some View {
+        <%= model.acmeUsage %>
+        .modifier(FioriKeyValueItemSizeClassModifier())
     }
 }
 */
 
 // sourcery:end
 
-// sourcery:file:ViewModels/<%= componentName %>+ViewBuilderModel+Extensions.generated.swift
+// sourcery:file:ViewModels/<%= model.componentName %>+View+Extensions.generated.swift
 import SwiftUI
 <%_ 
     for optionalCombination in combinationsOfOptionals {
 -%>
 
-extension <%= componentName %> where <%= optionalCombination.extensionContrainedWhereEmptyView %> {
+extension <%= model.componentName %> where <%= optionalCombination.extensionContrainedWhereEmptyView %> {
     public init(
         <%= componentProperties.extensionInitParamWhereEmptyView(scenario: optionalCombination) %>
         ) {

@@ -43,13 +43,16 @@ public protocol BodyComponent {
     var body: String? { get }
 }
 public protocol IconsComponent {
-    var icons: [String]? { get }
+    var icons: [String] { get }
 }
 public protocol ActionTitleComponent {
     var actionTitle: String? { get }
 }
 public protocol SeriesTitlesComponent {
-    var seriesTitles: [String]? { get }
+    var seriesTitles: [String] { get }
+}
+public protocol KeyComponent {
+    var key: String { get }
 }
 public protocol ValueComponent {
     var value: String? { get }
@@ -76,7 +79,7 @@ public protocol PlaceholderComponent {
     var placeholder: String? { get }
 }
 public protocol TagsComponent {
-    var tags: [String]? { get }
+    var tags: [String] { get }
 }
 public protocol LowerBoundTitleComponent {
     var lowerBoundTitle: String? { get }

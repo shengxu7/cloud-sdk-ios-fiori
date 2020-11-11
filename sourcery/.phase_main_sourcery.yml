@@ -3,7 +3,7 @@ sources:
   - ./../Sources/FioriSwiftUICore/Models/
   - ./../Sources/FioriSwiftUICore/_generated/Components/
 templates:
-  - ./../sourcery/stencils/main_phase/model_decl.stencil
+  - ./../sourcery/stencils/main_phase/model_decl.swifttemplate
   - ./../sourcery/stencils/main_phase/style_decl.stencil
 output:
   ./../Sources/FioriSwiftUICore/_generated/
