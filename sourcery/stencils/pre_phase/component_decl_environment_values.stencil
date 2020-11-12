@@ -36,8 +36,8 @@ public extension View {
 {% set AStyle %}{% call StyleType variable.typeName.unwrappedTypeName %}{% endset %}
 
     @ViewBuilder
-    func {{variable.name}}Style(_ style: {{AStyle}}, isAppending: Bool = true) -> some View {
-        if isAppending {
+    func {{variable.name}}Style(_ style: {{AStyle}}, concat: Bool = true) -> some View {
+        if concat {
             transformEnvironment(\.{{variable.name}}Style) { $0 = $0.merging(style) }
         } else {
             environment(\.{{variable.name}}Style, style)
@@ -49,15 +49,15 @@ public extension View {
         self.environment(\.{{variable.name}}Modifier, AnyViewModifier(transform))
     }
 
-    func {{variable.name}}StyleClass(_ class: String, isAppending: Bool = true) -> some View {
-        self.{{variable.name}}StyleClass([`class`], isAppending: isAppending)
+    func {{variable.name}}StyleClass(_ class: String, concat: Bool = true) -> some View {
+        self.{{variable.name}}StyleClass([`class`], concat: concat)
     }
 
-    func {{variable.name}}StyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
+    func {{variable.name}}StyleClass(_ classPath: [String], concat: Bool = true) -> some View {
         return transformEnvironment(\.{{variable.name}}Modifier) {
             switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
-                    if isAppending {
+                    if concat {
                         let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
