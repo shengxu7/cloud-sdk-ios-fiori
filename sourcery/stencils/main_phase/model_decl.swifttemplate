@@ -221,6 +221,30 @@ extension Type {
     var acmeUsage: String {
         "\(componentName) \(componentProperties.acmeUsage)"
     }
+
+    var fioriStyleImplEnumDecl: String {
+        """
+        extension Fiori {
+            enum \(componentName) {
+                \(componentProperties.typealiasViewModifierDecls)
+
+                // TODO: - substitute type-specific ViewModifier for EmptyModifier
+                /*
+                    // replace `typealias Subtitle = EmptyModifier` with: 
+
+                    struct Subtitle: ViewModifier {
+                        func body(content: Content) -> some View {
+                            content
+                                .font(.body)
+                                .foregroundColor(.preferredColor(.primary3))
+                        }
+                    }
+                */
+                \(componentProperties.staticViewModifierPropertyDecls)
+            }
+        }
+        """
+    }
 }
 
 extension Variable {
@@ -290,8 +314,8 @@ extension Array where Element: Variable {
         map({ "self._\($0.name) = \($0.name)" }).joined(separator: "\n\t\t\t")
     }
 
-    var configurationInitParams: String {
-        map({ "\($0.name): _\($0.name)().modifier(\($0.name)Modifier).typeErased" }).joined(separator: ",\n\t\t\t")
+    func configurationInitParams(component: String) -> String {
+        map({ "\($0.name): _\($0.name)().modifier(Fiori.\(component).\($0.name).concat(\($0.name)Modifier)).typeErased" }).joined(separator: ",\n\t\t\t")
     }
 
     var configurationPropertyDecls: String {
@@ -300,6 +324,14 @@ extension Array where Element: Variable {
 
     var configurationPropertyViewBuilder: String {
         map({ "configuration.\($0.name)"}).joined(separator: "\n\t\t\t")
+    }
+
+    var staticViewModifierPropertyDecls: String {
+        map({ "static let \($0.name) = \($0.name.capitalizingFirst())()" }).joined(separator: "\n\t\t")
+    }
+
+    var typealiasViewModifierDecls: String {
+        map({ "typealias \($0.name.capitalizingFirst()) = EmptyModifier" }).joined(separator: "\n\t\t")
     }
 
     var extensionContrainedWhereEmptyView: String {
@@ -386,9 +418,8 @@ for model in models {
 
   let combinationsOfOptionals = optionalPropertySequences(model).map({ $0 })
   
-
   -%>
-// sourcery:file:ViewModels/<%= model.componentName %>+View.generated.swift
+// sourcery:file:ViewModels/API/<%= model.componentName %>+View.generated.swift
 import SwiftUI
 
 public struct <%= model.componentName %><<%= componentProperties.templateParameterDecls %>>: View {
@@ -405,7 +436,7 @@ public struct <%= model.componentName %><<%= componentProperties.templateParamet
 
     public var body: some View {
         let configuration = <%= model.componentStyleConfigurationName %>(
-            <%= componentProperties.configurationInitParams %>
+            <%= componentProperties.configurationInitParams(component: model.componentName) %>
         )
         return style.makeBody(configuration: configuration)
     }   
@@ -463,21 +494,26 @@ extension <%= styleName %> {
 // MARK: - <%= styleName %> Environment Key
 extension EnvironmentValues {
     var <%= model.componentNameAsPropertyDecl %>Style: Any<%= styleName %> {
-        get {
-            return self[<%= styleName %>Key.self]
-        }
-        set {
-            self[<%= styleName %>Key.self] = newValue
-        }
+        get { return self[<%= styleName %>Key.self]  }
+        set { self[<%= styleName %>Key.self] = newValue }
     }
 }
 
 public struct <%= model.componentStyleName %>Key: EnvironmentKey {
     public static let defaultValue: Any<%= styleName %> = Any<%= model.componentStyleName %>(Fiori<%= styleName %>())
 }
+// sourcery:end
+
+// sourcery:file:ViewModels/Boilerplate/<%= model.componentName %>+StyleImpl+TODO.generated.swift
 
 // TODO: - Extend <%= model.componentName %> to implement LayoutRouter, Layout, and Style in separate file
-// Place at FioriSwiftUICore/Views/<%= model.componentName %>+StyleImpl.swift
+// Place at FioriSwiftUICore/Views/StyleImplementations/<%= model.componentName %>+StyleImpl.swift
+
+// TODO: - Uncomment and implement Fiori style definitions
+
+/*
+<%= model.fioriStyleImplEnumDecl %>
+*/
 
 /*
 // TODO: - Uncomment if View has consistent layout, regardless of context, e.g. `horizontalSizeClass`, etc.
@@ -561,7 +597,7 @@ public struct Acme<%= model.componentStyleName %>: <%= model.componentStyleName 
 
 // sourcery:end
 
-// sourcery:file:ViewModels/<%= model.componentName %>+View+Extensions.generated.swift
+// sourcery:file:ViewModels/Init+Extensions/<%= model.componentName %>+Init.generated.swift
 import SwiftUI
 <%_ 
     for optionalCombination in combinationsOfOptionals {

@@ -177,18 +177,3 @@ public extension TextStyle {
         return new
     }
 }
-
-extension TextStyle {
-    struct ViewModifier: SwiftUI.ViewModifier {
-        let style: TextStyle
-        func body(content: Content) -> some View {
-            content
-                ._applyFont(style._viewModifierFont())
-                ._applyForegroundColor(style._foregroundColor)
-                ._applyTruncationMode(style._truncationMode)
-                ._applyLineLimit(style._lineLimit)
-                ._applyLineSpacing(style._lineSpacing)
-                ._applyMultilineTextAlignment(style._multilineTextAlignment)
-        }
-    }
-}

@@ -81,7 +81,7 @@ public struct TextStyle: IStyle, Decodable, _StyleGenerating {
     }
     
     func toViewModifier() -> AnyViewModifier {
-        return AnyViewModifier(transform: { $0/*.modifier(TextStyleViewModifier(style: self))*/ })
+        return AnyViewModifier({ $0/*.modifier(TextStyleViewModifier(style: self))*/ })
     }
 
 }
@@ -123,7 +123,7 @@ public enum Style: Decodable {
         case .text(let style):
             return style.toViewModifier()
         case .none:
-            return AnyViewModifier(transform: {$0.modifier(EmptyModifier()) })
+            return AnyViewModifier({$0.modifier(EmptyModifier()) })
         }
     }
 }

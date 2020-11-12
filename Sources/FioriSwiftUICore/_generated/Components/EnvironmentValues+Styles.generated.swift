@@ -785,7 +785,7 @@ public extension View {
     }
 
     func keyModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
-        self.environment(\.keyModifier, AnyViewModifier(transform: transform))
+        self.environment(\.keyModifier, AnyViewModifier(transform))
     }
 
     func valueStyle(_ style: TextStyle) -> some View {

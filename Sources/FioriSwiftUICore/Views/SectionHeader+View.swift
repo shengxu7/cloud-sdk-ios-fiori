@@ -8,6 +8,27 @@
 import SwiftUI
 import UIKit
 
+extension Fiori {
+    enum SectionHeader {
+        typealias Title = EmptyModifier
+        typealias Attribute = EmptyModifier
+
+        // TODO: - substitute type-specific ViewModifier for EmptyModifier
+        /*
+            // replace `typealias Subtitle = EmptyModifier` with:
+
+            struct Subtitle: ViewModifier {
+                func body(content: Content) -> some View {
+                    content
+                        .font(.body)
+                        .foregroundColor(.preferredColor(.primary3))
+                }
+            }
+        */
+        static let title = Title()
+        static let attribute = Attribute()
+    }
+}
 
  // TODO - Uncomment if View has consistent layout, regardless of context, e.g. `horizontalSizeClass`, etc.
 

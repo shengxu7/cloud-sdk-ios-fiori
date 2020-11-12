@@ -6,26 +6,30 @@
 //
 
 import SwiftUI
-/*
-extension CollectionItem2: View {
-    public var body: some View {
-        VStack {
-            if let detailImage = model.detailImage {
-                detailImage
-                    .applying(detailImageStyle)
-                    .frame(width: 60, height: 60)
-                    .modifier(detailImageModifier)
-                
+
+extension Fiori {
+    enum CollectionItem {
+        typealias DetailImage = EmptyModifier
+        typealias Title = EmptyModifier
+        typealias Subtitle = EmptyModifier
+
+        // TODO: - substitute type-specific ViewModifier for EmptyModifier
+        /*
+            // replace `typealias Subtitle = EmptyModifier` with:
+
+            struct Subtitle: ViewModifier {
+                func body(content: Content) -> some View {
+                    content
+                        .font(.body)
+                        .foregroundColor(.preferredColor(.primary3))
+                }
             }
-            Text(model.title).applying(titleStyle).modifier(titleModifier)
-            if let subtitle = model.subtitle {
-                Text(subtitle).applying(subtitleStyle).modifier(subtitleModifier)
-            }
-            actionItems
-        }.padding()
+        */
+        static let detailImage = DetailImage()
+        static let title = Title()
+        static let subtitle = Subtitle()
     }
 }
-*/
 
 // MARK - Uncomment if View has consistent layout, regardless of context, e.g. `horizontalSizeClass`, etc.
 

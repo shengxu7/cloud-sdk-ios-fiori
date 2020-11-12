@@ -1,55 +1,32 @@
 import SwiftUI
-/*
-extension ContactItem2: View {
-    public var body: some View {
-        HStack(spacing: 8) {
-            if let image = model.detailImage {
-                image
-                    .resizable()
-                    .applying(detailImageStyle).modifier(detailImageModifier)
-                    .frame(width: 45, height: 45)
-                    
-            }
-            VStack(alignment: .leading) {
-                Text(model.title).applying(titleStyle).modifier(titleModifier)
-                if let subtitle = model.subtitle {
-                    Text(subtitle).applying(subtitleStyle).modifier(subtitleModifier)
+
+extension Fiori {
+    enum ContactItem {
+        typealias Title = EmptyModifier
+        typealias Subtitle = EmptyModifier
+        typealias Footnote = EmptyModifier
+        typealias DescriptionText = EmptyModifier
+        typealias DetailImage = EmptyModifier
+
+        // TODO: - substitute type-specific ViewModifier for EmptyModifier
+        /*
+            // replace `typealias Subtitle = EmptyModifier` with:
+
+            struct Subtitle: ViewModifier {
+                func body(content: Content) -> some View {
+                    content
+                        .font(.body)
+                        .foregroundColor(.preferredColor(.primary3))
                 }
-                if let footnote = model.footnote {
-                    Text(footnote).applying(footnoteStyle).modifier(footnoteModifier)
-                }
             }
-            Spacer()
-            if horizontalSizeClass == .some(.regular),
-               let descriptionText = model.descriptionText {
-                Text(descriptionText).applying(descriptionTextStyle).modifier(descriptionTextModifier)
-            }
-            actionItems
-        }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+        */
+        static let title = Title()
+        static let subtitle = Subtitle()
+        static let footnote = Footnote()
+        static let descriptionText = DescriptionText()
+        static let detailImage = DetailImage()
     }
 }
-*/
- // TODO: Extend ContactItem to implement LayoutRouter, Layout, and Style in separate file
- // Place at FioriSwiftUICore/Views/ContactItem+StyleImpl.swift
-
- /*
- // MARK - Uncomment if View has consistent layout, regardless of context, e.g. `horizontalSizeClass`, etc.
-
- /// For single-layout components, this is where the `View.Body` should be implemented
- public struct FioriContactItemStyle : ContactItemStyle {
-     public func makeBody(configuration: Configuration) -> some View {
-         VStack {
-             configuration.title
-             configuration.subtitle
-             configuration.footnote
-             configuration.descriptionText
-             configuration.detailImage
-         }
-         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-     }
- }
- */
 
  // MARK: - Uncomment if View has multiple layouts, depending upon context
 

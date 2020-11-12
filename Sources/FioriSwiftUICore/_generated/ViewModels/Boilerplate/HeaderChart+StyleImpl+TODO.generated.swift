@@ -1,14 +1,23 @@
-import SwiftUI
+// Generated using Sourcery 1.0.0 — https://github.com/krzysztofzablocki/Sourcery
+// DO NOT EDIT
 
+
+// TODO: - Extend HeaderChart to implement LayoutRouter, Layout, and Style in separate file
+// Place at FioriSwiftUICore/Views/StyleImplementations/HeaderChart+StyleImpl.swift
+
+// TODO: - Uncomment and implement Fiori style definitions
+
+/*
 extension Fiori {
-    enum TimelineItem {
+    enum HeaderChart {
         typealias Title = EmptyModifier
-        typealias Timestamp = EmptyModifier
-        typealias Status = EmptyModifier
+		typealias Subtitle = EmptyModifier
+		typealias Trend = EmptyModifier
+		typealias Kpi = EmptyModifier
 
         // TODO: - substitute type-specific ViewModifier for EmptyModifier
         /*
-            // replace `typealias Subtitle = EmptyModifier` with:
+            // replace `typealias Subtitle = EmptyModifier` with: 
 
             struct Subtitle: ViewModifier {
                 func body(content: Content) -> some View {
@@ -19,80 +28,85 @@ extension Fiori {
             }
         */
         static let title = Title()
-        static let timestamp = Timestamp()
-        static let status = Status()
+		static let subtitle = Subtitle()
+		static let trend = Trend()
+		static let kpi = Kpi()
     }
 }
+*/
 
+/*
 // TODO: - Uncomment if View has consistent layout, regardless of context, e.g. `horizontalSizeClass`, etc.
 
 /// For single-layout components, this is where the `View.Body` should be implemented
-public struct FioriTimelineItemStyle : TimelineItemStyle {
+public struct FioriHeaderChartStyle : HeaderChartStyle {
     public func makeBody(configuration: Configuration) -> some View {
-        VStack(spacing: 8) {
+        VStack {
             configuration.title
-            HStack {
-                configuration.timestamp
-                Spacer()
-                configuration.status
-            }
+			configuration.subtitle
+			configuration.trend
+			configuration.kpi
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
     }
 }
-
+*/
 /*
 // TODO: - Uncomment if View has multiple layouts, depending upon context
 
 /// A pass-through `View.Body` implementation, which applies the `*LayoutRouter` `ViewModifier`
-public struct FioriTimelineItemStyle: TimelineItemStyle {
+public struct FioriHeaderChartStyle: HeaderChartStyle {
     public func makeBody(configuration: Configuration) -> some View {
-        TimelineItem  {
-            configuration.title
-        } timestamp: {
-            configuration.timestamp
-        } status: {
-            configuration.status
-        }
-        .modifier(FioriTimelineItemLayoutRouter())
+        HeaderChart  {
+			configuration.title
+		} subtitle: {
+			configuration.subtitle
+		} trend: {
+			configuration.trend
+		} kpi: {
+			configuration.kpi
+		}
+        .modifier(FioriHeaderChartLayoutRouter())
     }
 }
 
 /// Example layout router, which selects the correct `Style` based on `horizontalSizeClass`
 /// May be modified, replaced, or chained.
-public struct FioriTimelineItemLayoutRouter: ViewModifier {
+public struct FioriHeaderChartLayoutRouter: ViewModifier {
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
     @ViewBuilder
     public func body(content: Content) -> some View {
         if horizontalSizeClass == .some(.compact) {
-            content.timelineItemStyle(FioriTimelineItemStyle.CompactLayout())
+            content.headerChartStyle(FioriHeaderChartStyle.CompactLayout())
         } else {
-            content.timelineItemStyle(FioriTimelineItemStyle.RegularLayout())
+            content.headerChartStyle(FioriHeaderChartStyle.RegularLayout())
         }
     }
 }
 
-extension FioriTimelineItemStyle {
-    public struct CompactLayout: TimelineItemStyle {
+extension FioriHeaderChartStyle {
+    public struct CompactLayout: HeaderChartStyle {
         public func makeBody(configuration: Configuration) -> some View {
             VStack {
                 configuration.title
-            configuration.timestamp
-            configuration.status
+			configuration.subtitle
+			configuration.trend
+			configuration.kpi
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
                     .padding([.top, .bottom], 8)
         }
     }
 
-    public struct RegularLayout: TimelineItemStyle {
+    public struct RegularLayout: HeaderChartStyle {
         public func makeBody(configuration: Configuration) -> some View {
             HStack {
                 configuration.title
-            configuration.timestamp
-            configuration.status
+			configuration.subtitle
+			configuration.trend
+			configuration.kpi
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
                     .padding([.top, .bottom], 8)
@@ -103,29 +117,34 @@ extension FioriTimelineItemStyle {
 /*
 // TODO: - Creating Application-specific Style, while leveraging Fiori Layouts
 
-/// Example Custom Style implementation, using pass-through technique from above.
-/// Developer may pass the `AnyView` from the `Configuration` directly through,
+/// Example Custom Style implementation, using pass-through technique from above.  
+/// Developer may pass the `AnyView` from the `Configuration` directly through, 
 /// contain it in a super-structure, or replace it entirely.
 /// Invoking the `*LayoutRouter` `ViewModifier` causes the standard body implementation
 /// to attempt to layout the supplied view.
-public struct AcmeTimelineItemStyle: TimelineItemStyle {
+public struct AcmeHeaderChartStyle: HeaderChartStyle {
     
     @ViewBuilder
     public func makeBody(configuration: Configuration) -> some View {
-        TimelineItem  {
+        HeaderChart  {
             VStack {
                 configuration.title
                 AcmeTitleView()
             }
-        } timestamp: {
+        } subtitle: {
             VStack {
-                configuration.timestamp
-                AcmeTimestampView()
+                configuration.subtitle
+                AcmeSubtitleView()
             }
-        } status: {
+        } trend: {
             VStack {
-                configuration.status
-                AcmeStatusView()
+                configuration.trend
+                AcmeTrendView()
+            }
+        } kpi: {
+            VStack {
+                configuration.kpi
+                AcmeKpiView()
             }
         }
         .modifier(FioriKeyValueItemSizeClassModifier())

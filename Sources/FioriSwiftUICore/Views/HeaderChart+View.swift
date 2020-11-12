@@ -1,8 +1,30 @@
 import SwiftUI
 
-// TODO: Extend HeaderChart to implement LayoutRouter, Layout, and Style in separate file
-// Place at FioriSwiftUICore/Views/HeaderChart+StyleImpl.swift
+extension Fiori {
+    enum HeaderChart {
+        typealias Title = EmptyModifier
+        typealias Subtitle = EmptyModifier
+        typealias Trend = EmptyModifier
+        typealias Kpi = EmptyModifier
 
+        // TODO: - substitute type-specific ViewModifier for EmptyModifier
+        /*
+            // replace `typealias Subtitle = EmptyModifier` with:
+
+            struct Subtitle: ViewModifier {
+                func body(content: Content) -> some View {
+                    content
+                        .font(.body)
+                        .foregroundColor(.preferredColor(.primary3))
+                }
+            }
+        */
+        static let title = Title()
+        static let subtitle = Subtitle()
+        static let trend = Trend()
+        static let kpi = Kpi()
+    }
+}
 
 // MARK - Uncomment if View has consistent layout, regardless of context, e.g. `horizontalSizeClass`, etc.
 
