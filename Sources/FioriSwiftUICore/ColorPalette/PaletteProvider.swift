@@ -1,10 +1,3 @@
-//
-//  PaletteProvider.swift
-//  FioriSwiftUICore
-//
-//  Created by Guo, Justin on 6/14/20.
-//
-
 import Foundation
 
 /// Protocol defining available color palette provider.

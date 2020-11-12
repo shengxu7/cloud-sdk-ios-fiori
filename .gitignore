@@ -79,5 +79,5 @@ FioriSwiftUI.xcodeproj
 /Apps/Examples/cloud-sdk-ios-fiori-snapshot-references
 /Apps/Examples/cloud-sdk-ios-fiori-snapshot-references/*
 
-# Protect SAP IP from early release
-Sources/Floorplan/**
+# Brewfile lock
+Brewfile.lock.json

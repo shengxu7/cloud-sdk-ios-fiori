@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B1A39BF2522FCC8007919A5 /* StyleCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1A39BE2522FCC8007919A5 /* StyleCache.swift */; };
 		8A3C4E0424EB4A7B0084451B /* DataRequestTestCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3C4E0324EB4A7B0084451B /* DataRequestTestCases.swift */; };
 		8A55795724C1286E0098003A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A55795624C1286E0098003A /* AppDelegate.swift */; };
 		8A55795924C1286E0098003A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A55795824C1286E0098003A /* SceneDelegate.swift */; };
@@ -106,13 +105,6 @@
 		8AF60E2924D34553003889A8 /* StockChartSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF60E1B24D34553003889A8 /* StockChartSnapshotTests.swift */; };
 		8AF60E2A24D34553003889A8 /* HarveyBallSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF60E1C24D34553003889A8 /* HarveyBallSnapshotTests.swift */; };
 		8AF60E3324D34CF2003889A8 /* TimelineCardSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF60E3224D34CF2003889A8 /* TimelineCardSnapshotTests.swift */; };
-		F62A2A9624F638BF00E2197E /* ObjectItemViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62A2A9524F638BF00E2197E /* ObjectItemViewTests.swift */; };
-		F641B7B524FD453100B8C34B /* FioriSwiftUI in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 8A4A31B824E3564F00B63AF0 /* FioriSwiftUI */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		F66C6EA82502E7E5007BD35A /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66C6EA72502E7E5007BD35A /* Person.swift */; };
-		F66C6EAA2502E995007BD35A /* TripPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66C6EA92502E995007BD35A /* TripPin.swift */; };
-		F678372A25081D21007DF919 /* ProfileDetailFloorplan.swift in Sources */ = {isa = PBXBuildFile; fileRef = F678372925081D21007DF919 /* ProfileDetailFloorplan.swift */; };
-		F678372C25084BCD007DF919 /* PlanItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F678372B25084BCD007DF919 /* PlanItem.swift */; };
-		F6E269762527D292002934C6 /* StyleCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E269752527D292002934C6 /* StyleCache.swift */; };
 		B8355ED525225A52001AB341 /* AreaChartSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8355ED425225A52001AB341 /* AreaChartSnapshotTests.swift */; };
 		B8355ED725227D1B001AB341 /* StackedColumnChartSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8355ED625227D1B001AB341 /* StackedColumnChartSnapshotTests.swift */; };
 		B8355ED925227E7E001AB341 /* BarChartSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8355ED825227E7E001AB341 /* BarChartSnapshotTests.swift */; };
@@ -149,7 +141,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F641B7B524FD453100B8C34B /* FioriSwiftUI in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -157,7 +148,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1B1A39BE2522FCC8007919A5 /* StyleCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleCache.swift; sourceTree = "<group>"; };
 		8A1E99AD24D59C8000ED8A39 /* cloud-sdk-ios-fiori */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "cloud-sdk-ios-fiori"; path = ../..; sourceTree = "<group>"; };
 		8A3C4E0324EB4A7B0084451B /* DataRequestTestCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequestTestCases.swift; sourceTree = "<group>"; };
 		8A55795324C1286E0098003A /* Examples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Examples.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -261,15 +251,6 @@
 		8AF60E1B24D34553003889A8 /* StockChartSnapshotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockChartSnapshotTests.swift; sourceTree = "<group>"; };
 		8AF60E1C24D34553003889A8 /* HarveyBallSnapshotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HarveyBallSnapshotTests.swift; sourceTree = "<group>"; };
 		8AF60E3224D34CF2003889A8 /* TimelineCardSnapshotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineCardSnapshotTests.swift; sourceTree = "<group>"; };
-		F62A2A9524F638BF00E2197E /* ObjectItemViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectItemViewTests.swift; sourceTree = "<group>"; };
-		F66C6EA72502E7E5007BD35A /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
-		F66C6EA92502E995007BD35A /* TripPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripPin.swift; sourceTree = "<group>"; };
-		F66C6EAB2502EAB2007BD35A /* SAPCommon.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPCommon.xcframework; path = "../../../Release-xcframework/SAPCommon.xcframework"; sourceTree = "<group>"; };
-		F66C6EAC2502EAB3007BD35A /* SAPFoundation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPFoundation.xcframework; path = "../../../Release-xcframework/SAPFoundation.xcframework"; sourceTree = "<group>"; };
-		F66C6EAD2502EAB3007BD35A /* SAPOData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPOData.xcframework; path = "../../../Release-xcframework/SAPOData.xcframework"; sourceTree = "<group>"; };
-		F678372925081D21007DF919 /* ProfileDetailFloorplan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailFloorplan.swift; sourceTree = "<group>"; };
-		F678372B25084BCD007DF919 /* PlanItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanItem.swift; sourceTree = "<group>"; };
-		F6E269752527D292002934C6 /* StyleCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleCache.swift; sourceTree = "<group>"; };
 		B8355ED425225A52001AB341 /* AreaChartSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaChartSnapshotTests.swift; sourceTree = "<group>"; };
 		B8355ED625227D1B001AB341 /* StackedColumnChartSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackedColumnChartSnapshotTests.swift; sourceTree = "<group>"; };
 		B8355ED825227E7E001AB341 /* BarChartSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartSnapshotTests.swift; sourceTree = "<group>"; };
@@ -507,12 +488,8 @@
 		8A5579C824C1293C0098003A /* FioriSwiftUICore */ = {
 			isa = PBXGroup;
 			children = (
-				1B1A39BE2522FCC8007919A5 /* StyleCache.swift */,
-				F66C6EA62502E7D4007BD35A /* TripPinSampleData */,
 				8A557A2124C12C9B0098003A /* CoreContentView.swift */,
 				8A5579C924C1293C0098003A /* SegmentedControl */,
-				F62A2A9524F638BF00E2197E /* ObjectItemViewTests.swift */,
-				F678372925081D21007DF919 /* ProfileDetailFloorplan.swift */,
 			);
 			path = FioriSwiftUICore;
 			sourceTree = "<group>";
@@ -528,9 +505,6 @@
 		8A557A1224C129900098003A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F66C6EAB2502EAB2007BD35A /* SAPCommon.xcframework */,
-				F66C6EAC2502EAB3007BD35A /* SAPFoundation.xcframework */,
-				F66C6EAD2502EAB3007BD35A /* SAPOData.xcframework */,
 				8A1E99AD24D59C8000ED8A39 /* cloud-sdk-ios-fiori */,
 			);
 			name = Frameworks;
@@ -581,16 +555,6 @@
 				8A8B9BDB24D3DADA0096000F /* ListCardSnapshotTests.swift */,
 			);
 			path = FioriIntegrationCards;
-			sourceTree = "<group>";
-		};
-		F66C6EA62502E7D4007BD35A /* TripPinSampleData */ = {
-			isa = PBXGroup;
-			children = (
-				F66C6EA92502E995007BD35A /* TripPin.swift */,
-				F66C6EA72502E7E5007BD35A /* Person.swift */,
-				F678372B25084BCD007DF919 /* PlanItem.swift */,
-			);
-			path = TripPinSampleData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -763,7 +727,6 @@
 				8A557A2024C12C940098003A /* IntegrationCardsContentView.swift in Sources */,
 				8A5579CC24C1293C0098003A /* SettingsColorForCategory.swift in Sources */,
 				8A557A1A24C12C820098003A /* ChartsContentView.swift in Sources */,
-				F66C6EA82502E7E5007BD35A /* Person.swift in Sources */,
 				8A5579CE24C1293C0098003A /* SettingColor.swift in Sources */,
 				8A5579D124C1293C0098003A /* Settings.swift in Sources */,
 				8A5579EF24C1293C0098003A /* TestCases.swift in Sources */,
@@ -771,16 +734,11 @@
 				8A5579CF24C1293C0098003A /* SettingsAxis.swift in Sources */,
 				8A5579D924C1293C0098003A /* SettingsSelection.swift in Sources */,
 				8A557A1124C1293C0098003A /* SegmentedControl+Chart.swift in Sources */,
-				1B1A39BF2522FCC8007919A5 /* StyleCache.swift in Sources */,
-				F678372A25081D21007DF919 /* ProfileDetailFloorplan.swift in Sources */,
 				8A5579D824C1293C0098003A /* SettingsIndexSet.swift in Sources */,
-				F66C6EAA2502E995007BD35A /* TripPin.swift in Sources */,
 				8A55795924C1286E0098003A /* SceneDelegate.swift in Sources */,
 				8A55795B24C1286E0098003A /* ContentView.swift in Sources */,
 				8A5579D724C1293C0098003A /* SettingsCategoryAxis.swift in Sources */,
-				F62A2A9624F638BF00E2197E /* ObjectItemViewTests.swift in Sources */,
 				8A5579E624C1293C0098003A /* TestBundles.swift in Sources */,
-				F678372C25084BCD007DF919 /* PlanItem.swift in Sources */,
 				8A5579D324C1293C0098003A /* SettingsPoint.swift in Sources */,
 				8A5579D424C1293C0098003A /* SettingsBaseline.swift in Sources */,
 				8A5579D524C1293C0098003A /* SettingsSeries.swift in Sources */,
@@ -961,19 +919,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Examples/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Examples/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sap.cloud-sdk-ios-fiori.Examples";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -983,19 +938,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Examples/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Examples/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sap.cloud-sdk-ios-fiori.Examples";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
