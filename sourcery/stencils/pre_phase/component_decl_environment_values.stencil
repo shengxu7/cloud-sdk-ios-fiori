@@ -49,16 +49,16 @@ public extension View {
         self.environment(\.{{variable.name}}Modifier, AnyViewModifier(transform))
     }
 
-    func {{variable.name}}StyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.{{variable.name}}StyleClassPath([path], isAppending: isAppending)
+    func {{variable.name}}StyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.{{variable.name}}StyleClass([`class`], isAppending: isAppending)
     }
 
-    func {{variable.name}}StyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func {{variable.name}}StyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.{{variable.name}}Modifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }

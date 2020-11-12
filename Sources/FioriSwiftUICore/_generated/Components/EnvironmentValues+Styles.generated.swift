@@ -163,6 +163,7 @@ extension EnvironmentValues {
         get { return self[SeriesTitlesModifierKey.self] }
         set { self[SeriesTitlesModifierKey.self] = newValue }
     }
+
     public var keyStyle: TextStyle {
         get { return self[KeyStyleKey.self] }
         set { self[KeyStyleKey.self] = newValue }
@@ -172,6 +173,7 @@ extension EnvironmentValues {
         get { return self[KeyModifierKey.self] }
         set { self[KeyModifierKey.self] = newValue }
     }
+
     public var valueStyle: TextStyle {
         get { return self[ValueStyleKey.self] }
         set { self[ValueStyleKey.self] = newValue }
@@ -300,16 +302,16 @@ public extension View {
         self.environment(\.titleModifier, AnyViewModifier(transform))
     }
 
-    func titleStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.titleStyleClassPath([path], isAppending: isAppending)
+    func titleStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.titleStyleClass([`class`], isAppending: isAppending)
     }
 
-    func titleStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func titleStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.titleModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -332,16 +334,16 @@ public extension View {
         self.environment(\.subtitleModifier, AnyViewModifier(transform))
     }
 
-    func subtitleStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.subtitleStyleClassPath([path], isAppending: isAppending)
+    func subtitleStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.subtitleStyleClass([`class`], isAppending: isAppending)
     }
 
-    func subtitleStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func subtitleStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.subtitleModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -364,16 +366,16 @@ public extension View {
         self.environment(\.footnoteModifier, AnyViewModifier(transform))
     }
 
-    func footnoteStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.footnoteStyleClassPath([path], isAppending: isAppending)
+    func footnoteStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.footnoteStyleClass([`class`], isAppending: isAppending)
     }
 
-    func footnoteStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func footnoteStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.footnoteModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -396,16 +398,16 @@ public extension View {
         self.environment(\.descriptionTextModifier, AnyViewModifier(transform))
     }
 
-    func descriptionTextStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.descriptionTextStyleClassPath([path], isAppending: isAppending)
+    func descriptionTextStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.descriptionTextStyleClass([`class`], isAppending: isAppending)
     }
 
-    func descriptionTextStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func descriptionTextStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.descriptionTextModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -428,16 +430,16 @@ public extension View {
         self.environment(\.detailImageModifier, AnyViewModifier(transform))
     }
 
-    func detailImageStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.detailImageStyleClassPath([path], isAppending: isAppending)
+    func detailImageStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.detailImageStyleClass([`class`], isAppending: isAppending)
     }
 
-    func detailImageStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func detailImageStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.detailImageModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -460,16 +462,16 @@ public extension View {
         self.environment(\.attributeModifier, AnyViewModifier(transform))
     }
 
-    func attributeStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.attributeStyleClassPath([path], isAppending: isAppending)
+    func attributeStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.attributeStyleClass([`class`], isAppending: isAppending)
     }
 
-    func attributeStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func attributeStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.attributeModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -492,16 +494,16 @@ public extension View {
         self.environment(\.secondaryAttributeModifier, AnyViewModifier(transform))
     }
 
-    func secondaryAttributeStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.secondaryAttributeStyleClassPath([path], isAppending: isAppending)
+    func secondaryAttributeStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.secondaryAttributeStyleClass([`class`], isAppending: isAppending)
     }
 
-    func secondaryAttributeStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func secondaryAttributeStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.secondaryAttributeModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -524,16 +526,16 @@ public extension View {
         self.environment(\.timestampModifier, AnyViewModifier(transform))
     }
 
-    func timestampStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.timestampStyleClassPath([path], isAppending: isAppending)
+    func timestampStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.timestampStyleClass([`class`], isAppending: isAppending)
     }
 
-    func timestampStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func timestampStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.timestampModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -556,16 +558,16 @@ public extension View {
         self.environment(\.secondaryTimestampModifier, AnyViewModifier(transform))
     }
 
-    func secondaryTimestampStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.secondaryTimestampStyleClassPath([path], isAppending: isAppending)
+    func secondaryTimestampStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.secondaryTimestampStyleClass([`class`], isAppending: isAppending)
     }
 
-    func secondaryTimestampStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func secondaryTimestampStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.secondaryTimestampModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -588,16 +590,16 @@ public extension View {
         self.environment(\.trendModifier, AnyViewModifier(transform))
     }
 
-    func trendStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.trendStyleClassPath([path], isAppending: isAppending)
+    func trendStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.trendStyleClass([`class`], isAppending: isAppending)
     }
 
-    func trendStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func trendStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.trendModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -620,16 +622,16 @@ public extension View {
         self.environment(\.statusModifier, AnyViewModifier(transform))
     }
 
-    func statusStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.statusStyleClassPath([path], isAppending: isAppending)
+    func statusStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.statusStyleClass([`class`], isAppending: isAppending)
     }
 
-    func statusStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func statusStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.statusModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -652,16 +654,16 @@ public extension View {
         self.environment(\.substatusModifier, AnyViewModifier(transform))
     }
 
-    func substatusStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.substatusStyleClassPath([path], isAppending: isAppending)
+    func substatusStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.substatusStyleClass([`class`], isAppending: isAppending)
     }
 
-    func substatusStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func substatusStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.substatusModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -684,16 +686,16 @@ public extension View {
         self.environment(\.bodyModifier, AnyViewModifier(transform))
     }
 
-    func bodyStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.bodyStyleClassPath([path], isAppending: isAppending)
+    func bodyStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.bodyStyleClass([`class`], isAppending: isAppending)
     }
 
-    func bodyStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func bodyStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.bodyModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -716,16 +718,16 @@ public extension View {
         self.environment(\.iconsModifier, AnyViewModifier(transform))
     }
 
-    func iconsStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.iconsStyleClassPath([path], isAppending: isAppending)
+    func iconsStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.iconsStyleClass([`class`], isAppending: isAppending)
     }
 
-    func iconsStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func iconsStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.iconsModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -748,16 +750,16 @@ public extension View {
         self.environment(\.actionTitleModifier, AnyViewModifier(transform))
     }
 
-    func actionTitleStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.actionTitleStyleClassPath([path], isAppending: isAppending)
+    func actionTitleStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.actionTitleStyleClass([`class`], isAppending: isAppending)
     }
 
-    func actionTitleStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func actionTitleStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.actionTitleModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -780,24 +782,48 @@ public extension View {
         self.environment(\.seriesTitlesModifier, AnyViewModifier(transform))
     }
 
-    func keyStyle(_ style: TextStyle) -> some View {
-        return transformEnvironment(\.keyStyle) { $0 = $0.merging(style) }
+    func seriesTitlesStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.seriesTitlesStyleClass([`class`], isAppending: isAppending)
     }
 
+    func seriesTitlesStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
+        return transformEnvironment(\.seriesTitlesModifier) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
+                case .success(let resolved):
+                    if isAppending {
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
+                    } else {
+                        $0 = resolved
+                    }
+                case .failure(_):  break
+            }
+        }
+    }
+
+    @ViewBuilder
+    func keyStyle(_ style: TextStyle, isAppending: Bool = true) -> some View {
+        if isAppending {
+            transformEnvironment(\.keyStyle) { $0 = $0.merging(style) }
+        } else {
+            environment(\.keyStyle, style)
+        }
+    }
+
+    @ViewBuilder
     func keyModifier<V: View>(_ transform: @escaping (AnyViewModifier.Content) -> V) -> some View {
         self.environment(\.keyModifier, AnyViewModifier(transform))
     }
 
-    func valueStyle(_ style: TextStyle) -> some View {
-        return transformEnvironment(\.valueStyle) { $0 = $0.merging(style) }
+    func keyStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.keyStyleClass([`class`], isAppending: isAppending)
     }
 
-    func seriesTitlesStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
-        return transformEnvironment(\.seriesTitlesModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+    func keyStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
+        return transformEnvironment(\.keyModifier) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -820,16 +846,16 @@ public extension View {
         self.environment(\.valueModifier, AnyViewModifier(transform))
     }
 
-    func valueStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.valueStyleClassPath([path], isAppending: isAppending)
+    func valueStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.valueStyleClass([`class`], isAppending: isAppending)
     }
 
-    func valueStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func valueStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.valueModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -852,16 +878,16 @@ public extension View {
         self.environment(\.valuesModifier, AnyViewModifier(transform))
     }
 
-    func valuesStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.valuesStyleClassPath([path], isAppending: isAppending)
+    func valuesStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.valuesStyleClass([`class`], isAppending: isAppending)
     }
 
-    func valuesStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func valuesStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.valuesModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -884,16 +910,16 @@ public extension View {
         self.environment(\.valueAxisTitleModifier, AnyViewModifier(transform))
     }
 
-    func valueAxisTitleStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.valueAxisTitleStyleClassPath([path], isAppending: isAppending)
+    func valueAxisTitleStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.valueAxisTitleStyleClass([`class`], isAppending: isAppending)
     }
 
-    func valueAxisTitleStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func valueAxisTitleStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.valueAxisTitleModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -916,16 +942,16 @@ public extension View {
         self.environment(\.secondaryValuesAxisTitleModifier, AnyViewModifier(transform))
     }
 
-    func secondaryValuesAxisTitleStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.secondaryValuesAxisTitleStyleClassPath([path], isAppending: isAppending)
+    func secondaryValuesAxisTitleStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.secondaryValuesAxisTitleStyleClass([`class`], isAppending: isAppending)
     }
 
-    func secondaryValuesAxisTitleStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func secondaryValuesAxisTitleStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.secondaryValuesAxisTitleModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -948,16 +974,16 @@ public extension View {
         self.environment(\.categoryAxisTitleModifier, AnyViewModifier(transform))
     }
 
-    func categoryAxisTitleStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.categoryAxisTitleStyleClassPath([path], isAppending: isAppending)
+    func categoryAxisTitleStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.categoryAxisTitleStyleClass([`class`], isAppending: isAppending)
     }
 
-    func categoryAxisTitleStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func categoryAxisTitleStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.categoryAxisTitleModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -980,16 +1006,16 @@ public extension View {
         self.environment(\.emptyTextModifier, AnyViewModifier(transform))
     }
 
-    func emptyTextStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.emptyTextStyleClassPath([path], isAppending: isAppending)
+    func emptyTextStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.emptyTextStyleClass([`class`], isAppending: isAppending)
     }
 
-    func emptyTextStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func emptyTextStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.emptyTextModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -1012,16 +1038,16 @@ public extension View {
         self.environment(\.kpiModifier, AnyViewModifier(transform))
     }
 
-    func kpiStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.kpiStyleClassPath([path], isAppending: isAppending)
+    func kpiStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.kpiStyleClass([`class`], isAppending: isAppending)
     }
 
-    func kpiStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func kpiStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.kpiModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -1044,16 +1070,16 @@ public extension View {
         self.environment(\.placeholderModifier, AnyViewModifier(transform))
     }
 
-    func placeholderStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.placeholderStyleClassPath([path], isAppending: isAppending)
+    func placeholderStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.placeholderStyleClass([`class`], isAppending: isAppending)
     }
 
-    func placeholderStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func placeholderStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.placeholderModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -1076,16 +1102,16 @@ public extension View {
         self.environment(\.tagsModifier, AnyViewModifier(transform))
     }
 
-    func tagsStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.tagsStyleClassPath([path], isAppending: isAppending)
+    func tagsStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.tagsStyleClass([`class`], isAppending: isAppending)
     }
 
-    func tagsStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func tagsStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.tagsModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -1108,16 +1134,16 @@ public extension View {
         self.environment(\.lowerBoundTitleModifier, AnyViewModifier(transform))
     }
 
-    func lowerBoundTitleStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.lowerBoundTitleStyleClassPath([path], isAppending: isAppending)
+    func lowerBoundTitleStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.lowerBoundTitleStyleClass([`class`], isAppending: isAppending)
     }
 
-    func lowerBoundTitleStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func lowerBoundTitleStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.lowerBoundTitleModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
@@ -1140,16 +1166,16 @@ public extension View {
         self.environment(\.upperBoundTitleModifier, AnyViewModifier(transform))
     }
 
-    func upperBoundTitleStyleClassPath(_ path: String, isAppending: Bool = true) -> some View {
-        self.upperBoundTitleStyleClassPath([path], isAppending: isAppending)
+    func upperBoundTitleStyleClass(_ class: String, isAppending: Bool = true) -> some View {
+        self.upperBoundTitleStyleClass([`class`], isAppending: isAppending)
     }
 
-    func upperBoundTitleStyleClassPath(_ path: [String], isAppending: Bool = true) -> some View {
+    func upperBoundTitleStyleClass(_ classPath: [String], isAppending: Bool = true) -> some View {
         return transformEnvironment(\.upperBoundTitleModifier) {
-            switch StyleCache.shared.resolveModifier(for: path) {
+            switch StyleCache.shared.resolveModifier(for: classPath) {
                 case .success(let resolved):
                     if isAppending {
-                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(copy.concat(resolved)) })
+                        let copy = $0; $0 = AnyViewModifier({ content in content.modifier(resolved.concat(copy)) })
                     } else {
                         $0 = resolved
                     }
