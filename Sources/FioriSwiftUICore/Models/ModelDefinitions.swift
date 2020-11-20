@@ -19,30 +19,37 @@ public protocol ObjectHeaderModel: TitleComponent, SubtitleComponent, FootnoteCo
 // sourcery: generated_component
 public protocol HeaderChartModel: TitleComponent, SubtitleComponent, TrendComponent, KpiComponent {}
 
-// sourcery: add_view_builder_params = "actionItems: ActionItems"
+// sourcery: add_view_builder_params = "actionItems"
 // sourcery: add_env_props = "horizontalSizeClass"
 // sourcery: generated_component
 public protocol ContactItemModel: TitleComponent, SubtitleComponent, FootnoteComponent, DescriptionTextComponent, DetailImageComponent {}
 
 // sourcery: generated_component
-//public protocol TimelineExtendedItemModel: TitleComponent, SubtitleComponent, FootnoteComponent, AttributeComponent, SecondaryAttributeComponent, TimestampComponent, SecondaryTimestampComponent, StatusComponent, SubstatusComponent {}
+public protocol TimelineItemModel: TitleComponent, SubtitleComponent, FootnoteComponent, AttributeComponent, SecondaryAttributeComponent, TimestampComponent, SecondaryTimestampComponent, StatusComponent, SubstatusComponent {}
 
 // sourcery: generated_component
 public protocol ChartFloorplanModel: TitleComponent, SubtitleComponent, StatusComponent, ValueAxisTitleComponent, SeriesTitlesComponent, CategoryAxisTitleComponent {}
 
-// sourcery: add_view_builder_params = "actionItems: ActionItems"
-// sourcery: add_env_props = "horizontalSizeClass"
+// sourcery: add_view_builder_params = "actionItems"
+// sourcery: add_env_props = ["horizontalSizeClass"]
 // sourcery: generated_component
 public protocol ProfileHeaderModel: TitleComponent, SubtitleComponent, FootnoteComponent, DescriptionTextComponent, DetailImageComponent {}
 
 // sourcery: generated_component
-public protocol TimelineItemModel: TitleComponent, TimestampComponent, StatusComponent {}
+public protocol TimelineGridItemModel: TitleComponent, TimestampComponent, StatusComponent {}
 
-// sourcery: add_view_builder_params = "actionItems: ActionItems"
+// sourcery: add_view_builder_params = "actionItems"
 // sourcery: generated_component
 public protocol CollectionItemModel: DetailImageComponent, TitleComponent, SubtitleComponent {}
 
-// sourcery: add_view_builder_params = "action: Action"
+// sourcery: add_view_builder_params = "action"
 // sourcery: add_env_props = "colorScheme"
 // sourcery: generated_component
 public protocol SectionHeaderModel: TitleComponent, AttributeComponent {}
+
+// sourcery: generated_component
+public protocol KPIModel: TitleComponent, IconComponent {}
+
+// sourcery: generated_component
+public protocol KPIAnnotatedModel: TitleComponent, SubtitleComponent, IconComponent {}
+

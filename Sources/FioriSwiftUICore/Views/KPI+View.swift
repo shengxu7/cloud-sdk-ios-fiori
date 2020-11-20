@@ -3,11 +3,9 @@ import SwiftUI
 // TODO: - Implement Fiori style definitions
 
 extension Fiori {
-    enum HeaderChart {
+    enum KPI {
         typealias Title = EmptyModifier
-        typealias Subtitle = EmptyModifier
-        typealias Trend = EmptyModifier
-        typealias Kpi = EmptyModifier
+        typealias Icon = EmptyModifier
 
         // TODO: - substitute type-specific ViewModifier for EmptyModifier
         /*
@@ -22,22 +20,14 @@ extension Fiori {
             }
         */
         static let title = Title()
-        static let subtitle = Subtitle()
-        static let trend = Trend()
-        static let kpi = Kpi()
+        static let icon = Icon()
     }
 }
 
-// TODO: - Implement HeaderChart View body
+// TODO: - Implement KPI View body
 
-extension HeaderChart: View {
+extension KPI: View {
     public var body: some View {
-        VStack {
-            title
-            subtitle
-            trend
-            kpi
-        }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+        preconditionFailure()
     }
 }

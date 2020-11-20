@@ -42,6 +42,9 @@ public protocol SubstatusComponent {
 public protocol BodyComponent {
     var body: String? { get }
 }
+public protocol IconComponent {
+    var icon: Image? { get }
+}
 public protocol IconsComponent {
     var icons: [String] { get }
 }

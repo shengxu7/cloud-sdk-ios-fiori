@@ -3,11 +3,13 @@ import SwiftUI
 // TODO: - Implement Fiori style definitions
 
 extension Fiori {
-    enum HeaderChart {
+    enum ChartFloorplan {
         typealias Title = EmptyModifier
         typealias Subtitle = EmptyModifier
-        typealias Trend = EmptyModifier
-        typealias Kpi = EmptyModifier
+        typealias Status = EmptyModifier
+        typealias ValueAxisTitle = EmptyModifier
+        typealias SeriesTitles = EmptyModifier
+        typealias CategoryAxisTitle = EmptyModifier
 
         // TODO: - substitute type-specific ViewModifier for EmptyModifier
         /*
@@ -23,21 +25,17 @@ extension Fiori {
         */
         static let title = Title()
         static let subtitle = Subtitle()
-        static let trend = Trend()
-        static let kpi = Kpi()
+        static let status = Status()
+        static let valueAxisTitle = ValueAxisTitle()
+        static let seriesTitles = SeriesTitles()
+        static let categoryAxisTitle = CategoryAxisTitle()
     }
 }
 
-// TODO: - Implement HeaderChart View body
+// TODO: - Implement ChartFloorplan View body
 
-extension HeaderChart: View {
+extension ChartFloorplan: View {
     public var body: some View {
-        VStack {
-            title
-            subtitle
-            trend
-            kpi
-        }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+        EmptyView()
     }
 }

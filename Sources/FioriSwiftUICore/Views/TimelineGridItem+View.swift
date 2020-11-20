@@ -1,13 +1,13 @@
 import SwiftUI
+import SwiftUI
 
 // TODO: - Implement Fiori style definitions
 
 extension Fiori {
-    enum HeaderChart {
+    enum TimelineGridItem {
         typealias Title = EmptyModifier
-        typealias Subtitle = EmptyModifier
-        typealias Trend = EmptyModifier
-        typealias Kpi = EmptyModifier
+        typealias Timestamp = EmptyModifier
+        typealias Status = EmptyModifier
 
         // TODO: - substitute type-specific ViewModifier for EmptyModifier
         /*
@@ -22,21 +22,23 @@ extension Fiori {
             }
         */
         static let title = Title()
-        static let subtitle = Subtitle()
-        static let trend = Trend()
-        static let kpi = Kpi()
+        static let timestamp = Timestamp()
+        static let status = Status()
     }
 }
 
-// TODO: - Implement HeaderChart View body
+// TODO: - Implement TimelineItem View body
 
-extension HeaderChart: View {
+extension TimelineGridItem: View {
     public var body: some View {
-        VStack {
+        VStack(spacing: 8) {
             title
-            subtitle
-            trend
-            kpi
+            HStack {
+                timestamp
+                Spacer()
+                status
+                    .multilineTextAlignment(.trailing)
+            }
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
     }

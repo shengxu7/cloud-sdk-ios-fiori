@@ -224,6 +224,23 @@ struct BodyStyleClassModifierKey: EnvironmentKey {
 }
 
 
+struct IconStyleKey: EnvironmentKey {
+    public static let defaultValue: ImageStyle = ImageStyle()
+}
+
+struct IconModifierKey: EnvironmentKey {
+    public static let defaultValue = AnyViewModifier { $0 }
+}
+
+struct IconStyleClassPathKey: EnvironmentKey {
+    public static let defaultValue: [String] = []
+}
+
+struct IconStyleClassModifierKey: EnvironmentKey {
+    public static let defaultValue = AnyViewModifier { $0 }
+}
+
+
 struct IconsStyleKey: EnvironmentKey {
     public static let defaultValue: TextStyle = TextStyle()
 }

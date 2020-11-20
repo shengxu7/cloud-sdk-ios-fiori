@@ -23,6 +23,7 @@ internal struct _Component: _ComponentGenerating {
     let status: String?
     let substatus: String?
     let body: String?
+    let icon: Image?
     let icons: [String]
     let actionTitle: String?
     let seriesTitles: [String]
