@@ -20,10 +20,10 @@ public struct KPI<Title: View, Icon: View> {
     }
 
     @ViewBuilder var title: some View {
-		_title().modifier(Fiori.KPI.title.concat(titleModifier))
+		_title().modifier(titleModifier.concat(Fiori.KPI.title))
 	}
 	@ViewBuilder var icon: some View {
-		_icon().modifier(Fiori.KPI.icon.concat(iconModifier))
+		_icon().modifier(iconModifier.concat(Fiori.KPI.icon))
 	}
 }
 
@@ -31,7 +31,7 @@ extension KPI where Title == Text,
 		Icon == _ConditionalContent<Image, EmptyView> {
     
     public init(model: KPIModel) {
-        self.init(title: model.title, icon: model.icon)
+        self.init(title: model.title_, icon: model.icon_)
     }
 
     public init(title: String, icon: Image? = nil) {

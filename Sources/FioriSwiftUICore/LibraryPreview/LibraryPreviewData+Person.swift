@@ -73,32 +73,32 @@ extension LibraryPreviewData.Person.Address {
 }
 
 extension LibraryPreviewData.Person: ContactItemModel {
-    public var footnote: String? {
+    public var footnote_: String? {
         Features.joined(separator: ", ")
     }
 }
 
 extension LibraryPreviewData.Person: TitleComponent {
-    public var title: String {
+    public var title_: String {
         return PersonNameComponentsFormatter().string(from: nameComponents)
     }
 }
 
 extension LibraryPreviewData.Person: SubtitleComponent {
-    public var subtitle: String? {
+    public var subtitle_: String? {
         return Emails.joined(separator: ", ")
     }
 }
 
 extension LibraryPreviewData.Person: DetailImageComponent {
-    public var detailImage: Image? {
+    public var detailImage_: Image? {
         guard let name = ProfilePic else { return nil }
         return Image(name)
     }
 }
 
 extension LibraryPreviewData.Person: DescriptionTextComponent {
-    public var descriptionText: String? {
+    public var descriptionText_: String? {
         return cnContact.postalAddresses.map({
             CNPostalAddressFormatter().string(from: $0.value)
         }).joined(separator: "\r")

@@ -20,10 +20,10 @@ public struct SectionHeader<Title: View, Attribute: View> {
     }
 
     @ViewBuilder var title: some View {
-		_title().modifier(Fiori.SectionHeader.title.concat(titleModifier))
+		_title().modifier(titleModifier.concat(Fiori.SectionHeader.title))
 	}
 	@ViewBuilder var attribute: some View {
-		_attribute().modifier(Fiori.SectionHeader.attribute.concat(attributeModifier))
+		_attribute().modifier(attributeModifier.concat(Fiori.SectionHeader.attribute))
 	}
 }
 
@@ -31,7 +31,7 @@ extension SectionHeader where Title == Text,
 		Attribute == _ConditionalContent<Text, EmptyView> {
     
     public init(model: SectionHeaderModel) {
-        self.init(title: model.title, attribute: model.attribute)
+        self.init(title: model.title_, attribute: model.attribute_)
     }
 
     public init(title: String, attribute: String? = nil) {

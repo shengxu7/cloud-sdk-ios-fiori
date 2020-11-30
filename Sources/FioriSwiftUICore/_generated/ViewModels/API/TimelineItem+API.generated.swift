@@ -48,31 +48,31 @@ public struct TimelineItem<Title: View, Subtitle: View, Footnote: View, Attribut
     }
 
     @ViewBuilder var title: some View {
-		_title().modifier(Fiori.TimelineItem.title.concat(titleModifier))
+		_title().modifier(titleModifier.concat(Fiori.TimelineItem.title))
 	}
 	@ViewBuilder var subtitle: some View {
-		_subtitle().modifier(Fiori.TimelineItem.subtitle.concat(subtitleModifier))
+		_subtitle().modifier(subtitleModifier.concat(Fiori.TimelineItem.subtitle))
 	}
 	@ViewBuilder var footnote: some View {
-		_footnote().modifier(Fiori.TimelineItem.footnote.concat(footnoteModifier))
+		_footnote().modifier(footnoteModifier.concat(Fiori.TimelineItem.footnote))
 	}
 	@ViewBuilder var attribute: some View {
-		_attribute().modifier(Fiori.TimelineItem.attribute.concat(attributeModifier))
+		_attribute().modifier(attributeModifier.concat(Fiori.TimelineItem.attribute))
 	}
 	@ViewBuilder var secondaryAttribute: some View {
-		_secondaryAttribute().modifier(Fiori.TimelineItem.secondaryAttribute.concat(secondaryAttributeModifier))
+		_secondaryAttribute().modifier(secondaryAttributeModifier.concat(Fiori.TimelineItem.secondaryAttribute))
 	}
 	@ViewBuilder var timestamp: some View {
-		_timestamp().modifier(Fiori.TimelineItem.timestamp.concat(timestampModifier))
+		_timestamp().modifier(timestampModifier.concat(Fiori.TimelineItem.timestamp))
 	}
 	@ViewBuilder var secondaryTimestamp: some View {
-		_secondaryTimestamp().modifier(Fiori.TimelineItem.secondaryTimestamp.concat(secondaryTimestampModifier))
+		_secondaryTimestamp().modifier(secondaryTimestampModifier.concat(Fiori.TimelineItem.secondaryTimestamp))
 	}
 	@ViewBuilder var status: some View {
-		_status().modifier(Fiori.TimelineItem.status.concat(statusModifier))
+		_status().modifier(statusModifier.concat(Fiori.TimelineItem.status))
 	}
 	@ViewBuilder var substatus: some View {
-		_substatus().modifier(Fiori.TimelineItem.substatus.concat(substatusModifier))
+		_substatus().modifier(substatusModifier.concat(Fiori.TimelineItem.substatus))
 	}
 }
 
@@ -87,7 +87,7 @@ extension TimelineItem where Title == Text,
 		Substatus == _ConditionalContent<Text, EmptyView> {
     
     public init(model: TimelineItemModel) {
-        self.init(title: model.title, subtitle: model.subtitle, footnote: model.footnote, attribute: model.attribute, secondaryAttribute: model.secondaryAttribute, timestamp: model.timestamp, secondaryTimestamp: model.secondaryTimestamp, status: model.status, substatus: model.substatus)
+        self.init(title: model.title_, subtitle: model.subtitle_, footnote: model.footnote_, attribute: model.attribute_, secondaryAttribute: model.secondaryAttribute_, timestamp: model.timestamp_, secondaryTimestamp: model.secondaryTimestamp_, status: model.status_, substatus: model.substatus_)
     }
 
     public init(title: String, subtitle: String? = nil, footnote: String? = nil, attribute: String? = nil, secondaryAttribute: String? = nil, timestamp: String? = nil, secondaryTimestamp: String? = nil, status: String? = nil, substatus: String? = nil) {

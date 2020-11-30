@@ -32,19 +32,19 @@ public struct ProfileHeader<Title: View, Subtitle: View, Footnote: View, Descrip
     }
 
     @ViewBuilder var title: some View {
-		_title().modifier(Fiori.ProfileHeader.title.concat(titleModifier))
+		_title().modifier(titleModifier.concat(Fiori.ProfileHeader.title))
 	}
 	@ViewBuilder var subtitle: some View {
-		_subtitle().modifier(Fiori.ProfileHeader.subtitle.concat(subtitleModifier))
+		_subtitle().modifier(subtitleModifier.concat(Fiori.ProfileHeader.subtitle))
 	}
 	@ViewBuilder var footnote: some View {
-		_footnote().modifier(Fiori.ProfileHeader.footnote.concat(footnoteModifier))
+		_footnote().modifier(footnoteModifier.concat(Fiori.ProfileHeader.footnote))
 	}
 	@ViewBuilder var descriptionText: some View {
-		_descriptionText().modifier(Fiori.ProfileHeader.descriptionText.concat(descriptionTextModifier))
+		_descriptionText().modifier(descriptionTextModifier.concat(Fiori.ProfileHeader.descriptionText))
 	}
 	@ViewBuilder var detailImage: some View {
-		_detailImage().modifier(Fiori.ProfileHeader.detailImage.concat(detailImageModifier))
+		_detailImage().modifier(detailImageModifier.concat(Fiori.ProfileHeader.detailImage))
 	}
 }
 
@@ -55,7 +55,7 @@ extension ProfileHeader where Title == Text,
 		DetailImage == _ConditionalContent<Image, EmptyView> {
     
     public init(model: ProfileHeaderModel) {
-        self.init(title: model.title, subtitle: model.subtitle, footnote: model.footnote, descriptionText: model.descriptionText, detailImage: model.detailImage)
+        self.init(title: model.title_, subtitle: model.subtitle_, footnote: model.footnote_, descriptionText: model.descriptionText_, detailImage: model.detailImage_)
     }
 
     public init(title: String, subtitle: String? = nil, footnote: String? = nil, descriptionText: String? = nil, detailImage: Image? = nil) {

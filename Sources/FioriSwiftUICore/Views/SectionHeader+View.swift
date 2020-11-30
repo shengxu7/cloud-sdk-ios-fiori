@@ -44,6 +44,5 @@ extension SectionHeader: View {
 //                action
             }
         }
-        .padding()
     }
 }

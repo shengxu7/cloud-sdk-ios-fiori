@@ -24,13 +24,13 @@ public struct CollectionItem<DetailImage: View, Title: View, Subtitle: View> {
     }
 
     @ViewBuilder var detailImage: some View {
-		_detailImage().modifier(Fiori.CollectionItem.detailImage.concat(detailImageModifier))
+		_detailImage().modifier(detailImageModifier.concat(Fiori.CollectionItem.detailImage))
 	}
 	@ViewBuilder var title: some View {
-		_title().modifier(Fiori.CollectionItem.title.concat(titleModifier))
+		_title().modifier(titleModifier.concat(Fiori.CollectionItem.title))
 	}
 	@ViewBuilder var subtitle: some View {
-		_subtitle().modifier(Fiori.CollectionItem.subtitle.concat(subtitleModifier))
+		_subtitle().modifier(subtitleModifier.concat(Fiori.CollectionItem.subtitle))
 	}
 }
 
@@ -39,7 +39,7 @@ extension CollectionItem where DetailImage == _ConditionalContent<Image, EmptyVi
 		Subtitle == _ConditionalContent<Text, EmptyView> {
     
     public init(model: CollectionItemModel) {
-        self.init(detailImage: model.detailImage, title: model.title, subtitle: model.subtitle)
+        self.init(detailImage: model.detailImage_, title: model.title_, subtitle: model.subtitle_)
     }
 
     public init(detailImage: Image? = nil, title: String, subtitle: String? = nil) {

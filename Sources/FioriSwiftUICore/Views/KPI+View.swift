@@ -28,6 +28,9 @@ extension Fiori {
 
 extension KPI: View {
     public var body: some View {
-        preconditionFailure()
+        HStack(alignment: .firstTextBaseline, spacing: 3) {
+            icon
+            title
+        }
     }
 }

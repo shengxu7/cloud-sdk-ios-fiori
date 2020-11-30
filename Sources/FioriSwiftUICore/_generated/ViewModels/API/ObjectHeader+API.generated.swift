@@ -40,25 +40,25 @@ public struct ObjectHeader<Title: View, Subtitle: View, Footnote: View, Descript
     }
 
     @ViewBuilder var title: some View {
-		_title().modifier(Fiori.ObjectHeader.title.concat(titleModifier))
+		_title().modifier(titleModifier.concat(Fiori.ObjectHeader.title))
 	}
 	@ViewBuilder var subtitle: some View {
-		_subtitle().modifier(Fiori.ObjectHeader.subtitle.concat(subtitleModifier))
+		_subtitle().modifier(subtitleModifier.concat(Fiori.ObjectHeader.subtitle))
 	}
 	@ViewBuilder var footnote: some View {
-		_footnote().modifier(Fiori.ObjectHeader.footnote.concat(footnoteModifier))
+		_footnote().modifier(footnoteModifier.concat(Fiori.ObjectHeader.footnote))
 	}
 	@ViewBuilder var descriptionText: some View {
-		_descriptionText().modifier(Fiori.ObjectHeader.descriptionText.concat(descriptionTextModifier))
+		_descriptionText().modifier(descriptionTextModifier.concat(Fiori.ObjectHeader.descriptionText))
 	}
 	@ViewBuilder var status: some View {
-		_status().modifier(Fiori.ObjectHeader.status.concat(statusModifier))
+		_status().modifier(statusModifier.concat(Fiori.ObjectHeader.status))
 	}
 	@ViewBuilder var substatus: some View {
-		_substatus().modifier(Fiori.ObjectHeader.substatus.concat(substatusModifier))
+		_substatus().modifier(substatusModifier.concat(Fiori.ObjectHeader.substatus))
 	}
 	@ViewBuilder var detailImage: some View {
-		_detailImage().modifier(Fiori.ObjectHeader.detailImage.concat(detailImageModifier))
+		_detailImage().modifier(detailImageModifier.concat(Fiori.ObjectHeader.detailImage))
 	}
 }
 
@@ -71,7 +71,7 @@ extension ObjectHeader where Title == Text,
 		DetailImage == _ConditionalContent<Image, EmptyView> {
     
     public init(model: ObjectHeaderModel) {
-        self.init(title: model.title, subtitle: model.subtitle, footnote: model.footnote, descriptionText: model.descriptionText, status: model.status, substatus: model.substatus, detailImage: model.detailImage)
+        self.init(title: model.title_, subtitle: model.subtitle_, footnote: model.footnote_, descriptionText: model.descriptionText_, status: model.status_, substatus: model.substatus_, detailImage: model.detailImage_)
     }
 
     public init(title: String, subtitle: String? = nil, footnote: String? = nil, descriptionText: String? = nil, status: String? = nil, substatus: String? = nil, detailImage: Image? = nil) {

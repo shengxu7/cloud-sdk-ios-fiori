@@ -3,90 +3,119 @@
 
 import SwiftUI
 
+
 public protocol TitleComponent {
-    var title: String { get }
+    var title_: String { get }
 }
+
 public protocol SubtitleComponent {
-    var subtitle: String? { get }
+    var subtitle_: String? { get }
 }
+
 public protocol FootnoteComponent {
-    var footnote: String? { get }
+    var footnote_: String? { get }
 }
+
 public protocol DescriptionTextComponent {
-    var descriptionText: String? { get }
+    var descriptionText_: String? { get }
 }
+
 public protocol DetailImageComponent {
-    var detailImage: Image? { get }
+    var detailImage_: Image? { get }
 }
+
 public protocol AttributeComponent {
-    var attribute: String? { get }
+    var attribute_: String? { get }
 }
+
 public protocol SecondaryAttributeComponent {
-    var secondaryAttribute: String? { get }
+    var secondaryAttribute_: String? { get }
 }
+
 public protocol TimestampComponent {
-    var timestamp: String? { get }
+    var timestamp_: String? { get }
 }
+
 public protocol SecondaryTimestampComponent {
-    var secondaryTimestamp: String? { get }
+    var secondaryTimestamp_: String? { get }
 }
+
 public protocol TrendComponent {
-    var trend: String? { get }
+    var trend_: String? { get }
 }
+
 public protocol StatusComponent {
-    var status: String? { get }
+    var status_: String? { get }
 }
+
 public protocol SubstatusComponent {
-    var substatus: String? { get }
+    var substatus_: String? { get }
 }
+
 public protocol BodyComponent {
-    var body: String? { get }
+    var body_: String? { get }
 }
+
 public protocol IconComponent {
-    var icon: Image? { get }
+    var icon_: Image? { get }
 }
+
 public protocol IconsComponent {
-    var icons: [String] { get }
+    var icons_: [String] { get }
 }
+
 public protocol ActionTitleComponent {
-    var actionTitle: String? { get }
+    var actionTitle_: String? { get }
 }
+
 public protocol SeriesTitlesComponent {
-    var seriesTitles: [String] { get }
+    var seriesTitles_: [String] { get }
 }
+
 public protocol KeyComponent {
-    var key: String { get }
+    var key_: String { get }
 }
+
 public protocol ValueComponent {
-    var value: String? { get }
+    var value_: String? { get }
 }
+
 public protocol ValuesComponent {
-    var values: [String] { get }
+    var values_: [String] { get }
 }
+
 public protocol ValueAxisTitleComponent {
-    var valueAxisTitle: String? { get }
+    var valueAxisTitle_: String? { get }
 }
+
 public protocol SecondaryValuesAxisTitleComponent {
-    var secondaryValuesAxisTitle: String? { get }
+    var secondaryValuesAxisTitle_: String? { get }
 }
+
 public protocol CategoryAxisTitleComponent {
-    var categoryAxisTitle: String? { get }
+    var categoryAxisTitle_: String? { get }
 }
+
 public protocol EmptyTextComponent {
-    var emptyText: String? { get }
+    var emptyText_: String? { get }
 }
+
 public protocol KpiComponent {
-    var kpi: String? { get }
+    var kpi_: String? { get }
 }
+
 public protocol PlaceholderComponent {
-    var placeholder: String? { get }
+    var placeholder_: String? { get }
 }
+
 public protocol TagsComponent {
-    var tags: [String] { get }
+    var tags_: [String] { get }
 }
+
 public protocol LowerBoundTitleComponent {
-    var lowerBoundTitle: String? { get }
+    var lowerBoundTitle_: String? { get }
 }
+
 public protocol UpperBoundTitleComponent {
-    var upperBoundTitle: String? { get }
+    var upperBoundTitle_: String? { get }
 }

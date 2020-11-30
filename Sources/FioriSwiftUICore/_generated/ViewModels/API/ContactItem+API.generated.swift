@@ -32,19 +32,19 @@ public struct ContactItem<Title: View, Subtitle: View, Footnote: View, Descripti
     }
 
     @ViewBuilder var title: some View {
-		_title().modifier(Fiori.ContactItem.title.concat(titleModifier))
+		_title().modifier(titleModifier.concat(Fiori.ContactItem.title))
 	}
 	@ViewBuilder var subtitle: some View {
-		_subtitle().modifier(Fiori.ContactItem.subtitle.concat(subtitleModifier))
+		_subtitle().modifier(subtitleModifier.concat(Fiori.ContactItem.subtitle))
 	}
 	@ViewBuilder var footnote: some View {
-		_footnote().modifier(Fiori.ContactItem.footnote.concat(footnoteModifier))
+		_footnote().modifier(footnoteModifier.concat(Fiori.ContactItem.footnote))
 	}
 	@ViewBuilder var descriptionText: some View {
-		_descriptionText().modifier(Fiori.ContactItem.descriptionText.concat(descriptionTextModifier))
+		_descriptionText().modifier(descriptionTextModifier.concat(Fiori.ContactItem.descriptionText))
 	}
 	@ViewBuilder var detailImage: some View {
-		_detailImage().modifier(Fiori.ContactItem.detailImage.concat(detailImageModifier))
+		_detailImage().modifier(detailImageModifier.concat(Fiori.ContactItem.detailImage))
 	}
 }
 
@@ -55,7 +55,7 @@ extension ContactItem where Title == Text,
 		DetailImage == _ConditionalContent<Image, EmptyView> {
     
     public init(model: ContactItemModel) {
-        self.init(title: model.title, subtitle: model.subtitle, footnote: model.footnote, descriptionText: model.descriptionText, detailImage: model.detailImage)
+        self.init(title: model.title_, subtitle: model.subtitle_, footnote: model.footnote_, descriptionText: model.descriptionText_, detailImage: model.detailImage_)
     }
 
     public init(title: String, subtitle: String? = nil, footnote: String? = nil, descriptionText: String? = nil, detailImage: Image? = nil) {

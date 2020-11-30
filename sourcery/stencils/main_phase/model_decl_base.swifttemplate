@@ -228,7 +228,7 @@ extension Type {
     }
 
     func componentResolvedViewBuilderDecls(indent level: Int) -> String {
-        componentProperties.map({ "@ViewBuilder var \($0.name): some View {\n\t\t\($0.concatenatedModifiers(component: componentName))\n\t}"}).joined(separator: carriageRet(level))
+        componentProperties.map({ "@ViewBuilder var \($0.trimmedName): some View {\n\t\t\($0.concatenatedModifiers(component: componentName))\n\t}"}).joined(separator: carriageRet(level))
     }
 
     func defaultInit(indent level: Int) -> String {
@@ -324,7 +324,7 @@ extension Variable {
 
     var conditionalAssignment: String {
         if isOptional {
-            return "\(name) != nil ? ViewBuilder.buildEither(first: \(toSwiftUI)) : ViewBuilder.buildEither(second: EmptyView())"
+            return "\(trimmedName) != nil ? ViewBuilder.buildEither(first: \(toSwiftUI)) : ViewBuilder.buildEither(second: EmptyView())"
         } else {
             return toSwiftUI
         }
@@ -333,15 +333,15 @@ extension Variable {
     var toSwiftUI: String {
         switch self.typeName.unwrappedTypeName {
             case "String":
-                return isOptional ? "Text(\(name)!)" : "Text(\(name))"
+                return isOptional ? "Text(\(trimmedName)!)" : "Text(\(trimmedName))"
             case "[String]":
-                return "Text(\(name).joined(separator: \", \"))"
+                return "Text(\(trimmedName).joined(separator: \", \"))"
             case "Image":
-                return isOptional ? "\(name)!" : name
+                return isOptional ? "\(trimmedName)!" : trimmedName
             default:
-                return "\(swiftUITypeName)(\(name))" 
-                    return "\(swiftUITypeName)(\(name))"
-                return "\(swiftUITypeName)(\(name))" 
+                return "\(swiftUITypeName)(\(trimmedName))" 
+                    return "\(swiftUITypeName)(\(trimmedName))"
+                return "\(swiftUITypeName)(\(trimmedName))" 
         }
     }
 
@@ -356,69 +356,73 @@ extension Variable {
     }
 
     func concatenatedModifiers(component: String) -> String {
-        "_\(name)().modifier(Fiori.\(component).\(name).concat(\(name)Modifier))"
+        "_\(trimmedName)().modifier(\(trimmedName)Modifier.concat(Fiori.\(component).\(trimmedName)))"
+    }
+
+    var trimmedName: String {
+        name.replacingOccurrences(of: "_", with: "")
     }
 }
 
 extension Array where Element: Variable {
     var templateParameterDecls: String {
-        map({ "\($0.name.capitalizingFirst()): View"}).joined(separator: ", ")
+        map({ "\($0.trimmedName.capitalizingFirst()): View"}).joined(separator: ", ")
     }
 
     var viewBuilderInitParams: Array<String> {
-        map({ "@ViewBuilder \($0.name): @escaping () -> \($0.name.capitalizingFirst())"})
+        map({ "@ViewBuilder \($0.trimmedName): @escaping () -> \($0.trimmedName.capitalizingFirst())"})
     }
 
     var viewBuilderPropertyDecls: String {
-        map({ "private let _\($0.name): () -> \($0.name.capitalizingFirst())" }).joined(separator: "\n\t")
+        map({ "private let _\($0.trimmedName): () -> \($0.trimmedName.capitalizingFirst())" }).joined(separator: "\n\t")
     }
 
     var viewModifierPropertyDecls: String {
-        map({ "@Environment(\\.\($0.name)Modifier) private var \($0.name)Modifier" }).joined(separator: "\n\t")
+        map({ "@Environment(\\.\($0.trimmedName)Modifier) private var \($0.trimmedName)Modifier" }).joined(separator: "\n\t")
     }
 
     var viewBuilderInitParamAssignment: String {
-        map({ "self._\($0.name) = \($0.name)" }).joined(separator: "\n\t\t\t")
+        map({ "self._\($0.trimmedName) = \($0.trimmedName)" }).joined(separator: "\n\t\t\t")
     }
 
     func configurationInitParams(component: String) -> String {
-        map({ "\($0.name): _\($0.name)().modifier(\($0.name)Modifier.concat(Fiori.\(component).\($0.name))).typeErased" }).joined(separator: ",\n\t\t\t")
+        map({ "\($0.trimmedName): _\($0.trimmedName)().modifier(\($0.trimmedName)Modifier.concat(Fiori.\(component).\($0.trimmedName))).typeErased" }).joined(separator: ",\n\t\t\t")
     }
 
     var configurationPropertyDecls: String {
-        map({ "let \($0.name): AnyView" }).joined(separator: "\n\t")
+        map({ "let \($0.trimmedName): AnyView" }).joined(separator: "\n\t")
     }
 
     var configurationPropertyViewBuilder: String {
-        map({ "configuration.\($0.name)"}).joined(separator: "\n\t\t\t")
+        map({ "configuration.\($0.trimmedName)"}).joined(separator: "\n\t\t\t")
     }
 
     var staticViewModifierPropertyDecls: String {
-        map({ "static let \($0.name) = \($0.name.capitalizingFirst())()" }).joined(separator: "\n\t\t")
+        map({ "static let \($0.trimmedName) = \($0.trimmedName.capitalizingFirst())()" }).joined(separator: "\n\t\t")
     }
 
     var typealiasViewModifierDecls: String {
-        map({ "typealias \($0.name.capitalizingFirst()) = EmptyModifier" }).joined(separator: "\n\t\t")
+        map({ "typealias \($0.trimmedName.capitalizingFirst()) = EmptyModifier" }).joined(separator: "\n\t\t")
     }
 
     var extensionContrainedWhereEmptyView: String {
-        map({ "\($0.name.capitalizingFirst()) == EmptyView" }).joined(separator: ", ")
+        map({ "\($0.trimmedName.capitalizingFirst()) == EmptyView" }).joined(separator: ", ")
     }
 
     var extensionConstrainedWhereConditionalContent: String {
-        map({ "\($0.name.capitalizingFirst()) == \($0.isOptional ? "_ConditionalContent<\($0.swiftUITypeName), EmptyView>" : $0.swiftUITypeName)"}).joined(separator: ",\n\t\t")
+        map({ "\($0.trimmedName.capitalizingFirst()) == \($0.isOptional ? "_ConditionalContent<\($0.swiftUITypeName), EmptyView>" : $0.swiftUITypeName)"}).joined(separator: ",\n\t\t")
     }
 
     var extensionModelInitParams: Array<String> {
-        map({ "\($0.name): \($0.typeName.name)\($0.emptyDefault)" })
+        map({ "\($0.trimmedName): \($0.typeName.name)\($0.emptyDefault)" })
     }
 
     var extensionModelInitParamsAssignment: Array<String> {
-        map({ "\($0.name): model.\($0.name)"})
+        map({ "\($0.trimmedName): model.\($0.name)"})
     }
 
     var extensionModelInitParamAssignments: String {
-        map({ "self._\($0.name) = { \($0.conditionalAssignment) }" }).joined(separator: "\n\t\t")
+        map({ "self._\($0.trimmedName) = { \($0.conditionalAssignment) }" }).joined(separator: "\n\t\t")
     }
 
     var usage: String {
@@ -446,7 +450,7 @@ extension Array where Element: Variable {
         var output: Array<String> = []
         for variable in self {
             if !scenario.contains(variable) {
-                output.append("@ViewBuilder \(variable.name): @escaping () -> \(variable.name.capitalizingFirst())")
+                output.append("@ViewBuilder \(variable.trimmedName): @escaping () -> \(variable.trimmedName.capitalizingFirst())")
             } 
         }
         return output.joined(separator: ",\n\t\t")
@@ -456,9 +460,9 @@ extension Array where Element: Variable {
         var output: Array<String> = []
         for variable in self {
             if scenario.contains(variable) {
-                output.append("\(variable.name): { EmptyView() }")
+                output.append("\(variable.trimmedName): { EmptyView() }")
             } else {
-                output.append("\(variable.name): \(variable.name)")
+                output.append("\(variable.trimmedName): \(variable.trimmedName)")
             }
         }
         return output.joined(separator: ",\n\t\t\t")

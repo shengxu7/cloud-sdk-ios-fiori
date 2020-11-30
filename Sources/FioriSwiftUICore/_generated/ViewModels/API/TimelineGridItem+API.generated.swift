@@ -24,13 +24,13 @@ public struct TimelineGridItem<Title: View, Timestamp: View, Status: View> {
     }
 
     @ViewBuilder var title: some View {
-		_title().modifier(Fiori.TimelineGridItem.title.concat(titleModifier))
+		_title().modifier(titleModifier.concat(Fiori.TimelineGridItem.title))
 	}
 	@ViewBuilder var timestamp: some View {
-		_timestamp().modifier(Fiori.TimelineGridItem.timestamp.concat(timestampModifier))
+		_timestamp().modifier(timestampModifier.concat(Fiori.TimelineGridItem.timestamp))
 	}
 	@ViewBuilder var status: some View {
-		_status().modifier(Fiori.TimelineGridItem.status.concat(statusModifier))
+		_status().modifier(statusModifier.concat(Fiori.TimelineGridItem.status))
 	}
 }
 
@@ -39,7 +39,7 @@ extension TimelineGridItem where Title == Text,
 		Status == _ConditionalContent<Text, EmptyView> {
     
     public init(model: TimelineGridItemModel) {
-        self.init(title: model.title, timestamp: model.timestamp, status: model.status)
+        self.init(title: model.title_, timestamp: model.timestamp_, status: model.status_)
     }
 
     public init(title: String, timestamp: String? = nil, status: String? = nil) {

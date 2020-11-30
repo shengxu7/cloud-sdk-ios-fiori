@@ -28,16 +28,16 @@ public struct HeaderChart<Title: View, Subtitle: View, Trend: View, Kpi: View> {
     }
 
     @ViewBuilder var title: some View {
-		_title().modifier(Fiori.HeaderChart.title.concat(titleModifier))
+		_title().modifier(titleModifier.concat(Fiori.HeaderChart.title))
 	}
 	@ViewBuilder var subtitle: some View {
-		_subtitle().modifier(Fiori.HeaderChart.subtitle.concat(subtitleModifier))
+		_subtitle().modifier(subtitleModifier.concat(Fiori.HeaderChart.subtitle))
 	}
 	@ViewBuilder var trend: some View {
-		_trend().modifier(Fiori.HeaderChart.trend.concat(trendModifier))
+		_trend().modifier(trendModifier.concat(Fiori.HeaderChart.trend))
 	}
 	@ViewBuilder var kpi: some View {
-		_kpi().modifier(Fiori.HeaderChart.kpi.concat(kpiModifier))
+		_kpi().modifier(kpiModifier.concat(Fiori.HeaderChart.kpi))
 	}
 }
 
@@ -47,7 +47,7 @@ extension HeaderChart where Title == Text,
 		Kpi == _ConditionalContent<Text, EmptyView> {
     
     public init(model: HeaderChartModel) {
-        self.init(title: model.title, subtitle: model.subtitle, trend: model.trend, kpi: model.kpi)
+        self.init(title: model.title_, subtitle: model.subtitle_, trend: model.trend_, kpi: model.kpi_)
     }
 
     public init(title: String, subtitle: String? = nil, trend: String? = nil, kpi: String? = nil) {

@@ -36,22 +36,22 @@ public struct ChartFloorplan<Title: View, Subtitle: View, Status: View, ValueAxi
     }
 
     @ViewBuilder var title: some View {
-		_title().modifier(Fiori.ChartFloorplan.title.concat(titleModifier))
+		_title().modifier(titleModifier.concat(Fiori.ChartFloorplan.title))
 	}
 	@ViewBuilder var subtitle: some View {
-		_subtitle().modifier(Fiori.ChartFloorplan.subtitle.concat(subtitleModifier))
+		_subtitle().modifier(subtitleModifier.concat(Fiori.ChartFloorplan.subtitle))
 	}
 	@ViewBuilder var status: some View {
-		_status().modifier(Fiori.ChartFloorplan.status.concat(statusModifier))
+		_status().modifier(statusModifier.concat(Fiori.ChartFloorplan.status))
 	}
 	@ViewBuilder var valueAxisTitle: some View {
-		_valueAxisTitle().modifier(Fiori.ChartFloorplan.valueAxisTitle.concat(valueAxisTitleModifier))
+		_valueAxisTitle().modifier(valueAxisTitleModifier.concat(Fiori.ChartFloorplan.valueAxisTitle))
 	}
 	@ViewBuilder var seriesTitles: some View {
-		_seriesTitles().modifier(Fiori.ChartFloorplan.seriesTitles.concat(seriesTitlesModifier))
+		_seriesTitles().modifier(seriesTitlesModifier.concat(Fiori.ChartFloorplan.seriesTitles))
 	}
 	@ViewBuilder var categoryAxisTitle: some View {
-		_categoryAxisTitle().modifier(Fiori.ChartFloorplan.categoryAxisTitle.concat(categoryAxisTitleModifier))
+		_categoryAxisTitle().modifier(categoryAxisTitleModifier.concat(Fiori.ChartFloorplan.categoryAxisTitle))
 	}
 }
 
@@ -63,7 +63,7 @@ extension ChartFloorplan where Title == Text,
 		CategoryAxisTitle == _ConditionalContent<Text, EmptyView> {
     
     public init(model: ChartFloorplanModel) {
-        self.init(title: model.title, subtitle: model.subtitle, status: model.status, valueAxisTitle: model.valueAxisTitle, seriesTitles: model.seriesTitles, categoryAxisTitle: model.categoryAxisTitle)
+        self.init(title: model.title_, subtitle: model.subtitle_, status: model.status_, valueAxisTitle: model.valueAxisTitle_, seriesTitles: model.seriesTitles_, categoryAxisTitle: model.categoryAxisTitle_)
     }
 
     public init(title: String, subtitle: String? = nil, status: String? = nil, valueAxisTitle: String? = nil, seriesTitles: [String] = [], categoryAxisTitle: String? = nil) {

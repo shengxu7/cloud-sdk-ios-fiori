@@ -24,13 +24,13 @@ public struct KPIAnnotated<Title: View, Subtitle: View, Icon: View> {
     }
 
     @ViewBuilder var title: some View {
-		_title().modifier(Fiori.KPIAnnotated.title.concat(titleModifier))
+		_title().modifier(titleModifier.concat(Fiori.KPIAnnotated.title))
 	}
 	@ViewBuilder var subtitle: some View {
-		_subtitle().modifier(Fiori.KPIAnnotated.subtitle.concat(subtitleModifier))
+		_subtitle().modifier(subtitleModifier.concat(Fiori.KPIAnnotated.subtitle))
 	}
 	@ViewBuilder var icon: some View {
-		_icon().modifier(Fiori.KPIAnnotated.icon.concat(iconModifier))
+		_icon().modifier(iconModifier.concat(Fiori.KPIAnnotated.icon))
 	}
 }
 
@@ -39,7 +39,7 @@ extension KPIAnnotated where Title == Text,
 		Icon == _ConditionalContent<Image, EmptyView> {
     
     public init(model: KPIAnnotatedModel) {
-        self.init(title: model.title, subtitle: model.subtitle, icon: model.icon)
+        self.init(title: model.title_, subtitle: model.subtitle_, icon: model.icon_)
     }
 
     public init(title: String, subtitle: String? = nil, icon: Image? = nil) {
