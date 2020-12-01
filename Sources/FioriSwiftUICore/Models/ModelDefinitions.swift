@@ -53,3 +53,5 @@ public protocol KPIModel: TitleComponent, IconComponent {}
 // sourcery: generated_component
 public protocol KPIAnnotatedModel: TitleComponent, SubtitleComponent, IconComponent {}
 
+// sourcery: generated_component
+public protocol KeyValueItemModel: KeyComponent, ValueComponent {}
